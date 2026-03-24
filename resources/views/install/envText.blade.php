@@ -36,13 +36,13 @@
 
                   <h4 class="install_instuction">Hey, I need your help. </h4>
                   <p class="install_instuction">
-                    Please create a file with name <code>.env</code> at <strong>{{$envPath}}</strong> with <code>read & write permission</code> and paste the below content. <br/> Press install after it.
+                    The installer will create <code>.env</code> at <strong>{{$envPath}}</strong> using the content below when you press install.
                   </p>
                   <hr/>
 
                   <div class="col-md-12">
                     <div class="form-group">
-                        <textarea rows="25" cols="50">{{$envContent}}</textarea>
+                        <textarea rows="25" cols="50" name="envContent" readonly>{{$envContent}}</textarea>
                     </div>
                   </div>
                   

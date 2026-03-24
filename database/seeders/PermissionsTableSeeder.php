@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\PermissionRegistrar;
 
 class PermissionsTableSeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+
         $data = [
             ['name' => 'user.view'],
             ['name' => 'user.create'],
@@ -80,16 +83,16 @@ class PermissionsTableSeeder extends Seeder
             ['name' => 'expense.access'],
 
             ['name' => 'access_all_locations'],
+            ['name' => 'view_cash_register'],
+            ['name' => 'close_cash_register'],
+            ['name' => 'print_invoice'],
             ['name' => 'dashboard.data'],
         ];
 
-        $insert_data = [];
-        $time_stamp = \Carbon::now()->toDateTimeString();
         foreach ($data as $d) {
-            $d['guard_name'] = 'web';
-            $d['created_at'] = $time_stamp;
-            $insert_data[] = $d;
+            Permission::findOrCreate($d['name'], 'web');
         }
-        Permission::insert($insert_data);
+
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
     }
 }

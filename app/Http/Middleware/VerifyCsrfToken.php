@@ -12,9 +12,9 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        '/install/details',
-        '/install/post-details',
-        '/install/install-alternate',
+        '/installer/details',
+        '/installer/post-details',
+        '/installer/install-alternate',
         '/api/ecom/customers',
         '/api/ecom/orders',
         '/webhook/*'

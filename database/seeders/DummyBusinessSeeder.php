@@ -8,6 +8,7 @@ use App\Utils\InstallUtil;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Carbon\Carbon;
@@ -76,6 +77,14 @@ class DummyBusinessSeeder extends Seeder
 
         DB::table('business_locations')->insert($business_locations);
 
+        if ($this->hasTables([
+            'hms_room_types',
+            'hms_rooms',
+            'hms_extras',
+            'hms_coupons',
+            'hms_booking_lines',
+            'hms_booking_extras',
+        ])) {
         $hms_room_types = [
             [
                 'id' => 1,
@@ -284,6 +293,7 @@ class DummyBusinessSeeder extends Seeder
         ];
 
         DB::table('hms_booking_extras')->insert($hms_booking_extras);
+        }
 
         // `pos`.`cash_register_transactions`
         $cash_register_transactions = [
@@ -1297,6 +1307,7 @@ class DummyBusinessSeeder extends Seeder
             DB::table('system')->where('key', $row['key'])->update(['value' => $row['value']]);
         }
 
+        if ($this->hasTables(['packages', 'subscriptions'])) {
         $packages = [
             ['id' => '1', 'name' => 'Starter - Free', 'description' => 'Give it a test drive...', 'location_count' => '1', 'user_count' => '2', 'product_count' => '30', 'bookings' => '0', 'kitchen' => '0', 'order_screen' => '0', 'tables' => '0', 'invoice_count' => '30', 'interval' => 'months', 'interval_count' => '1', 'trial_days' => '10', 'price' => '0.0000', 'created_by' => '1', 'sort_order' => '0', 'is_active' => '1', 'deleted_at' => null, 'created_at' => $today, 'updated_at' => '2018-08-01 20:10:49', 'custom_permissions' => '{"essentials_module":"1","woocommerce_module":"1"}'],
             ['id' => '2', 'name' => 'Regular', 'description' => 'For Small Shops', 'location_count' => '0', 'user_count' => '0', 'product_count' => '0', 'bookings' => '0', 'kitchen' => '0', 'order_screen' => '0', 'tables' => '0', 'invoice_count' => '0', 'interval' => 'months', 'interval_count' => '1', 'trial_days' => '10', 'price' => '199.9900', 'custom_permissions' => '{"repair_module":"1"}', 'created_by' => '1', 'sort_order' => '1', 'is_active' => '1', 'deleted_at' => null, 'created_at' => $today, 'updated_at' => $today],
@@ -1321,6 +1332,7 @@ class DummyBusinessSeeder extends Seeder
         ];
 
         DB::table('subscriptions')->insert($subscriptions);
+        }
 
         $notification_template_data = NotificationTemplate::defaultNotificationTemplates();
         $notification_template_array = [];
@@ -1333,6 +1345,7 @@ class DummyBusinessSeeder extends Seeder
 
         DB::table('notification_templates')->insert($notification_template_array);
 
+        if ($this->hasTables(['mfg_recipes', 'mfg_recipe_ingredients'])) {
         $mfg_recipes = [
             ['id' => '1', 'product_id' => '81', 'variation_id' => '129', 'instructions' => '<p>Steps for making pizza can be written here ...</p>', 'waste_percent' => '0.00', 'ingredients_cost' => '2660.0000', 'extra_cost' => '10.0000', 'total_quantity' => '1.0000', 'final_price' => '2926.0000', 'sub_unit_id' => '9', 'created_at' => '2019-08-18 19:05:09', 'updated_at' => '2019-08-18 19:08:12'],
             ['id' => '2', 'product_id' => '93', 'variation_id' => '141', 'instructions' => null, 'waste_percent' => '0.00', 'ingredients_cost' => '31.5000', 'extra_cost' => '10.0000', 'total_quantity' => '1.0000', 'final_price' => '34.6500', 'sub_unit_id' => '9', 'created_at' => '2019-08-18 19:22:40', 'updated_at' => '2019-08-18 19:22:40'],
@@ -1353,6 +1366,7 @@ class DummyBusinessSeeder extends Seeder
         ];
 
         DB::table('mfg_recipe_ingredients')->insert($mfg_recipe_ingredients);
+        }
 
         $product_locations = [
             ['product_id' => '1', 'location_id' => '1'],
@@ -1624,6 +1638,7 @@ class DummyBusinessSeeder extends Seeder
         $admin6->assignRole('Admin#6');
 
         //Essential Module : Dummy Data
+        if (Schema::hasTable('essentials_leave_types')) {
         $essentials_leave_types = [
             ['id' => '1', 'leave_type' => 'Sick Leave', 'max_leave_count' => null, 'leave_count_interval' => null, 'business_id' => '1', 'created_at' => '2019-08-07 00:00:36', 'updated_at' => '2019-08-07 00:00:36'],
             ['id' => '2', 'leave_type' => 'Vacation Leaves', 'max_leave_count' => null, 'leave_count_interval' => null, 'business_id' => '1', 'created_at' => '2019-08-07 00:00:49', 'updated_at' => '2019-08-07 00:00:49'],
@@ -1631,8 +1646,10 @@ class DummyBusinessSeeder extends Seeder
             ['id' => '4', 'leave_type' => 'Others', 'max_leave_count' => '1', 'leave_count_interval' => 'month', 'business_id' => '1', 'created_at' => '2019-08-07 00:01:34', 'updated_at' => '2019-08-07 00:01:34'],
         ];
         DB::table('essentials_leave_types')->insert($essentials_leave_types);
+        }
 
         //Repair Module Dummy Data [product/device(categories) added above]
+        if ($this->hasTables(['repair_device_models', 'repair_statuses'])) {
         $repair_device_models = [
             ['id' => '1', 'business_id' => '4', 'name' => 'Samsung Galaxy M21', 'repair_checklist' => '"MIC|WiFi|Bluetooth|Sound|Camera|Ram"', 'brand_id' => '24', 'device_id' => '48', 'created_by' => '1', 'created_at' => '2020-05-07 21:07:24', 'updated_at' => '2020-05-11 12:35:00'],
             ['id' => '2', 'business_id' => '4', 'name' => 'Samsung Galaxy S20+', 'repair_checklist' => '"MIC|WiFi|Bluetooth|Sound|Camera|Ram"', 'brand_id' => '24', 'device_id' => '48', 'created_by' => '1', 'created_at' => '2020-05-07 21:08:11', 'updated_at' => '2020-05-11 12:34:34'],
@@ -1655,7 +1672,9 @@ class DummyBusinessSeeder extends Seeder
         ];
 
         DB::table('repair_statuses')->insert($repair_statuses);
+        }
 
+        if ($this->hasTables(['essentials_shifts', 'essentials_user_shifts'])) {
         $essentials_shifts = [
             ['id' => '1', 'name' => 'Morning Shift', 'type' => 'fixed_shift', 'business_id' => '1', 'start_time' => '09:00:00', 'end_time' => '18:00:00', 'holidays' => '["sunday","saturday"]', 'created_at' => '2020-05-11 05:26:56', 'updated_at' => '2020-05-11 21:27:03'],
             ['id' => '2', 'name' => 'Evening Shift', 'type' => 'flexible_shift', 'business_id' => '1', 'start_time' => null, 'end_time' => null, 'holidays' => '["sunday","saturday"]', 'created_at' => '2020-05-11 05:28:17', 'updated_at' => '2020-05-11 05:28:17'],
@@ -1672,8 +1691,10 @@ class DummyBusinessSeeder extends Seeder
             ['id' => '8', 'user_id' => '2', 'essentials_shift_id' => '1', 'start_date' => $start_of_week, 'end_date' => $end_of_week, 'created_at' => '2020-05-11 21:29:45', 'updated_at' => '2020-05-11 21:29:45'],
         ];
         DB::table('essentials_user_shifts')->insert($essentials_user_shifts);
+        }
 
 
+        if ($this->hasTables(['gym_classes', 'gym_packages'])) {
         $gym_classes = [
             // Business 1
             ['business_id' => 1, 'name' => 'Yoga', 'description' => 'A relaxing and stretching session', 'start_time' => '06:00:00', 'end_time' => '07:00:00', 'created_at' => now(), 'updated_at' => now()],
@@ -1731,6 +1752,7 @@ $packages = [
 
 // Insert into database
     DB::table('gym_packages')->insert($packages);
+        }
 
     $locations = DB::table('business_locations')->get();
 
@@ -1771,5 +1793,16 @@ $packages = [
         $installUtil->createExistingProductsVariationsToTemplate();
 
         DB::commit();
+    }
+
+    private function hasTables(array $tables)
+    {
+        foreach ($tables as $table) {
+            if (! Schema::hasTable($table)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

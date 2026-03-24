@@ -231,7 +231,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ action([\App\Http\Controllers\Auth\LoginController::class, 'logout']) }}"
+                            <a href="{{ route('logout.get') }}"
                                 class="tw-flex tw-items-center tw-gap-2 tw-px-3 tw-py-2 tw-text-sm tw-font-medium tw-text-gray-600 tw-transition-all tw-duration-200 tw-rounded-lg hover:tw-text-gray-900 hover:tw-bg-gray-100"
                                 role="menuitem" tabindex="-1">
                                 <svg aria-hidden="true" class="tw-w-5 tw-h-5" xmlns="http://www.w3.org/2000/svg"

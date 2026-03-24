@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="1JrIubJ0QvLYqLAXnv1ldyY6nREgiUiYDxP9hPLv">
+
+    <title>POS Installation - Check server - ultimatePOS</title> 
+
+    <link href="http://127.0.0.1:8000/css/tailwind/app.css?v=611" rel="stylesheet">
+
+<link rel="stylesheet" href="http://127.0.0.1:8000/css/vendor.css?v=611">
+
+
+
+<!-- app css -->
+<link rel="stylesheet" href="http://127.0.0.1:8000/css/app.css?v=611">
+
+<style type="text/css">
+	/*
+	* Pattern lock css
+	* Pattern direction
+	* http://ignitersworld.com/lab/patternLock.html
+	*/
+	.patt-wrap {
+	  z-index: 10;
+	}
+	.patt-circ.hovered {
+	  background-color: #cde2f2;
+	  border: none;
+	}
+	.patt-circ.hovered .patt-dots {
+	  display: none;
+	}
+	.patt-circ.dir {
+	  background-image: url("http://127.0.0.1:8000/img/pattern-directionicon-arrow.png");
+	  background-position: center;
+	  background-repeat: no-repeat;
+	}
+	.patt-circ.e {
+	  -webkit-transform: rotate(0);
+	  transform: rotate(0);
+	}
+	.patt-circ.s-e {
+	  -webkit-transform: rotate(45deg);
+	  transform: rotate(45deg);
+	}
+	.patt-circ.s {
+	  -webkit-transform: rotate(90deg);
+	  transform: rotate(90deg);
+	}
+	.patt-circ.s-w {
+	  -webkit-transform: rotate(135deg);
+	  transform: rotate(135deg);
+	}
+	.patt-circ.w {
+	  -webkit-transform: rotate(180deg);
+	  transform: rotate(180deg);
+	}
+	.patt-circ.n-w {
+	  -webkit-transform: rotate(225deg);
+	   transform: rotate(225deg);
+	}
+	.patt-circ.n {
+	  -webkit-transform: rotate(270deg);
+	  transform: rotate(270deg);
+	}
+	.patt-circ.n-e {
+	  -webkit-transform: rotate(315deg);
+	  transform: rotate(315deg);
+	}
+</style>
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+</head>
+
+<body class="hold-transition">
+    
+    
+
+    <div class="container">
+  <div class="row">
+    <h3 class="text-center">ultimatePOS Installation <small>Step 2 of 3</small></h3>
+
+    <div class="col-md-8 col-md-offset-2">
+      <hr />
+      <ul class="nav nav-pills nav-justified">
+  <li role="presentation" >
+    <a href="#">Instructions</a>
+  </li>
+  <!-- <li role="presentation" >
+    <a href="#">Server Requirements</a>
+  </li> -->
+  <li role="presentation"  class="active" >
+    <a href="#">Application Details</a>
+  </li>
+  <li role="presentation" >
+    <a href="#">Success</a>
+  </li>
+</ul>
+<br/>
+      <div class="box box-primary active">
+        <!-- /.box-header -->
+        <div class="box-body">
+
+          
+          
+          <form class="form" id="details_form" method="post" action="http://127.0.0.1:8000/installer/post-details">
+            <input type="hidden" name="_token" value="1JrIubJ0QvLYqLAXnv1ldyY6nREgiUiYDxP9hPLv">
+
+            <h4>Application Details</h4>
+            <hr />
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="app_name">Application Name:*</label>
+                <input type="text" class="form-control" name="APP_NAME" id="app_name" placeholder="Ultimate POS"
+                  required>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="app_title">Application Title:</label>
+                <input type="text" name="APP_TITLE" class="form-control" id="app_title">
+              </div>
+            </div>
+
+            <h4> License Details <small class="text-danger">Make sure to provide correct information from
+                Envato/codecanyon</small></h4>
+            <hr />
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="envato_purchase_code">Envato Purchase Code:*</label>
+                <input type="password" name="ENVATO_PURCHASE_CODE" required class="form-control"
+                  id="envato_purchase_code">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="envato_username">Envato Username:*</label>
+                <input type="text" name="ENVATO_USERNAME" required class="form-control" id="envato_username">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="envato_email">Your Email:</label>
+                <input type="email" name="ENVATO_EMAIL" class="form-control" id="envato_email" placeholder="optional">
+                <p class="help-block">For Newsletter & support</p>
+              </div>
+            </div>
+
+            
+            <div class="clearfix"></div>
+
+            <h4> Database Details <small>Make sure to provide correct information</small></h4>
+            <hr />
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="db_host">Database Host:*</label>
+                <input type="text" class="form-control" id="db_host" name="DB_HOST" required
+                  placeholder="localhost / 127.0.0.1">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="db_port">Database Port:*</label>
+                <input type="text" class="form-control" id="db_port" name="DB_PORT" required value="3306">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="db_database">Database Name:*</label>
+                <input type="text" class="form-control" id="db_database" name="DB_DATABASE" required>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="db_username">Database Username:*</label>
+                <input type="text" class="form-control" id="db_username" name="DB_USERNAME" required>
+              </div>
+            </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="db_password">Database Password: <small>(optional)</small></label>
+                        <input type="password" class="form-control" id="db_password" name="DB_PASSWORD">
+                    </div>
+                  </div>
+
+            <div class="clearfix"></div>
+
+            <h4>Email Configuration<small> Use for sending mails</small></h4>
+            <hr />
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="MAIL_MAILER">Send mails using:*</label>
+                <select class="form-control" name="MAIL_MAILER" id="MAIL_MAILER">
+                  <option value="sendmail">PHP Mail</option>
+                  <option value="smtp">SMTP</option>
+                </select>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="MAIL_FROM_ADDRESS">Default from address:*</label>
+                <input type="email" class="form-control" id="MAIL_FROM_ADDRESS" name="MAIL_FROM_ADDRESS"
+                  placeholder="hello@ultimatepos.com" required>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="MAIL_FROM_NAME">Default from name:</label>
+                <input type="text" class="form-control" id="MAIL_FROM_NAME" name="MAIL_FROM_NAME"
+                  placeholder="Ultimate POS (Optional)">
+              </div>
+            </div>
+
+            <div class="col-md-4 smtp hide">
+              <div class="form-group">
+                <label for="MAIL_HOST">SMTP Host:*</label>
+                <input type="text" class="form-control smtp_input" id="MAIL_HOST" name="MAIL_HOST" required disabled>
+              </div>
+            </div>
+
+            <div class="col-md-4  smtp hide">
+              <div class="form-group">
+                <label for="MAIL_PORT">SMTP Mail Port:*</label>
+                <input type="text" class="form-control smtp_input" id="MAIL_PORT" name="MAIL_PORT" required disabled>
+              </div>
+            </div>
+
+            <div class="col-md-4  smtp hide">
+              <div class="form-group">
+                <label for="MAIL_ENCRYPTION">SMTP Mail Encryption:*</label>
+                <input type="text" class="form-control smtp_input" id="MAIL_ENCRYPTION" name="MAIL_ENCRYPTION" required
+                  disabled placeholder="tls or ssl">
+              </div>
+            </div>
+
+            <div class="col-md-6  smtp hide">
+              <div class="form-group">
+                <label for="MAIL_USERNAME">SMTP Username:*</label>
+                <input type="text" class="form-control smtp_input" id="MAIL_USERNAME" name="MAIL_USERNAME" required
+                  disabled>
+              </div>
+            </div>
+
+            <div class="col-md-6  smtp hide">
+              <div class="form-group">
+                <label for="MAIL_PASSWORD">SMTP Password:*</label>
+                <input type="password" class="form-control smtp_input" id="MAIL_PASSWORD" name="MAIL_PASSWORD" required
+                  disabled>
+              </div>
+            </div>
+
+            <hr />
+
+            <div class="col-md-12">
+              <a href="http://127.0.0.1:8000/install-start" class="btn btn-default pull-left back_button" tabindex="-1">Back</a>
+              <button type="submit" id="install_button" class="btn btn-primary pull-right">Install</button>
+            </div>
+
+            <div class="col-md-12 text-center text-danger install_msg hide">
+              <strong>Installation in progress, Please do not refresh, go back or close the browser.</strong>
+            </div>
+
+          </form>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+
+  </div>
+</div>
+    
+    <script type="text/javascript">
+    base_path = "http://127.0.0.1:8000";
+    //used for push notification
+    APP = {};
+    APP.PUSHER_APP_KEY = '';
+    APP.PUSHER_APP_CLUSTER = '';
+    APP.INVOICE_SCHEME_SEPARATOR = '-';
+    //variable from app service provider
+    APP.PUSHER_ENABLED = '';
+            APP.USER_ID = '';
+    </script>
+
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js?v=$asset_v"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js?v=$asset_v"></script>
+<![endif]-->
+
+<script src="http://127.0.0.1:8000/js/vendor.js?v=611"></script>
+
+    <script src="http://127.0.0.1:8000/js/lang/en.js?v=611">
+    </script>
+
+<script>
+    Dropzone.autoDiscover = false;
+    moment.tz.setDefault('');
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+            });
+
+    var financial_year = {
+        start: moment(''),
+        end: moment(''),
+    }
+    
+    var datepicker_date_format = "mm/dd/yyyy";
+    var moment_date_format = "MM/DD/YYYY";
+    var moment_time_format = "HH:mm";
+
+    var app_locale = "en";
+
+    var non_utf8_languages = [
+                    "ar",
+                    "hi",
+                    "ps",
+            ];
+
+    var __default_datatable_page_entries = "25";
+
+    var __new_notification_count_interval = "60000";
+</script>
+
+    <script src="http://127.0.0.1:8000/js/lang/en.js?v=611">
+    </script>
+
+<script src="http://127.0.0.1:8000/js/functions.js?v=611"></script>
+<script src="http://127.0.0.1:8000/js/common.js?v=611"></script>
+<script src="http://127.0.0.1:8000/js/app.js?v=611"></script>
+<script src="http://127.0.0.1:8000/js/help-tour.js?v=611"></script>
+<script src="http://127.0.0.1:8000/js/documents_and_note.js?v=611"></script>
+
+<!-- TODO -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('select#MAIL_MAILER').change(function(){
+        var driver = $(this).val();
+
+        if(driver == 'smtp'){
+          $('div.smtp').removeClass('hide');
+          $('input.smtp_input').attr('disabled', false);
+        } else {
+          $('div.smtp').addClass('hide');
+          $('input.smtp_input').attr('disabled', true);
+        }
+      })
+
+      $('form#details_form').submit(function(){
+        $('button#install_button').attr('disabled', true).text('Installing...');
+        $('div.install_msg').removeClass('hide');
+        $('.back_button').hide();
+      });
+
+    })
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var locale = "en";
+        var isRTL =
+                            false;
+            
+        $('#calendar').fullCalendar('option', {
+            locale: locale,
+            isRTL: isRTL
+        });
+        // side bar toggle  
+        $(".drop_down").click(function(event) {
+            event.preventDefault();
+            var $chiled = $(this).next(".chiled");
+            var svgElement = $(this).find(".svg");
+            $(".chiled").not($chiled).slideUp();
+            $chiled.slideToggle(function() {
+                $(".svg").each(function() {
+                    var $currentSvgElement = $(this);
+                    if ($currentSvgElement.closest(".drop_down").next(".chiled").is(
+                            ":visible")) {
+                        // If the corresponding menu is visible, set the arrow pointing upwards
+                        $currentSvgElement.html(
+                            '<path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6 9l6 6l6 -6" />'
+                        );
+                    } else {
+                        // Otherwise, set the arrow pointing downwards
+                        $currentSvgElement.html(
+                            '<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" />'
+                        );
+                    }
+                });
+            });
+        });
+
+        $('.small-view-button').on('click', function() {
+            $('.side-bar').addClass('small-view-side-active');
+            $('.overlay').fadeIn('slow');
+        });
+
+        $('.overlay').on('click', function() {
+            $('.overlay').fadeOut('slow');
+            $('.side-bar').removeClass('small-view-side-active');
+        });
+
+        $(window).on('resize', function() {
+            if ($(window).width() >= 992) {
+                $('.overlay').fadeOut('slow');
+                $('.side-bar').removeClass('small-view-side-active');
+            }
+
+            if($('.side-bar').hasClass('small-view-side-active')){
+                $('.overlay').fadeIn('slow');
+            }
+        });
+
+        $(document).on('click', function (e) {
+            $('[data-toggle="popover"]').popover();
+
+            $(document).on('click', function (e) {
+                $('[data-toggle="popover"]').each(function () {
+                    // Check if the clicked element is the popover button or inside the popover
+                    if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                        $(this).popover('hide');
+                    }
+                });
+            });
+            
+        });
+
+        $('.side-bar-collapse').click(function() {
+            $('.side-bar').toggle('slow');
+        });
+
+        $('.dt-buttons.btn-group').find('a.btn').removeClass('btn-default');
+        $('.dt-buttons.btn-group').find('a.btn').removeClass('btn');
+        
+        // $('.date_range').on('show.daterangepicker', function (ev, picker) {
+        //     $(picker.container).insertAfter($(this));
+        // });
+   
+    });
+</script>
+
+
+    <!-- Scripts -->
+    <script src="http://127.0.0.1:8000/js/login.js?v=611"></script>
+    <script type="text/javascript">
+  $(document).ready(function(){
+      $('select#MAIL_MAILER').change(function(){
+        var driver = $(this).val();
+
+        if(driver == 'smtp'){
+          $('div.smtp').removeClass('hide');
+          $('input.smtp_input').attr('disabled', false);
+        } else {
+          $('div.smtp').addClass('hide');
+          $('input.smtp_input').attr('disabled', true);
+        }
+      })
+
+      $('form#details_form').submit(function(){
+        $('button#install_button').attr('disabled', true).text('Installing...');
+        $('div.install_msg').removeClass('hide');
+        $('.back_button').hide();
+      });
+
+    })
+</script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.select2_register').select2();
+
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+</body>
+
+</html>
