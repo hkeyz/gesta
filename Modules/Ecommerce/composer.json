@@ -1,0 +1,23 @@
+{
+    "name": "twf/ecommerce",
+    "description": "Integrated ecommerce storefront module",
+    "authors": [
+        {
+            "name": "Codex",
+            "email": "noreply@example.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Ecommerce\\Providers\\EcommerceServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Ecommerce\\": ""
+        }
+    }
+}
