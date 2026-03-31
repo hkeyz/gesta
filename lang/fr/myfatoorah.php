@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'pageCheckout' => 'MyFatoorah - Paiement',
+    'pageError' => 'Erreur MyFatoorah',
+    'noPaymentGateways' => "Aucune methode de paiement n'est disponible sur votre compte, veuillez contacter votre gestionnaire de compte.",
+    'howWouldYouLikeToPay' => 'Comment souhaitez-vous payer ?',
+    'or' => 'Ou',
+    'payWith' => 'Payer avec',
+    'insertCardDetails' => 'Saisir les informations de la carte',
+    'payNow' => 'Payer maintenant',
+    'holderName' => 'Nom sur la carte',
+    'cardNumber' => 'Numero',
+    'expiryDate' => 'MM/AA',
+    'securityCode' => 'CVV',
+    'cardHolderNameLabel' => 'Nom du titulaire',
+    'cardNumberLabel' => 'Numero de carte',
+    'expiryDateLabel' => "Date d'expiration",
+    'securityCodeLabel' => 'Code de securite',
+    'saveCard' => 'Enregistrer la carte pour les paiements futurs',
+    'addCard' => 'Utiliser une autre carte',
+    'deleteAlert.title' => 'Supprimer la carte',
+    'deleteAlert.message' => 'Voulez-vous vraiment supprimer cette carte ?',
+    'deleteAlert.confirm' => 'Oui',
+    'deleteAlert.cancel' => 'Non',
+    'Kindly review your MyFatoorah admin configuration due to a wrong entry.' => "Veuillez verifier la configuration MyFatoorah dans l'administration a cause d'une valeur incorrecte.",
+];

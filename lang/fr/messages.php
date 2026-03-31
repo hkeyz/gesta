@@ -32,5 +32,9 @@
      'transaction_edit_not_allowed' => "L'édition de la transaction n'est pas autorisée après :days days.",
      'print_detailed' => 'Imprimer en Détail',
     'print_mini' => 'Imprimer Mini',
-    'opening' => 'Ouverture',
- ];
+     'opening' => 'Ouverture',
+     'name' => 'Nom',
+     'price' => 'Prix',
+     'activate' => 'Activer',
+     'deactivate' => 'Desactiver',
+  ];

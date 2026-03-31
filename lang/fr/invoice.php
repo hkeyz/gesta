@@ -56,4 +56,10 @@
      'show_customer' => 'Afficher les informations client',
      'paid_label' => 'Étiquette Montant payé',
      'customer_label' => 'Étiquette client',
+     'invoice_scheme_for_pos' => 'Schema de facture pour le POS',
+     'invoice_scheme_for_sale' => 'Schema de facture pour la vente',
+     'number_type' => 'Type de numerotation',
+     'sequential' => 'Sequentiel',
+     'random' => 'Aleatoire',
+     'number_type_tooltip' => 'Le mode sequentiel genere les numeros en serie comme 1,2,3,4 <br/> Le mode aleatoire genere les numeros au hasard',
  ];

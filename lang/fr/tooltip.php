@@ -52,4 +52,6 @@
      'accounting_method' => 'Méthode comptable',
      'transaction_edit_days' => "Nombre de jours à partir de la date de transaction jusqu'à laquelle une transaction peut être modifiée.",
      'stock_expiry_alert' => "Liste des stocks expirant dans :days jours <br> <small class='text-muted'> Vous pouvez définir le nombre de jours dans les paramètres d'entreprise </small>",
+     'sub_sku' => 'Le SKU est facultatif. <br><br><small>Laissez vide pour generer automatiquement le SKU.<small>',
+     'shipping' => "Definissez les details et frais de livraison. Cliquez sur l'icone de modification ci-dessous pour les ajouter ou les mettre a jour.",
  ];

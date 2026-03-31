@@ -98,4 +98,8 @@
      'is_active' => 'Actif',
      'created_by' => 'Créé par',
      'additional_number_secondary' => 'Numéro supplémentaire/Numéro secondaire',
+     'land_mark' => 'Point de repere',
+     'street_name' => 'Nom de la rue',
+     'building_number' => 'Numero du batiment',
+     'additional_number' => 'Numero complementaire',
  ];
