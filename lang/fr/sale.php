@@ -12,7 +12,7 @@
      'total' => 'Total',
      'order_tax' => 'Taxe de commande',
      'discount' => 'Remise',
-     'total_payable' => 'Total à payer',
+     'total_payable' => 'à payer',
      'cancel' => 'Annuler',
      'draft' => 'Brouillon',
      'finalize' => 'Payer et finaliser',
