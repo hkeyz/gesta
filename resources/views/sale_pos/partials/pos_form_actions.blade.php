@@ -124,8 +124,8 @@
                     <div class="pos-total md:tw-flex md:tw-items-center md:tw-gap-3 tw-hidden">
                         <div
                             class="tw-text-black tw-font-bold tw-text-base md:tw-text-2xl tw-flex tw-items-center tw-flex-col">
-                            <div>@lang('sale.total')</div>
-                            <div>@lang('lang_v1.payable'):</div>
+                            <div>@lang('sale.total'):</div>
+                            
                         </div>
                         <input type="hidden" name="final_total" id="final_total_input" value="0.00">
                         <span id="total_payable"
