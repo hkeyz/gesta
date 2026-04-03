@@ -24,18 +24,18 @@ class DataController extends Controller
 
         Menu::modify('admin-sidebar-menu', function ($menu) use ($store) {
             $menu->dropdown(
-                'E-commerce',
+                __('ecommerce::lang.module_name'),
                 function ($sub) use ($store) {
                     $sub->url(
                         action([\Modules\Ecommerce\Http\Controllers\StoreController::class, 'edit']),
-                        'Store settings',
+                        __('ecommerce::lang.store_settings'),
                         ['icon' => '', 'active' => request()->segment(1) === 'ecommerce' && request()->segment(2) === 'settings']
                     );
 
                     if (! empty($store?->slug)) {
                         $sub->url(
                             $store->public_url,
-                            'Open storefront',
+                            __('ecommerce::lang.open_storefront'),
                             ['icon' => '', 'active' => false]
                         );
                     }
@@ -53,12 +53,12 @@ class DataController extends Controller
         return [
             [
                 'value' => 'ecommerce.manage',
-                'label' => 'Manage ecommerce storefront',
+                'label' => __('ecommerce::lang.manage_ecommerce_storefront'),
                 'default' => false,
             ],
             [
                 'value' => 'ecommerce.orders',
-                'label' => 'View ecommerce orders',
+                'label' => __('ecommerce::lang.view_ecommerce_orders'),
                 'default' => false,
             ],
         ];

@@ -33,7 +33,7 @@ class CustomerAuthController extends Controller
 
         if (! Auth::guard('ecom_customer')->attempt($request->only('email', 'password'), $request->boolean('remember'))) {
             return redirect()->back()->withErrors([
-                'email' => 'Invalid login credentials.',
+                'email' => __('ecommerce::lang.invalid_login_credentials'),
             ])->withInput($request->except('password'));
         }
 

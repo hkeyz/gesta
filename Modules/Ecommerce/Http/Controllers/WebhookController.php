@@ -44,7 +44,7 @@ class WebhookController extends Controller
             ->first();
 
         if (empty($checkout)) {
-            return response()->json(['message' => 'Checkout session not found.'], 404);
+            return response()->json(['message' => __('ecommerce::lang.webhook_checkout_not_found')], 404);
         }
 
         if (in_array($event->type, ['checkout.session.completed', 'checkout.session.async_payment_succeeded'], true)) {
@@ -53,10 +53,12 @@ class WebhookController extends Controller
 
         if (in_array($event->type, ['checkout.session.expired', 'checkout.session.async_payment_failed'], true)) {
             $checkout->status = 'failed';
-            $checkout->failure_reason = 'Stripe checkout expired or failed.';
+            $checkout->failure_reason = __('ecommerce::lang.stripe_checkout_failed');
             $checkout->save();
         }
 
         return response()->json(['received' => true]);
     }
 }
+
+

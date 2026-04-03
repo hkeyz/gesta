@@ -22,7 +22,7 @@ class StorefrontService
             'accent_color' => '#1f6feb',
             'enable_pickup' => true,
             'enable_delivery' => true,
-            'flat_shipping_label' => 'Standard delivery',
+            'flat_shipping_label' => __('ecommerce::lang.standard_delivery'),
             'flat_shipping_rate' => 0,
             'stripe_webhook_secret' => null,
             'slides' => [],
@@ -61,7 +61,7 @@ class StorefrontService
             'pickup_enabled' => (bool) ($settings['enable_pickup'] ?? true),
             'delivery_enabled' => (bool) ($settings['enable_delivery'] ?? true),
             'flat_shipping_rate' => (float) ($settings['flat_shipping_rate'] ?? 0),
-            'flat_shipping_label' => $settings['flat_shipping_label'] ?? 'Standard delivery',
+            'flat_shipping_label' => $settings['flat_shipping_label'] ?? __('ecommerce::lang.standard_delivery'),
             'slides' => $settings['slides'] ?? [],
         ];
 
@@ -317,7 +317,7 @@ class StorefrontService
             ->map(function ($variation) use ($product) {
                 $variationName = $product->type === 'variable'
                     ? trim(optional($variation->product_variation)->name.' '.$variation->name)
-                    : 'Default';
+                    : __('ecommerce::lang.default_variation');
                 $variation->option_name = $variationName;
 
                 return $variation;

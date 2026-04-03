@@ -67,7 +67,7 @@ class StoreController extends Controller
         $isEnabled = $request->boolean('is_enabled');
         if ($isEnabled && empty($validated['location_id'])) {
             return redirect()->back()->withErrors([
-                'location_id' => 'A stock location is required before enabling the storefront.',
+                'location_id' => __('ecommerce::lang.stock_location_required'),
             ])->withInput();
         }
 
@@ -82,7 +82,7 @@ class StoreController extends Controller
             'accent_color' => $validated['accent_color'] ?: '#1f6feb',
             'enable_pickup' => $request->boolean('enable_pickup', true),
             'enable_delivery' => $request->boolean('enable_delivery', true),
-            'flat_shipping_label' => $validated['flat_shipping_label'] ?: 'Standard delivery',
+            'flat_shipping_label' => $validated['flat_shipping_label'] ?: __('ecommerce::lang.standard_delivery'),
             'flat_shipping_rate' => (float) ($validated['flat_shipping_rate'] ?? 0),
             'stripe_webhook_secret' => $validated['stripe_webhook_secret'] ?? null,
             'slides' => $store->settings['slides'] ?? [],
@@ -104,14 +104,15 @@ class StoreController extends Controller
 
         return redirect()->route('ecommerce.settings')->with('status', [
             'success' => 1,
-            'msg' => 'Storefront settings saved successfully.',
+            'msg' => __('ecommerce::lang.store_settings_saved_successfully'),
         ]);
     }
 
     protected function authorizeStoreAccess(): void
     {
         if (! auth()->check() || (! auth()->user()->can('business_settings.access') && ! auth()->user()->can('ecommerce.manage'))) {
-            abort(403, 'Unauthorized action.');
+            abort(403, __('ecommerce::lang.unauthorized_action'));
         }
     }
 }
+

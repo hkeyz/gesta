@@ -147,7 +147,7 @@ class CheckoutService
         if (! empty($existing)) {
             if (empty($input['password']) || ! Hash::check($input['password'], $existing->password)) {
                 throw ValidationException::withMessages([
-                    'email' => 'An account already exists for this email. Please sign in.',
+                    'email' => __('ecommerce::lang.an_account_exists_sign_in'),
                 ]);
             }
 
@@ -168,13 +168,13 @@ class CheckoutService
         $details = $this->getCheckoutCartDetails($store, $mode);
         if (empty($details['items'])) {
             throw ValidationException::withMessages([
-                'cart' => 'Your cart is empty.',
+                'cart' => __('ecommerce::lang.empty_cart_status'),
             ]);
         }
 
         if (! $details['can_checkout']) {
             throw ValidationException::withMessages([
-                'cart' => 'Some items are no longer available in the requested quantity.',
+                'cart' => __('ecommerce::lang.cart_items_unavailable'),
             ]);
         }
 
@@ -182,8 +182,8 @@ class CheckoutService
         $shippingMethod = $input['shipping_method'] ?? 'pickup';
         $shippingCharge = $shippingMethod === 'delivery' ? (float) ($storeSettings['flat_shipping_rate'] ?? 0) : 0;
         $shippingLabel = $shippingMethod === 'delivery'
-            ? ($storeSettings['flat_shipping_label'] ?? 'Standard delivery')
-            : 'Pickup in store';
+            ? ($storeSettings['flat_shipping_label'] ?? __('ecommerce::lang.standard_delivery'))
+            : __('ecommerce::lang.pick_up_in_store');
 
         $firstName = $input['first_name'] ?? optional($customer)->first_name;
         $lastName = $input['last_name'] ?? optional($customer)->last_name;
@@ -367,7 +367,7 @@ class CheckoutService
 
         if (empty($secretKey)) {
             throw ValidationException::withMessages([
-                'payment_method' => 'Stripe is not configured for this store.',
+                'payment_method' => __('ecommerce::lang.stripe_not_configured'),
             ]);
         }
 
@@ -463,7 +463,7 @@ class CheckoutService
                 $currentStock = $this->productUtil->getCurrentStock($item['variation_id'], $store->location_id);
                 if ($currentStock < $item['quantity']) {
                     $checkout->status = 'failed_stock';
-                    $checkout->failure_reason = 'Insufficient stock during payment confirmation.';
+                    $checkout->failure_reason = __('ecommerce::lang.insufficient_stock_payment_confirmation');
                     $checkout->save();
 
                     return null;
@@ -497,7 +497,7 @@ class CheckoutService
                 'amount' => $context['totals']['grand_total'],
                 'method' => 'card',
                 'paid_on' => Carbon::now()->toDateTimeString(),
-                'note' => 'Stripe Checkout '.$stripeSession->id,
+                'note' => __('ecommerce::lang.stripe_checkout_note', ['id' => $stripeSession->id]),
             ]], $store->business_id, $store->business->owner_id, false);
 
             $transaction->payment_status = $this->transactionUtil->updatePaymentStatus($transaction->id, $transaction->final_total);
@@ -522,13 +522,13 @@ class CheckoutService
     public function getAvailablePaymentMethods(EcomStore $store): array
     {
         $methods = [
-            'cash' => 'Cash on pickup',
-            'bank_transfer' => 'Bank transfer',
+            'cash' => __('ecommerce::lang.payment_method_cash'),
+            'bank_transfer' => __('ecommerce::lang.payment_method_bank_transfer'),
         ];
 
         $posSettings = ! empty($store->business->pos_settings) ? json_decode($store->business->pos_settings, true) : [];
         if (! empty($posSettings['stripe_public_key']) && ! empty($posSettings['stripe_secret_key'])) {
-            $methods['stripe'] = 'Stripe card payment';
+            $methods['stripe'] = __('ecommerce::lang.payment_method_stripe');
         }
 
         return $methods;
@@ -618,7 +618,7 @@ class CheckoutService
 
             $variationName = $product->type === 'variable'
                 ? trim(optional($variation->product_variation)->name.' '.$variation->name)
-                : 'Default';
+                : __('ecommerce::lang.default_variation');
 
             $items[] = [
                 'product_id' => $product->id,
@@ -667,7 +667,7 @@ class CheckoutService
 
         if (! $listingExists || empty($variation->product) || $variation->product->business_id != $store->business_id) {
             throw ValidationException::withMessages([
-                'product' => 'This product is not available in this store.',
+                'product' => __('ecommerce::lang.product_not_available'),
             ]);
         }
 
@@ -675,7 +675,7 @@ class CheckoutService
             $stock = $this->productUtil->getCurrentStock($variationId, $store->location_id);
             if ($stock < $quantity) {
                 throw ValidationException::withMessages([
-                    'quantity' => 'Requested quantity is not available.',
+                    'quantity' => __('ecommerce::lang.quantity_not_available'),
                 ]);
             }
         }
@@ -733,3 +733,4 @@ class CheckoutService
         return $transaction->fresh(['sell_lines']);
     }
 }
+

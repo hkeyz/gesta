@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,12 +94,12 @@
             @endif
         </div>
         <nav class="sf-nav">
-            <a class="sf-pill" href="{{ route('ecommerce.storefront.products', $store->slug) }}">Products</a>
-            <a class="sf-pill" href="{{ route('ecommerce.cart.show', $store->slug) }}">Cart ({{ $cartCount ?? 0 }})</a>
+            <a class="sf-pill" href="{{ route('ecommerce.storefront.products', $store->slug) }}">@lang('ecommerce::lang.products')</a>
+            <a class="sf-pill" href="{{ route('ecommerce.cart.show', $store->slug) }}">{{ __('ecommerce::lang.cart_with_count', ['count' => $cartCount ?? 0]) }}</a>
             @auth('ecom_customer')
-                <a class="sf-pill" href="{{ route('ecommerce.account.orders', $store->slug) }}">My account</a>
+                <a class="sf-pill" href="{{ route('ecommerce.account.orders', $store->slug) }}">@lang('ecommerce::lang.my_account')</a>
             @else
-                <a class="sf-pill" href="{{ route('ecommerce.account.login', $store->slug) }}">Sign in</a>
+                <a class="sf-pill" href="{{ route('ecommerce.account.login', $store->slug) }}">@lang('ecommerce::lang.sign_in')</a>
             @endauth
         </nav>
     </header>
@@ -120,7 +120,7 @@
     </main>
 
     <footer class="sf-shell sf-foot">
-        <div>{{ $settings['brand_name'] ?? $store->business->name }} · Powered by integrated ecommerce module.</div>
+        <div>{{ $settings['brand_name'] ?? $store->business->name }} | @lang('ecommerce::lang.powered_by')</div>
     </footer>
 </body>
 </html>

@@ -31,7 +31,7 @@ class CheckoutController extends Controller
         if (empty($checkout['items'])) {
             return redirect()->route('ecommerce.cart.show', $store->slug)->with('status', [
                 'success' => 0,
-                'msg' => 'Your cart is empty.',
+                'msg' => __('ecommerce::lang.empty_cart_status'),
             ]);
         }
 
@@ -66,7 +66,7 @@ class CheckoutController extends Controller
 
         if (empty($customer) && $request->boolean('create_account') && empty($validated['password'])) {
             return redirect()->back()->withErrors([
-                'password' => 'A password is required to create an account.',
+                'password' => __('ecommerce::lang.password_required_to_create_account'),
             ])->withInput();
         }
 
@@ -131,7 +131,7 @@ class CheckoutController extends Controller
 
         if ($checkout->status === 'pending') {
             $checkout->status = 'cancelled';
-            $checkout->failure_reason = 'Customer cancelled checkout.';
+            $checkout->failure_reason = __('ecommerce::lang.customer_cancelled_checkout');
             $checkout->save();
         }
 

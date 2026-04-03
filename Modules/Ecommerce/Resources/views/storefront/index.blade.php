@@ -3,13 +3,13 @@
 
 @section('storefront_content')
 <section class="sf-hero sf-section">
-    <p class="sf-muted" style="letter-spacing: .18em; text-transform: uppercase;">Storefront</p>
-    <h2 style="font-size: clamp(2rem, 5vw, 4rem); margin: 0 0 12px;">Browse products and buy directly.</h2>
-    <p class="sf-muted" style="font-size: 1.05rem; max-width: 720px;">Search products, filter by category, add to cart or use buy now for an express checkout path.</p>
+    <p class="sf-muted" style="letter-spacing: .18em; text-transform: uppercase;">@lang('ecommerce::lang.storefront_title')</p>
+    <h2 style="font-size: clamp(2rem, 5vw, 4rem); margin: 0 0 12px;">@lang('ecommerce::lang.browse_products_and_buy_directly')</h2>
+    <p class="sf-muted" style="font-size: 1.05rem; max-width: 720px;">@lang('ecommerce::lang.search_filter_add_buy_now')</p>
     <div style="display:flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
-        <a class="sf-button sf-button--accent" href="{{ route('ecommerce.storefront.products', $store->slug) }}">Shop all products</a>
+        <a class="sf-button sf-button--accent" href="{{ route('ecommerce.storefront.products', $store->slug) }}">@lang('ecommerce::lang.shop_all_products')</a>
         @if($categories->isNotEmpty())
-            <a class="sf-button" href="{{ route('ecommerce.storefront.category', [$store->slug, $categories->first()->slug]) }}">Start with {{ $categories->first()->name }}</a>
+            <a class="sf-button" href="{{ route('ecommerce.storefront.category', [$store->slug, $categories->first()->slug]) }}">{{ __('ecommerce::lang.start_with', ['category' => $categories->first()->name]) }}</a>
         @endif
     </div>
 </section>
@@ -17,7 +17,7 @@
 @if($categories->isNotEmpty())
 <section class="sf-section">
     <div class="sf-panel">
-        <h3 style="margin-top: 0;">Browse by category</h3>
+        <h3 style="margin-top: 0;">@lang('ecommerce::lang.browse_by_category')</h3>
         <div class="sf-nav">
             @foreach($categories as $category)
                 <a class="sf-pill" href="{{ route('ecommerce.storefront.category', [$store->slug, $category->slug]) }}">{{ $category->name }}</a>
@@ -30,10 +30,10 @@
 <section class="sf-section">
     <div style="display:flex; justify-content:space-between; align-items:end; gap: 16px; margin-bottom: 14px;">
         <div>
-            <p class="sf-muted" style="margin:0; text-transform: uppercase; letter-spacing: .15em;">Latest</p>
-            <h3 style="margin: 6px 0 0;">Featured products</h3>
+            <p class="sf-muted" style="margin:0; text-transform: uppercase; letter-spacing: .15em;">@lang('ecommerce::lang.latest')</p>
+            <h3 style="margin: 6px 0 0;">@lang('ecommerce::lang.featured_products')</h3>
         </div>
-        <a class="sf-pill" href="{{ route('ecommerce.storefront.products', $store->slug) }}">View full catalog</a>
+        <a class="sf-pill" href="{{ route('ecommerce.storefront.products', $store->slug) }}">@lang('ecommerce::lang.view_full_catalog')</a>
     </div>
     <div class="sf-grid sf-grid--products">
         @foreach($featuredProducts as $listing)

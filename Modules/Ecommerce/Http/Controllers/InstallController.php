@@ -15,12 +15,12 @@ class InstallController extends Controller
 
     public function index()
     {
-        return $this->installModule('Ecommerce module installed successfully.');
+        return $this->installModule(__('ecommerce::lang.module_installed_successfully'));
     }
 
     public function update()
     {
-        return $this->installModule('Ecommerce module updated successfully.');
+        return $this->installModule(__('ecommerce::lang.module_updated_successfully'));
     }
 
     public function uninstall()
@@ -30,7 +30,7 @@ class InstallController extends Controller
 
         return redirect()->back()->with('status', [
             'success' => 1,
-            'msg' => 'Ecommerce module disabled. Data has been kept intact.',
+            'msg' => __('ecommerce::lang.module_disabled'),
         ]);
     }
 
@@ -65,7 +65,8 @@ class InstallController extends Controller
     protected function authorizeModuleAction(): void
     {
         if (! auth()->check() || (! auth()->user()->can('manage_modules') && ! auth()->user()->can('business_settings.access') && ! auth()->user()->can('ecommerce.manage'))) {
-            abort(403, 'Unauthorized action.');
+            abort(403, __('ecommerce::lang.unauthorized_action'));
         }
     }
 }
+

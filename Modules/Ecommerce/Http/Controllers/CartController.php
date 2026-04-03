@@ -37,7 +37,7 @@ class CartController extends Controller
 
         return redirect()->back()->with('status', [
             'success' => 1,
-            'msg' => 'Product added to cart.',
+            'msg' => __('ecommerce::lang.product_added_to_cart'),
         ]);
     }
 
@@ -48,7 +48,7 @@ class CartController extends Controller
 
         return redirect()->route('ecommerce.cart.show', $store->slug)->with('status', [
             'success' => 1,
-            'msg' => 'Cart updated successfully.',
+            'msg' => __('ecommerce::lang.cart_updated_successfully'),
         ]);
     }
 
@@ -59,7 +59,7 @@ class CartController extends Controller
 
         return redirect()->route('ecommerce.cart.show', $store->slug)->with('status', [
             'success' => 1,
-            'msg' => 'Item removed from cart.',
+            'msg' => __('ecommerce::lang.item_removed_from_cart'),
         ]);
     }
 
