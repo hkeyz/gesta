@@ -51,14 +51,17 @@ class EcommerceServiceProvider extends ServiceProvider
     {
         $viewPath = resource_path('views/modules/ecommerce');
         $sourcePath = __DIR__.'/../Resources/views';
+        $moduleViewPaths = array_values(array_filter(array_map(function ($path) {
+            return $path.'/modules/ecommerce';
+        }, config('view.paths')), function ($path) {
+            return is_dir($path);
+        }));
 
         $this->publishes([
             $sourcePath => $viewPath,
         ], 'views');
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/modules/ecommerce';
-        }, config('view.paths')), [$sourcePath]), 'ecommerce');
+        $this->loadViewsFrom(array_merge($moduleViewPaths, [$sourcePath]), 'ecommerce');
     }
 
     public function registerTranslations()

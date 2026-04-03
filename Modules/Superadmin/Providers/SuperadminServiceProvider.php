@@ -26,7 +26,7 @@ class SuperadminServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         $this->registerScheduleCommands();
 
-        view::composer('superadmin::layouts.partials.active_subscription', function ($view) {
+        View::composer('superadmin::layouts.partials.active_subscription', function ($view) {
             $business_id = session()->get('user.business_id');
             $module_util = new \App\Utils\ModuleUtil();
             $is_installed = $module_util->isSuperadminInstalled();
@@ -39,15 +39,14 @@ class SuperadminServiceProvider extends ServiceProvider
             $view->with(compact('__subscription'));
         });
 
-        view::composer(['layouts.partials.home_header'], function ($view) {
+        View::composer(['layouts.partials.home_header'], function ($view) {
             $frontend_pages = SuperadminFrontendPage::where('is_shown', 1)
                                                 ->orderBy('menu_order', 'asc')
                                                 ->get();
             $view->with(compact('frontend_pages'));
         });
 
-        //Set superadmin currency
-        view::composer(['superadmin::layouts.partials.currency'], function ($view) {
+        View::composer(['superadmin::layouts.partials.currency'], function ($view) {
             $__system_currency = System::getCurrency();
             $view->with(compact('__system_currency'));
         });
@@ -58,7 +57,6 @@ class SuperadminServiceProvider extends ServiceProvider
     public function registerScheduleCommands()
     {
         $env = config('app.env');
-        //schedule command for sending subscription expiry alert
         if ($env === 'live') {
             $this->app->booted(function () {
                 $schedule = $this->app->make(Schedule::class);
@@ -86,7 +84,7 @@ class SuperadminServiceProvider extends ServiceProvider
     protected function registerCommands()
     {
         $this->commands([
-            \Modules\Superadmin\Console\SubscriptionExpiryAlert::class
+            \Modules\Superadmin\Console\SubscriptionExpiryAlert::class,
         ]);
     }
 
@@ -113,16 +111,18 @@ class SuperadminServiceProvider extends ServiceProvider
     public function registerViews()
     {
         $viewPath = resource_path('views/modules/superadmin');
-
         $sourcePath = __DIR__.'/../Resources/views';
+        $moduleViewPaths = array_values(array_filter(array_map(function ($path) {
+            return $path.'/modules/superadmin';
+        }, config('view.paths')), function ($path) {
+            return is_dir($path);
+        }));
 
         $this->publishes([
             $sourcePath => $viewPath,
         ], 'views');
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/modules/superadmin';
-        }, config('view.paths')), [$sourcePath]), 'superadmin');
+        $this->loadViewsFrom(array_merge($moduleViewPaths, [$sourcePath]), 'superadmin');
     }
 
     /**
