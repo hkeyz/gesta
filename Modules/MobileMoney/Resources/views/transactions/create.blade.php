@@ -3,7 +3,8 @@
 
 @section('content')
 <section class="content-header">
-    <h1 class="tw-text-xl md:tw-text-3xl tw-font-bold tw-text-black">{{ $transactionTypes[$type] ?? __('mobilemoney::lang.new_operation') }}</h1>
+    <h1 class="tw-text-xl md:tw-text-3xl tw-font-bold tw-text-black">{{ $transactionTypes[$type] ??
+        __('mobilemoney::lang.new_operation') }}</h1>
 </section>
 
 <section class="content">
@@ -26,7 +27,8 @@
                                     <select class="form-control" name="operator_id" id="mm_operator_id" required>
                                         <option value="">@lang('mobilemoney::lang.select_operator')</option>
                                         @foreach($operators as $operator)
-                                            <option value="{{ $operator->id }}" {{ (string) old('operator_id') === (string) $operator->id ? 'selected' : '' }}>{{ $operator->name }}</option>
+                                        <option value="{{ $operator->id }}" {{ (string) old('operator_id')===(string)
+                                            $operator->id ? 'selected' : '' }}>{{ $operator->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -34,7 +36,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('sale.date')</label>
-                                    <input type="datetime-local" class="form-control" name="operation_datetime" value="{{ old('operation_datetime', now()->format('Y-m-d\\TH:i')) }}">
+                                    <input type="datetime-local" class="form-control" name="operation_datetime"
+                                        value="{{ old('operation_datetime', now()->format('Y-m-d\\TH:i')) }}">
                                 </div>
                             </div>
                         </div>
@@ -42,14 +45,18 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>@lang('mobilemoney::lang.customer_name') <small class="text-muted">(@lang('lang_v1.optional'))</small></label>
-                                    <input type="text" class="form-control" name="customer_name" value="{{ old('customer_name') }}">
+                                    <label>@lang('mobilemoney::lang.customer_name') <small
+                                            class="text-muted">(@lang('lang_v1.optional'))</small></label>
+                                    <input type="text" class="form-control" name="customer_name"
+                                        value="{{ old('customer_name') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>@lang('mobilemoney::lang.customer_phone') <small class="text-muted">(@lang('lang_v1.optional'))</small></label>
-                                    <input type="text" class="form-control" name="customer_phone" value="{{ old('customer_phone') }}">
+                                    <label>@lang('mobilemoney::lang.customer_phone') <small
+                                            class="text-muted">(@lang('lang_v1.optional'))</small></label>
+                                    <input type="text" class="form-control" name="customer_phone"
+                                        value="{{ old('customer_phone') }}">
                                 </div>
                             </div>
                         </div>
@@ -58,21 +65,26 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('sale.amount')</label>
-                                    <input type="number" step="0.01" min="0.01" class="form-control" id="mm_amount" name="amount" value="{{ old('amount') }}" required>
+                                    <input type="number" step="0.01" min="0.01" class="form-control" id="mm_amount"
+                                        name="amount" value="{{ old('amount') }}" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('mobilemoney::lang.commission')</label>
-                                    <input type="number" step="0.01" min="0" class="form-control" id="mm_commission" name="commission" value="{{ old('commission') }}" {{ $settings->allow_manual_commission ? '' : 'readonly' }}>
-                                    <p class="help-block">@lang('mobilemoney::lang.commission_help_text')</p>
-                                    <p class="help-block text-muted" id="mm_commission_preview_text">@lang('mobilemoney::lang.commission_preview_waiting')</p>
+                                    <input type="number" step="0.01" min="0" class="form-control" id="mm_commission"
+                                        name="commission" value="{{ old('commission') }}" {{
+                                        $settings->allow_manual_commission ? '' : 'readonly' }}>
+                                    {{-- <p class="help-block">@lang('mobilemoney::lang.commission_help_text')</p> --}}
+                                    {{-- <p class="help-block text-muted" id="mm_commission_preview_text">
+                                        @lang('mobilemoney::lang.commission_preview_waiting')</p> --}}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('mobilemoney::lang.manual_reference')</label>
-                                    <input type="text" class="form-control" name="external_reference" value="{{ old('external_reference') }}">
+                                    <input type="text" class="form-control" name="external_reference"
+                                        value="{{ old('external_reference') }}">
                                 </div>
                             </div>
                         </div>
@@ -84,7 +96,8 @@
                     </div>
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">@lang('messages.save')</button>
-                        <a href="{{ route('mobilemoney.transactions.index') }}" class="btn btn-default">@lang('messages.close')</a>
+                        <a href="{{ route('mobilemoney.transactions.index') }}"
+                            class="btn btn-default">@lang('messages.close')</a>
                     </div>
                 </form>
             </div>

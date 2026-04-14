@@ -10,14 +10,6 @@
     @include('mobilemoney::layouts.nav')
 
     <div class="row">
-        <div class="col-md-12" style="margin-bottom: 12px;">
-            <a href="{{ route('mobilemoney.transactions.create', 'deposit') }}" class="btn btn-primary">@lang('mobilemoney::lang.new_deposit')</a>
-            <a href="{{ route('mobilemoney.transactions.create', 'withdrawal') }}" class="btn btn-success">@lang('mobilemoney::lang.new_withdrawal')</a>
-            <a href="{{ route('mobilemoney.reports.index') }}" class="btn btn-default">@lang('mobilemoney::lang.view_reports')</a>
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-12">
             @component('components.filters', ['title' => __('report.filters')])
                 <form method="GET" action="{{ route('mobilemoney.transactions.index') }}">
