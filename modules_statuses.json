@@ -6,6 +6,7 @@
     "Connector": true,
     "Crm": true,
     "Ecommerce": true,
+    "MobileMoney": true,
     "FieldForce": true,
     "Manufacturing": true,
     "ProductCatalogue": true,

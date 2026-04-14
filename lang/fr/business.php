@@ -20,7 +20,7 @@
      'tax_1_placeholder' => 'TPS / TVA / Autre',
      'prefix' => 'Préfixe',
      'prefix_placeholder' => 'M Mme Mlle',
-     'first_name' => 'Prénom',
+     'first_name' => 'Nom',
      'last_name' => 'Nom de famille',
      'username' => "Nom d'utilisateur",
      'email' => 'Email',
