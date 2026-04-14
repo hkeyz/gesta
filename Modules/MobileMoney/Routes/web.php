@@ -19,11 +19,15 @@ Route::middleware(['web', 'auth', 'SetSessionData', 'language', 'timezone', 'Adm
         Route::put('/settings', [SettingsController::class, 'update'])->name('mobilemoney.settings.update');
 
         Route::get('/operators', [OperatorController::class, 'index'])->name('mobilemoney.operators.index');
+        Route::get('/operators/create', [OperatorController::class, 'create'])->name('mobilemoney.operators.create');
         Route::post('/operators', [OperatorController::class, 'store'])->name('mobilemoney.operators.store');
+        Route::get('/operators/{operator}/edit', [OperatorController::class, 'edit'])->name('mobilemoney.operators.edit');
         Route::put('/operators/{operator}', [OperatorController::class, 'update'])->name('mobilemoney.operators.update');
 
         Route::get('/commission-rules', [CommissionRuleController::class, 'index'])->name('mobilemoney.commission_rules.index');
+        Route::get('/commission-rules/create', [CommissionRuleController::class, 'create'])->name('mobilemoney.commission_rules.create');
         Route::post('/commission-rules', [CommissionRuleController::class, 'store'])->name('mobilemoney.commission_rules.store');
+        Route::get('/commission-rules/{rule}/edit', [CommissionRuleController::class, 'edit'])->name('mobilemoney.commission_rules.edit');
         Route::put('/commission-rules/{rule}', [CommissionRuleController::class, 'update'])->name('mobilemoney.commission_rules.update');
         Route::delete('/commission-rules/{rule}', [CommissionRuleController::class, 'destroy'])->name('mobilemoney.commission_rules.destroy');
 

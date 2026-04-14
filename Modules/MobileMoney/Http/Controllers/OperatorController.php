@@ -21,6 +21,14 @@ class OperatorController extends BaseController
         return view('mobilemoney::operators.index', compact('operators'));
     }
 
+    public function create()
+    {
+        $this->authorizeMobileMoney(['mobile_money.operators', 'mobile_money.settings', 'mobile_money.access']);
+        $this->ensureBusinessSetup();
+
+        return view('mobilemoney::operators.create');
+    }
+
     public function store(Request $request)
     {
         $this->authorizeMobileMoney(['mobile_money.operators', 'mobile_money.settings']);
@@ -51,6 +59,14 @@ class OperatorController extends BaseController
             'success' => 1,
             'msg' => __('mobilemoney::lang.operator_saved'),
         ]);
+    }
+
+    public function edit(MmOperator $operator)
+    {
+        $this->authorizeMobileMoney(['mobile_money.operators', 'mobile_money.settings', 'mobile_money.access']);
+        $this->ensureOwnedOperator($operator);
+
+        return view('mobilemoney::operators.edit', compact('operator'));
     }
 
     public function update(Request $request, MmOperator $operator)

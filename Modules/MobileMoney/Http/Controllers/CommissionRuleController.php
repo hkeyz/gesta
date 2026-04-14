@@ -33,6 +33,22 @@ class CommissionRuleController extends BaseController
         return view('mobilemoney::commission_rules.index', compact('operators', 'rules', 'transactionTypes', 'commissionTypes'));
     }
 
+    public function create()
+    {
+        $this->authorizeMobileMoney(['mobile_money.commissions', 'mobile_money.settings', 'mobile_money.access']);
+        $this->ensureBusinessSetup();
+
+        $operators = MmOperator::forBusiness($this->businessId())
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+
+        $transactionTypes = $this->mobileMoneyService->transactionTypes();
+        $commissionTypes = $this->mobileMoneyService->commissionTypes();
+
+        return view('mobilemoney::commission_rules.create', compact('operators', 'transactionTypes', 'commissionTypes'));
+    }
+
     public function store(Request $request)
     {
         $this->authorizeMobileMoney(['mobile_money.commissions', 'mobile_money.settings']);
@@ -56,6 +72,22 @@ class CommissionRuleController extends BaseController
             'success' => 1,
             'msg' => __('mobilemoney::lang.rule_saved'),
         ]);
+    }
+
+    public function edit(MmCommissionRule $rule)
+    {
+        $this->authorizeMobileMoney(['mobile_money.commissions', 'mobile_money.settings', 'mobile_money.access']);
+        $this->ensureOwnedRule($rule);
+
+        $operators = MmOperator::forBusiness($this->businessId())
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+
+        $transactionTypes = $this->mobileMoneyService->transactionTypes();
+        $commissionTypes = $this->mobileMoneyService->commissionTypes();
+
+        return view('mobilemoney::commission_rules.edit', compact('rule', 'operators', 'transactionTypes', 'commissionTypes'));
     }
 
     public function update(Request $request, MmCommissionRule $rule)

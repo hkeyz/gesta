@@ -3,7 +3,15 @@
 
 @section('content')
 <section class="content-header">
-    <h1 class="tw-text-xl md:tw-text-3xl tw-font-bold tw-text-black">@lang('mobilemoney::lang.operations')</h1>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <h1 class="tw-text-xl md:tw-text-3xl tw-font-bold tw-text-black">@lang('mobilemoney::lang.operations')</h1>
+        </div>
+        <div class="col-md-6 col-sm-12 text-right" style="margin-top: 6px;">
+            <a href="{{ route('mobilemoney.transactions.create', 'deposit') }}" class="btn btn-primary" style="margin-left: 6px; margin-bottom: 6px;">@lang('mobilemoney::lang.new_deposit')</a>
+            <a href="{{ route('mobilemoney.transactions.create', 'withdrawal') }}" class="btn btn-success" style="margin-left: 6px; margin-bottom: 6px;">@lang('mobilemoney::lang.new_withdrawal')</a>
+        </div>
+    </div>
 </section>
 
 <section class="content">
