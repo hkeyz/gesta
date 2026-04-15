@@ -114,6 +114,6 @@ return [
     'view_reports' => 'View reports',
     'module_installed_successfully' => 'Mobile money module installed successfully.',
     'module_updated_successfully' => 'Mobile money module updated successfully.',
-    'module_disabled' => 'Mobile money module disabled.',
+    'module_disabled' => 'Mobile money module is disabled for this business.',
     'unauthorized_action' => 'Unauthorized action.',
 ];

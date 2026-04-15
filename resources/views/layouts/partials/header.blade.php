@@ -148,7 +148,8 @@
                     </svg>
                 </button>
 
-                @if (Route::has('mobilemoney.transactions.create') &&
+                @if (in_array('mobile_money', $enabled_modules ?? []) &&
+                Route::has('mobilemoney.transactions.create') &&
                 (auth()->user()->can('mobile_money.transactions') || auth()->user()->can('mobile_money.access') ||
                 auth()->user()->can('business_settings.access') || auth()->user()->can('manage_modules')))
                 <a href="{{ route('mobilemoney.transactions.create', 'deposit') }}"
@@ -160,8 +161,7 @@
                         <path d="M12 5l0 14" />
                         <path d="M5 12l14 0" />
                     </svg>
-                    Depot
-                    {{-- @lang('mobilemoney::lang.new_deposit') --}}
+                    @lang('mobilemoney::lang.deposit')
                 </a>
 
                 <a href="{{ route('mobilemoney.transactions.create', 'withdrawal') }}"
@@ -173,25 +173,8 @@
                         <path d="M7 10l5 5l5 -5" />
                         <path d="M12 15l0 -9" />
                     </svg>
-                    Retrait
-                    {{-- @lang('mobilemoney::lang.new_withdrawal') --}}
+                    @lang('mobilemoney::lang.withdrawal')
                 </a>
-
-                {{-- @if(auth()->user()->can('mobile_money.reports') || auth()->user()->can('mobile_money.access') ||
-                auth()->user()->can('business_settings.access') || auth()->user()->can('manage_modules'))
-                <a href="{{ route('mobilemoney.reports.index') }}"
-                    class="sm:tw-inline-flex tw-transition-all tw-duration-200 tw-gap-2 tw-bg-slate-700 hover:tw-bg-slate-600 tw-py-1.5 tw-px-3 tw-rounded-lg tw-items-center tw-justify-center tw-text-sm tw-font-medium tw-ring-1 tw-ring-white/10 hover:tw-text-white tw-text-white">
-                    <svg aria-hidden="true" class="tw-size-5 tw-hidden md:tw-block" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M3 12m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v7a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                        <path d="M10 6m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v13a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                        <path d="M17 3m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v16a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" />
-                    </svg>
-                    @lang('mobilemoney::lang.view_reports')
-                </a>
-                @endif --}}
                 @endif
 
 

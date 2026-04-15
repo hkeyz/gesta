@@ -7,9 +7,20 @@ use Menu;
 
 class DataController extends Controller
 {
+    protected function isMobileMoneyEnabled(): bool
+    {
+        $enabledModules = session('business.enabled_modules', []);
+
+        return in_array('mobile_money', is_array($enabledModules) ? $enabledModules : []);
+    }
+
     public function modifyAdminMenu()
     {
         if (! auth()->check()) {
+            return;
+        }
+
+        if (! $this->isMobileMoneyEnabled()) {
             return;
         }
 

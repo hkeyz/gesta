@@ -11,6 +11,13 @@ abstract class BaseController extends Controller
     {
     }
 
+    protected function isMobileMoneyEnabled(): bool
+    {
+        $enabledModules = session('business.enabled_modules', []);
+
+        return in_array('mobile_money', is_array($enabledModules) ? $enabledModules : []);
+    }
+
     protected function businessId(): int
     {
         return (int) session()->get('user.business_id');
@@ -25,6 +32,10 @@ abstract class BaseController extends Controller
     {
         if (! auth()->check()) {
             abort(403, __('mobilemoney::lang.unauthorized_action'));
+        }
+
+        if (! $this->isMobileMoneyEnabled()) {
+            abort(403, __('mobilemoney::lang.module_disabled'));
         }
 
         if (auth()->user()->can('manage_modules') || auth()->user()->can('business_settings.access')) {
