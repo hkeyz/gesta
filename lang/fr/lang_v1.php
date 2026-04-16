@@ -359,7 +359,7 @@ return [
     'lot' => 'Lot',
     'lot_n_expiry' => 'Lot et expiration',
     'pos_edit_product_price_help' => 'Modifier le produit Prix unitaire et taxe',
-    'name' => 'prénom',
+    'name' => 'Nom',
     'payment_type' => 'Type de paiement',
     'manage_payment_account' => 'Gérer votre compte de paiement',
     'all_payments' => 'Tous les paiements',
