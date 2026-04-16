@@ -89,7 +89,7 @@ class User extends Authenticatable
             'username' => $details['username'],
             'email' => $details['email'],
             'password' => Hash::make($details['password']),
-            'language' => ! empty($details['language']) ? $details['language'] : 'en',
+            'language' => ! empty($details['language']) ? $details['language'] : 'fr',
         ]);
 
         return $user;
