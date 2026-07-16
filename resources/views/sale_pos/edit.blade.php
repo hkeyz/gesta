@@ -137,6 +137,45 @@
             font-family: 'Outfit', sans-serif !important;
         }
 
+        /* Fix: Remove any colored band/bar at the top */
+        body.lockscreen,
+        body.hold-transition {
+            background: #f1f5f9 !important;
+            background-image: none !important;
+        }
+        
+        .thetop,
+        .thetop > main,
+        #scrollable-container {
+            background: #f1f5f9 !important;
+            background-image: none !important;
+        }
+
+        /* Ensure POS header is visible and not covered */
+        .pos-header {
+            position: relative !important;
+            z-index: 50 !important;
+            background: transparent !important;
+        }
+
+        /* Kill any ::before / ::after pseudo-element decoration on top containers */
+        .thetop::before,
+        .thetop::after,
+        .thetop > main::before,
+        .thetop > main::after,
+        #scrollable-container::before,
+        #scrollable-container::after {
+            display: none !important;
+        }
+
+        /* Override any skin gradient on content wrapper */
+        .content-wrapper,
+        .content,
+        section.content {
+            background: #f1f5f9 !important;
+            background-image: none !important;
+        }
+
         /* 1. Header Bar Overhaul */
         .pos-header .tw-bg-white {
             background: rgba(255, 255, 255, 0.75) !important;
@@ -390,11 +429,10 @@
             margin: 4px auto 0 auto !important;
         }
         
-        /* If stock count is 0 or less, color it gray/amber */
-        .product_box .product_stock:contains("0"),
-        .product_box .product_stock[data-stock="0"] {
-            color: #64748b !important;
-            background-color: #f1f5f9 !important;
+        /* If stock count is 0 or less, color it gray/red */
+        .product_box .product_stock.out-of-stock {
+            color: #ef4444 !important;
+            background-color: #fef2f2 !important;
         }
 
         /* 4. Bottom Actions / Checkout */
