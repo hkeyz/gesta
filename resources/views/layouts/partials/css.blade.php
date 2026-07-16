@@ -275,6 +275,43 @@
 		border-color: #dc2626 !important;
 		color: #ffffff !important;
 	}
+
+	/* Modern Flex Layout for DataTables Controls */
+	.dataTables_wrapper .row {
+		display: flex !important;
+		flex-wrap: wrap !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		gap: 12px !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+
+	.dataTables_wrapper .row > div {
+		float: none !important;
+		width: auto !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		display: inline-flex !important;
+		align-items: center !important;
+	}
+
+	/* Hide export buttons specifically on dashboard quick-alert widgets for maximum clean aesthetics */
+	#purchase_payment_dues_table_wrapper .dt-buttons,
+	#sales_payment_dues_table_wrapper .dt-buttons {
+		display: none !important;
+	}
+
+	/* Styling empty state message rows to look modern and soft */
+	.table tbody td.dataTables_empty {
+		padding: 32px !important;
+		background-color: #ffffff !important;
+		color: #94a3b8 !important;
+		font-weight: 500 !important;
+		font-size: 0.9rem !important;
+		text-align: center !important;
+		border-bottom: none !important;
+	}
 </style>
 @if(!empty($__system_settings['additional_css']))
     {!! $__system_settings['additional_css'] !!}

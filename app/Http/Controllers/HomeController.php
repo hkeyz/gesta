@@ -134,12 +134,12 @@ class HomeController extends Controller
 
         if (! empty($location_sells)) {
             foreach ($location_sells as $location_sell) {
-                $sells_chart_1->dataset($location_sell['loc_label'], 'line', $location_sell['values']);
+                $sells_chart_1->dataset($location_sell['loc_label'], 'spline', $location_sell['values']);
             }
         }
 
         if (count($all_locations) > 1) {
-            $sells_chart_1->dataset(__('report.all_locations'), 'line', $all_sell_values);
+            $sells_chart_1->dataset(__('report.all_locations'), 'spline', $all_sell_values);
         }
 
         $labels = [];
@@ -189,11 +189,11 @@ class HomeController extends Controller
                             )));
         if (! empty($fy_sells_by_location_data)) {
             foreach ($fy_sells_by_location_data as $location_sell) {
-                $sells_chart_2->dataset($location_sell['loc_label'], 'line', $location_sell['values']);
+                $sells_chart_2->dataset($location_sell['loc_label'], 'spline', $location_sell['values']);
             }
         }
         if (count($all_locations) > 1) {
-            $sells_chart_2->dataset(__('report.all_locations'), 'line', $values);
+            $sells_chart_2->dataset(__('report.all_locations'), 'spline', $values);
         }
 
         //Get Dashboard widgets from module
@@ -506,18 +506,85 @@ class HomeController extends Controller
     private function __chartOptions($title)
     {
         return [
+            'chart' => [
+                'style' => [
+                    'fontFamily' => 'Outfit, sans-serif'
+                ],
+                'backgroundColor' => 'transparent'
+            ],
+            'colors' => ['#3b82f6', '#10b981', '#8b5cf6', '#f59e0b', '#ec4899', '#06b6d4', '#ef4444'],
+            'xAxis' => [
+                'gridLineColor' => '#f1f5f9',
+                'lineColor' => '#e2e8f0',
+                'tickColor' => '#e2e8f0',
+                'labels' => [
+                    'style' => [
+                        'color' => '#64748b',
+                        'fontSize' => '11px'
+                    ]
+                ]
+            ],
             'yAxis' => [
                 'title' => [
                     'text' => $title,
+                    'style' => [
+                        'color' => '#475569',
+                        'fontWeight' => '600'
+                    ]
                 ],
+                'gridLineColor' => '#f1f5f9',
+                'labels' => [
+                    'style' => [
+                        'color' => '#64748b',
+                        'fontSize' => '11px'
+                    ]
+                ]
             ],
             'legend' => [
-                'align' => 'right',
-                'verticalAlign' => 'top',
-                'floating' => true,
-                'layout' => 'vertical',
-                'padding' => 20,
+                'align' => 'center',
+                'verticalAlign' => 'bottom',
+                'layout' => 'horizontal',
+                'itemStyle' => [
+                    'color' => '#475569',
+                    'fontWeight' => '500'
+                ]
             ],
+            'plotOptions' => [
+                'spline' => [
+                    'marker' => [
+                        'enabled' => false,
+                        'radius' => 4,
+                        'states' => [
+                            'hover' => [
+                                'enabled' => true
+                            ]
+                        ]
+                    ],
+                    'lineWidth' => 3,
+                    'shadow' => [
+                        'color' => 'rgba(59, 130, 246, 0.06)',
+                        'offsetX' => 0,
+                        'offsetY' => 8,
+                        'opacity' => 0.4,
+                        'width' => 6
+                    ]
+                ]
+            ],
+            'tooltip' => [
+                'backgroundColor' => 'rgba(255, 255, 255, 0.98)',
+                'borderWidth' => 1,
+                'borderColor' => '#e2e8f0',
+                'borderRadius' => 12,
+                'shadow' => true,
+                'shared' => true,
+                'useHTML' => true,
+                'style' => [
+                    'color' => '#1e293b'
+                ]
+            ],
+            'credits' => [
+                'enabled' => false
+            ]
         ];
     }
 
