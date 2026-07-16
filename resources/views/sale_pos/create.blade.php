@@ -630,41 +630,25 @@
                 if (header) {
                     log += 'Header: FOUND<br>';
                     log += 'Header clientHeight: ' + header.clientHeight + 'px<br>';
-                    log += 'Header computed height: ' + window.getComputedStyle(header).height + '<br>';
-                    log += 'Header computed bg: ' + window.getComputedStyle(header).backgroundColor + '<br>';
                     
                     const childDiv = header.querySelector('div');
                     if (childDiv) {
                         log += 'Card Div: FOUND<br>';
                         log += 'Card Div clientHeight: ' + childDiv.clientHeight + 'px<br>';
                         log += 'Card Div bg: ' + window.getComputedStyle(childDiv).backgroundColor + '<br>';
-                        log += 'Card Div shadow: ' + window.getComputedStyle(childDiv).boxShadow + '<br>';
-                        
-                        const children = childDiv.children;
-                        log += 'Card Div children count: ' + children.length + '<br>';
-                        for (let i = 0; i < children.length; i++) {
-                            const c = children[i];
-                            log += `Child ${i} [${c.tagName}]: display=${window.getComputedStyle(c).display}, height=${c.clientHeight}px<br>`;
-                            
-                            // Log select if present
-                            const select = c.querySelector('select');
-                            if (select) {
-                                log += `&nbsp;&nbsp;Select: h=${select.clientHeight}px, vis=${window.getComputedStyle(select).visibility}, op=${window.getComputedStyle(select).opacity}, bg=${window.getComputedStyle(select).backgroundColor}, color=${window.getComputedStyle(select).color}<br>`;
-                            }
-                            
-                            // Log first button if present
-                            const btn = c.querySelector('button, a');
-                            if (btn) {
-                                log += `&nbsp;&nbsp;Btn [${btn.tagName}]: h=${btn.clientHeight}px, bg=${window.getComputedStyle(btn).backgroundColor}, color=${window.getComputedStyle(btn).color}<br>`;
-                                const icon = btn.querySelector('i');
-                                if (icon) {
-                                    log += `&nbsp;&nbsp;&nbsp;&nbsp;Icon: vis=${window.getComputedStyle(icon).visibility}, color=${window.getComputedStyle(icon).color}, font-size=${window.getComputedStyle(icon).fontSize}<br>`;
-                                }
-                            }
-                        }
-                    } else {
-                        log += 'Card Div: NOT FOUND<br>';
                     }
+                    
+                    // Test topmost elements at header area (y = 20px)
+                    const widths = [100, window.innerWidth / 2, window.innerWidth - 100];
+                    log += 'Topmost elements at y=20px:<br>';
+                    widths.forEach(x => {
+                        const el = document.elementFromPoint(x, 20);
+                        if (el) {
+                            log += `&nbsp;&nbsp;x=${Math.round(x)}px: &lt;${el.tagName} class="${el.className.substring(0, 30)}..." id="${el.id}" bg="${window.getComputedStyle(el).backgroundColor}" zIndex="${window.getComputedStyle(el).zIndex}"&gt;<br>`;
+                        } else {
+                            log += `&nbsp;&nbsp;x=${Math.round(x)}px: NONE<br>`;
+                        }
+                    });
                 } else {
                     log += 'Header: NOT FOUND<br>';
                 }
