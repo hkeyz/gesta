@@ -616,7 +616,7 @@
         @endforeach
     @endif
 
-    <div id="pos-ui-debugger" style="position: fixed; bottom: 80px; left: 10px; z-index: 99999; background: rgba(0,0,0,0.85); color: #fff; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 11px; max-width: 400px; max-height: 300px; overflow-y: auto; pointer-events: none;">
+    <div id="pos-ui-debugger" style="position: fixed; bottom: 80px; left: 10px; z-index: 99999; background: rgba(0,0,0,0.85); color: #fff; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 11px; max-width: 450px; max-height: 400px; overflow-y: auto; pointer-events: none;">
         <h4>POS Debugger</h4>
         <div id="pos-debug-log">Logging...</div>
     </div>
@@ -631,22 +631,36 @@
                     log += 'Header: FOUND<br>';
                     log += 'Header clientHeight: ' + header.clientHeight + 'px<br>';
                     log += 'Header computed height: ' + window.getComputedStyle(header).height + '<br>';
-                    log += 'Header computed z-index: ' + window.getComputedStyle(header).zIndex + '<br>';
-                    log += 'Header computed position: ' + window.getComputedStyle(header).position + '<br>';
+                    log += 'Header computed bg: ' + window.getComputedStyle(header).backgroundColor + '<br>';
                     
                     const childDiv = header.querySelector('div');
                     if (childDiv) {
                         log += 'Card Div: FOUND<br>';
                         log += 'Card Div clientHeight: ' + childDiv.clientHeight + 'px<br>';
                         log += 'Card Div bg: ' + window.getComputedStyle(childDiv).backgroundColor + '<br>';
-                        log += 'Card Div opacity: ' + window.getComputedStyle(childDiv).opacity + '<br>';
-                        log += 'Card Div visibility: ' + window.getComputedStyle(childDiv).visibility + '<br>';
-                        log += 'Card Div display: ' + window.getComputedStyle(childDiv).display + '<br>';
+                        log += 'Card Div shadow: ' + window.getComputedStyle(childDiv).boxShadow + '<br>';
                         
                         const children = childDiv.children;
                         log += 'Card Div children count: ' + children.length + '<br>';
                         for (let i = 0; i < children.length; i++) {
-                            log += `- Child [${children[i].tagName} / ${children[i].className.substring(0, 15)}...]: vis=${window.getComputedStyle(children[i]).visibility}, op=${window.getComputedStyle(children[i]).opacity}, d=${window.getComputedStyle(children[i]).display}, h=${children[i].clientHeight}px<br>`;
+                            const c = children[i];
+                            log += `Child ${i} [${c.tagName}]: display=${window.getComputedStyle(c).display}, height=${c.clientHeight}px<br>`;
+                            
+                            // Log select if present
+                            const select = c.querySelector('select');
+                            if (select) {
+                                log += `&nbsp;&nbsp;Select: h=${select.clientHeight}px, vis=${window.getComputedStyle(select).visibility}, op=${window.getComputedStyle(select).opacity}, bg=${window.getComputedStyle(select).backgroundColor}, color=${window.getComputedStyle(select).color}<br>`;
+                            }
+                            
+                            // Log first button if present
+                            const btn = c.querySelector('button, a');
+                            if (btn) {
+                                log += `&nbsp;&nbsp;Btn [${btn.tagName}]: h=${btn.clientHeight}px, bg=${window.getComputedStyle(btn).backgroundColor}, color=${window.getComputedStyle(btn).color}<br>`;
+                                const icon = btn.querySelector('i');
+                                if (icon) {
+                                    log += `&nbsp;&nbsp;&nbsp;&nbsp;Icon: vis=${window.getComputedStyle(icon).visibility}, color=${window.getComputedStyle(icon).color}, font-size=${window.getComputedStyle(icon).fontSize}<br>`;
+                                }
+                            }
                         }
                     } else {
                         log += 'Card Div: NOT FOUND<br>';
