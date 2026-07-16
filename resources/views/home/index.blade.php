@@ -185,7 +185,6 @@
                         @endif
                     @endif
               
-        </div>
         @if (auth()->user()->can('dashboard.data'))
             @if ($is_admin)
                 <div class="tw-px-5">
@@ -291,6 +290,20 @@
                                                     d="M14.8 8a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1">
                                                 </path>
                                                 <path d="M12 6v10"></path>
+                                        </svg>
+                                    </div>
+
+                                    <div class="tw-flex-1 tw-min-w-0">
+                                        <p class="kpi-label tw-truncate tw-whitespace-nowrap tw-mb-0">
+                                            {{ __('lang_v1.expense') }}
+                                        </p>
+                                        <p class="total_expense kpi-value tw-truncate tw-mb-0">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 {{-- @if (!empty($widgets['after_sale_purchase_totals']))
                     @foreach ($widgets['after_sale_purchase_totals'] as $widget)
@@ -299,7 +312,6 @@
                 @endif --}}
             @endif
         @endif
-    </div>
     @if (auth()->user()->can('dashboard.data'))
         <div class="tw-px-5 tw-py-6">
             <div class="tw-grid tw-grid-cols-1 tw-gap-4 sm:tw-gap-5 lg:tw-grid-cols-2">
