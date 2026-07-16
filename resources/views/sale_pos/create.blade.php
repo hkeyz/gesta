@@ -97,7 +97,6 @@
     @include('sale_pos.partials.weighing_scale_modal')
 
 @stop
-@stop
 @section('css')
     <!-- include module css -->
     @if (!empty($pos_module_data))
