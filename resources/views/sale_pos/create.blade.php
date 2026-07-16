@@ -168,11 +168,10 @@
 
         /* 1. Header Bar Overhaul */
         .pos-header > div {
-            background: #ffffff !important;
-            border: 1px solid #e2e8f0 !important;
-            border-radius: 16px !important;
-            box-shadow: 0 2px 12px rgba(148, 163, 184, 0.06) !important;
-            padding: 10px 16px !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 6px 0 !important;
         }
         
         .pos-header .curr_datetime {
