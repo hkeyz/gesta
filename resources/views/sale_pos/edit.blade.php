@@ -133,7 +133,7 @@
         /* POS Page Premium Overrides */
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
-        body, .pos-layout, .lockscreen, h1, h2, h3, h4, h5, h6, select, input, button, span, p, a, div {
+        body, .lockscreen, h1, h2, h3, h4, h5, h6, select, input, button, span, p, a, div {
             font-family: 'Outfit', sans-serif !important;
         }
 
@@ -190,9 +190,9 @@
         .pos-header button i.fa-lock { color: #64748b !important; }
         
         /* 2. Left Cart Panel Fields & Tables */
-        .pos-layout select, 
-        .pos-layout input, 
-        .pos-layout .select2-container--default .select2-selection--single {
+        select, 
+        input, 
+        .select2-container--default .select2-selection--single {
             border-radius: 10px !important;
             border: 1px solid #cbd5e1 !important;
             height: 38px !important;
@@ -201,14 +201,14 @@
             background-color: #ffffff !important;
         }
 
-        .pos-layout select:focus, 
-        .pos-layout input:focus,
-        .pos-layout .select2-container--default .select2-selection--single:focus {
+        select:focus, 
+        input:focus,
+        .select2-container--default .select2-selection--single:focus {
             border-color: #3b82f6 !important;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
         }
 
-        .pos-layout .input-group-addon {
+        .input-group-addon {
             background-color: #f8fafc !important;
             border: 1px solid #cbd5e1 !important;
             border-radius: 10px !important;
@@ -216,14 +216,14 @@
         }
 
         /* Cart table overrides */
-        .pos-layout table.table {
+        table.table {
             border: none !important;
             background: transparent !important;
             border-collapse: separate !important;
             border-spacing: 0 8px !important;
         }
         
-        .pos-layout table.table thead th {
+        table.table thead th {
             background-color: #f8fafc !important;
             color: #475569 !important;
             font-weight: 600 !important;
@@ -235,14 +235,14 @@
             border-bottom: 2px solid #e2e8f0 !important;
         }
 
-        .pos-layout table.table tbody tr {
+        table.table tbody tr {
             background: #ffffff !important;
             box-shadow: 0 2px 8px rgba(148, 163, 184, 0.03) !important;
             border: 1px solid #e2e8f0 !important;
             transition: all 0.2s ease !important;
         }
         
-        .pos-layout table.table tbody tr td {
+        table.table tbody tr td {
             padding: 14px 12px !important;
             border: none !important;
             border-top: 1px solid #e2e8f0 !important;
@@ -250,19 +250,19 @@
             vertical-align: middle !important;
         }
         
-        .pos-layout table.table tbody tr td:first-child {
+        table.table tbody tr td:first-child {
             border-left: 1px solid #e2e8f0 !important;
             border-top-left-radius: 12px !important;
             border-bottom-left-radius: 12px !important;
         }
         
-        .pos-layout table.table tbody tr td:last-child {
+        table.table tbody tr td:last-child {
             border-right: 1px solid #e2e8f0 !important;
             border-top-right-radius: 12px !important;
             border-bottom-right-radius: 12px !important;
         }
 
-        .pos-layout table.table tbody tr:hover {
+        table.table tbody tr:hover {
             transform: translateY(-1px) !important;
             box-shadow: 0 4px 12px rgba(148, 163, 184, 0.06) !important;
         }
@@ -302,27 +302,27 @@
         }
 
         /* Category/Brand inner grid buttons */
-        .pos-layout .main-category-div .tw-dw-card,
-        .pos-layout .product_category .tw-dw-card,
-        .pos-layout .product_brand .tw-dw-card {
+        .main-category-div .tw-dw-card,
+        .product_category .tw-dw-card,
+        .product_brand .tw-dw-card {
             border-radius: 12px !important;
             border: 1px solid #e2e8f0 !important;
             box-shadow: 0 2px 8px rgba(148, 163, 184, 0.03) !important;
             transition: all 0.2s ease !important;
         }
-        .pos-layout .main-category-div .tw-dw-card:hover,
-        .pos-layout .product_category .tw-dw-card:hover,
-        .pos-layout .product_brand .tw-dw-card:hover {
+        .main-category-div .tw-dw-card:hover,
+        .product_category .tw-dw-card:hover,
+        .product_brand .tw-dw-card:hover {
             transform: translateY(-1px);
             border-color: #cbd5e1 !important;
             box-shadow: 0 4px 12px rgba(148, 163, 184, 0.06) !important;
         }
 
         /* Category/Brand tabs inner block button resets */
-        .pos-layout #product_category_block .btn-flat.tw-bg-blue-600,
-        .pos-layout #product_brand_block a.btn-flat,
-        .pos-layout #product_category_block button,
-        .pos-layout #product_brand_block button {
+        #product_category_block .btn-flat.tw-bg-blue-600,
+        #product_brand_block a.btn-flat,
+        #product_category_block button,
+        #product_brand_block button {
             background: #ffffff !important;
             border: 1px solid #cbd5e1 !important;
             color: #475569 !important;
@@ -334,8 +334,8 @@
             padding: 10px 16px !important;
         }
         
-        .pos-layout #product_category_block .btn-flat.tw-bg-blue-600:hover,
-        .pos-layout #product_brand_block a.btn-flat:hover {
+        #product_category_block .btn-flat.tw-bg-blue-600:hover,
+        #product_brand_block a.btn-flat:hover {
             background: #f8fafc !important;
             border-color: #cbd5e1 !important;
             color: #1e293b !important;
@@ -343,7 +343,7 @@
         }
 
         /* Product suggestion cards grid */
-        .pos-layout .product_box {
+        .product_box {
             background: #ffffff !important;
             border: 1px solid #e2e8f0 !important;
             border-radius: 16px !important;
@@ -357,28 +357,28 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 100px !important;
+            min-height: 120px !important;
         }
         
-        .pos-layout .product_box:hover {
+        .product_box:hover {
             transform: translateY(-4px) !important;
             border-color: #bfdbfe !important;
             box-shadow: 0 12px 24px rgba(59, 130, 246, 0.06) !important;
         }
 
         /* Hide fallback default images placeholder completely */
-        .pos-layout .product_box .image-container {
+        .product_box .image-container {
             display: none !important;
         }
 
-        .pos-layout .product_box .product_name {
+        .product_box .product_name {
             font-size: 0.95rem !important;
             font-weight: 600 !important;
             color: #1e293b !important;
             margin-bottom: 6px !important;
         }
 
-        .pos-layout .product_box .product_stock {
+        .product_box .product_stock {
             font-size: 0.78rem !important;
             font-weight: 600 !important;
             color: #10b981 !important; /* Elegant green for available stock */
@@ -391,86 +391,144 @@
         }
         
         /* If stock count is 0 or less, color it gray/amber */
-        .pos-layout .product_box .product_stock:contains("0"),
-        .pos-layout .product_box .product_stock[data-stock="0"] {
+        .product_box .product_stock:contains("0"),
+        .product_box .product_stock[data-stock="0"] {
             color: #64748b !important;
             background-color: #f1f5f9 !important;
         }
 
         /* 4. Bottom Actions / Checkout */
-        .pos-layout .pos-form-actions {
+        .pos-form-actions {
             background: #ffffff !important;
             border-top: 1px solid #e2e8f0 !important;
-            padding: 16px 24px !important;
+            padding: 14px 24px !important;
             box-shadow: 0 -4px 20px rgba(148, 163, 184, 0.03) !important;
         }
 
-        .pos-layout .pos-form-actions button,
-        .pos-layout .pos-form-actions a {
-            border-radius: 12px !important;
-            font-family: 'Outfit', sans-serif !important;
-            font-weight: 600 !important;
-            padding: 10px 20px !important;
-            transition: all 0.2s ease !important;
-            font-size: 0.9rem !important;
-        }
-
-        /* Secondary actions as minimal outlined button links */
-        .pos-layout .pos-form-actions .btn-default {
-            background: #ffffff !important;
+        /* Style draft, quotation, suspend, credit, card as sleek horizontal outlined buttons */
+        #pos-draft,
+        #pos-quotation,
+        .pos-form-actions button[data-pay_method="suspend"],
+        .pos-form-actions button[data-pay_method="credit_sale"],
+        .pos-form-actions button[data-pay_method="card"] {
+            background-color: #ffffff !important;
             border: 1px solid #cbd5e1 !important;
             color: #475569 !important;
+            border-radius: 10px !important;
+            padding: 8px 14px !important;
+            font-weight: 600 !important;
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 6px !important;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02) !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            height: 38px !important;
+            margin: 0 4px !important;
         }
-        .pos-layout .pos-form-actions .btn-default:hover {
-            background: #f8fafc !important;
-            border-color: #94a3b8 !important;
+
+        #pos-draft:hover,
+        #pos-quotation:hover,
+        .pos-form-actions button[data-pay_method="suspend"]:hover,
+        .pos-form-actions button[data-pay_method="credit_sale"]:hover,
+        .pos-form-actions button[data-pay_method="card"]:hover {
+            background-color: #f8fafc !important;
+            border-color: #cbd5e1 !important;
             color: #1e293b !important;
             transform: translateY(-1px);
         }
 
-        /* Primary action button highlights */
-        .pos-layout .pos-form-actions .bg-navy {
-            background: #2563eb !important;
-            border-color: #2563eb !important;
-            color: #ffffff !important;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2) !important;
+        /* Adjust icon margins inside outlined buttons */
+        #pos-draft i,
+        #pos-quotation i,
+        .pos-form-actions button[data-pay_method="suspend"] i,
+        .pos-form-actions button[data-pay_method="credit_sale"] i,
+        .pos-form-actions button[data-pay_method="card"] i {
+            margin-right: 0 !important;
+            font-size: 0.95rem !important;
         }
-        .pos-layout .pos-form-actions .bg-navy:hover {
+
+        /* Style checkout primary actions with vibrant modern gradients/solids */
+        #pos-finalize {
+            background: #2563eb !important;
+            border: 1px solid #2563eb !important;
+            color: #ffffff !important;
+            border-radius: 10px !important;
+            padding: 8px 18px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2) !important;
+            transition: all 0.2s ease !important;
+            height: 38px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+        }
+        #pos-finalize:hover {
             background: #1d4ed8 !important;
             border-color: #1d4ed8 !important;
             transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3) !important;
         }
 
-        .pos-layout .pos-form-actions .btn-success {
+        .pos-form-actions button.pos-express-finalize[data-pay_method="cash"] {
             background: #10b981 !important;
-            border-color: #10b981 !important;
+            border: 1px solid #10b981 !important;
             color: #ffffff !important;
+            border-radius: 10px !important;
+            padding: 8px 18px !important;
+            font-weight: 600 !important;
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2) !important;
+            transition: all 0.2s ease !important;
+            height: 38px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
         }
-        .pos-layout .pos-form-actions .btn-success:hover {
+        .pos-form-actions button.pos-express-finalize[data-pay_method="cash"]:hover {
             background: #059669 !important;
             border-color: #059669 !important;
             transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3) !important;
         }
 
-        .pos-layout .pos-form-actions .btn-danger {
+        #pos-cancel, #pos-delete {
             background: #ef4444 !important;
-            border-color: #ef4444 !important;
+            border: 1px solid #ef4444 !important;
             color: #ffffff !important;
+            border-radius: 10px !important;
+            padding: 8px 18px !important;
+            font-weight: 600 !important;
             box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2) !important;
+            transition: all 0.2s ease !important;
+            height: 38px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
         }
-        .pos-layout .pos-form-actions .btn-danger:hover {
+        #pos-cancel:hover, #pos-delete:hover {
             background: #dc2626 !important;
             border-color: #dc2626 !important;
             transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3) !important;
         }
 
-        .pos-layout .pos-form-actions .pos-total-display {
+        /* Style payable Total display */
+        .pos-total {
             font-family: 'Outfit', sans-serif !important;
+            font-size: 1.35rem !important;
+            font-weight: 700 !important;
+            color: #475569 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+        .pos-total span#total_payable {
+            color: #2563eb !important;
             font-size: 1.875rem !important;
             font-weight: 800 !important;
-            color: #2563eb !important;
-            letter-spacing: -0.02em !important;
         }
 	</style>
 	<!-- include module css -->
