@@ -115,27 +115,38 @@
             font-family: 'Outfit', sans-serif !important;
         }
 
+        html,
         body.lockscreen,
         body.hold-transition {
+            height: 100vh !important;
+            overflow: hidden !important;
             background: #f1f5f9 !important;
             background-image: none !important;
         }
         
-        .thetop,
+        .thetop {
+            display: flex !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+            background: #f1f5f9 !important;
+            background-image: none !important;
+        }
+        
         .thetop > main {
+            display: flex !important;
+            flex-direction: column !important;
+            height: 100vh !important;
+            overflow: hidden !important;
             background: #f1f5f9 !important;
             background-image: none !important;
         }
 
         #scrollable-container {
+            height: auto !important;
+            flex: 1 1 auto !important;
+            overflow-y: auto !important;
             background: #f1f5f9 !important;
             background-image: none !important;
-        }
-
-        @media (min-width: 768px) {
-            #scrollable-container {
-                height: calc(100vh - 72px) !important;
-            }
         }
 
         /* Ensure POS header is visible and not covered */
@@ -143,7 +154,8 @@
             position: relative !important;
             z-index: 50 !important;
             background: transparent !important;
-            height: 72px !important;
+            height: auto !important;
+            flex-shrink: 0 !important;
             margin-bottom: 0 !important;
         }
 
