@@ -145,10 +145,20 @@
         }
         
         .thetop,
-        .thetop > main,
+        .thetop > main {
+            background: #f1f5f9 !important;
+            background-image: none !important;
+        }
+
         #scrollable-container {
             background: #f1f5f9 !important;
             background-image: none !important;
+        }
+
+        @media (min-width: 768px) {
+            #scrollable-container {
+                height: calc(100vh - 72px) !important;
+            }
         }
 
         /* Ensure POS header is visible and not covered */
@@ -156,6 +166,7 @@
             position: relative !important;
             z-index: 50 !important;
             background: transparent !important;
+            height: 72px !important;
         }
 
         /* Kill any ::before / ::after pseudo-element decoration on top containers */
@@ -433,6 +444,9 @@
             text-overflow: unset !important;
             word-break: break-word !important;
             line-height: 1.3 !important;
+            display: block !important;
+            max-height: none !important;
+            -webkit-line-clamp: unset !important;
         }
 
         .product_box .product_stock {
