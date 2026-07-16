@@ -24,12 +24,9 @@
 			@endif
 			</small>
 
-			<small class="text-muted">
-				({{$product->sub_sku}})
-			</small><br>
 			<small class="text-muted product_stock @if(!$product->enable_stock || $product->qty_available <= 0) out-of-stock @endif" data-stock="{{ $product->qty_available ?? 0 }}">
 				@if($product->enable_stock)
-				{{ @num_format($product->qty_available) }} {{$product->unit}} @lang('lang_v1.in_stock')
+				{{ @num_format($product->qty_available) }}
 				@else
 					--
 				@endif

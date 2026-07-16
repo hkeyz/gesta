@@ -155,13 +155,12 @@
         }
 
         /* 1. Header Bar Overhaul */
-        .pos-header .tw-bg-white {
-            background: rgba(255, 255, 255, 0.75) !important;
-            backdrop-filter: blur(16px) !important;
-            border: 1px solid rgba(226, 232, 240, 0.8) !important;
-            border-radius: 20px !important;
-            box-shadow: 0 4px 20px rgba(148, 163, 184, 0.04) !important;
-            padding: 12px 20px !important;
+        .pos-header > div {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 16px !important;
+            box-shadow: 0 2px 12px rgba(148, 163, 184, 0.06) !important;
+            padding: 10px 16px !important;
         }
         
         .pos-header .curr_datetime {
@@ -169,6 +168,7 @@
             font-weight: 600 !important;
         }
         
+        /* Date/time pill — soft neutral instead of purple */
         .pos-header .tw-bg-\[\#646EE4\] {
             background-color: #f1f5f9 !important;
             border: 1px solid #e2e8f0 !important;
@@ -181,30 +181,41 @@
             color: #475569 !important;
         }
 
-        /* Nav and shortcuts buttons styled as minimal rounded icons */
-        .pos-header a, 
-        .pos-header button {
-            background: #ffffff !important;
+        /* Icon buttons in POS header — keep original bg, just refine the border/radius */
+        .pos-header button[class*="tw-bg-white"],
+        .pos-header a[class*="tw-bg-white"] {
             border: 1px solid #e2e8f0 !important;
             border-radius: 10px !important;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
             transition: all 0.2s ease !important;
         }
 
-        .pos-header a:hover, 
-        .pos-header button:hover {
+        .pos-header button[class*="tw-bg-white"]:hover,
+        .pos-header a[class*="tw-bg-white"]:hover {
             background: #f8fafc !important;
             border-color: #cbd5e1 !important;
             transform: translateY(-1px);
         }
 
-        .pos-header button i.fa-calculator { color: #6366f1 !important; }
-        .pos-header button.btn-danger i { color: #ef4444 !important; }
-        .pos-header button.btn-success i { color: #10b981 !important; }
-        .pos-header button.btn-warning i { color: #f59e0b !important; }
-        .pos-header a i.fa-backward { color: #3b82f6 !important; }
-        .pos-header button#recent-transactions i { color: #8b5cf6 !important; }
-        .pos-header button i.fa-lock { color: #64748b !important; }
+        /* Make all POS header FA icons vivid and visible */
+        .pos-header i.fa, .pos-header i.fas, .pos-header i.far {
+            font-size: 0.9rem !important;
+        }
+        .pos-header i.fa-backward { color: #3b82f6 !important; }
+        .pos-header i.fa-clock { color: #8b5cf6 !important; }
+        .pos-header i.fa-calculator { color: #6366f1 !important; }
+        .pos-header i.fa-briefcase { color: #10b981 !important; }
+        .pos-header i.fa-window-close { color: #ef4444 !important; }
+        .pos-header i.fa-window-maximize { color: #6366f1 !important; }
+        .pos-header i.fa-pause-circle { color: #94a3b8 !important; }
+        .pos-header i.fa-cubes { color: #10b981 !important; }
+        .pos-header i.fa-users { color: #6366f1 !important; }
+        .pos-header i.fa-user-plus { color: #6366f1 !important; }
+        .pos-header i.fas.fa-undo { color: #ef4444 !important; }
+        .pos-header i.fa-keyboard { color: #ffffff !important; }
+        .pos-header i.fa-tv { color: #6366f1 !important; }
+        .pos-header i.fa-th-large { color: #10b981 !important; }
+        .pos-header i.fa-minus-circle { color: #ef4444 !important; }
         
         /* 2. Left Cart Panel Fields & Tables */
         select, 
@@ -370,11 +381,13 @@
             cursor: pointer !important;
             text-align: center !important;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            min-height: 120px !important;
+            justify-content: center;
+            align-items: center;
+            min-height: 90px !important;
+            gap: 4px !important;
         }
         
         .product_box:hover {
@@ -389,10 +402,15 @@
         }
 
         .product_box .product_name {
-            font-size: 0.95rem !important;
+            font-size: 0.85rem !important;
             font-weight: 600 !important;
             color: #1e293b !important;
-            margin-bottom: 6px !important;
+            margin-bottom: 2px !important;
+            white-space: normal !important;
+            overflow: visible !important;
+            text-overflow: unset !important;
+            word-break: break-word !important;
+            line-height: 1.3 !important;
         }
 
         .product_box .product_stock {
