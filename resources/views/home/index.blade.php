@@ -1037,6 +1037,44 @@
             border-color: rgba(203, 213, 225, 1) !important;
         }
 
+        /* Sum formatting and typography inside KPI cards */
+        .modern-kpi-card .kpi-value {
+            font-family: 'Outfit', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 2.125rem !important; /* Large, bold sums */
+            letter-spacing: -0.02em !important;
+            margin-top: 6px !important;
+            transition: color 0.3s ease !important;
+        }
+
+        .modern-kpi-card .kpi-label {
+            font-family: 'Outfit', sans-serif !important;
+            font-weight: 500 !important;
+            font-size: 0.9rem !important;
+            color: #64748b !important;
+            letter-spacing: -0.01em !important;
+        }
+
+        /* Color profiles for sums */
+        .kpi-sales .kpi-value { color: #2563eb !important; }
+        .kpi-net .kpi-value { color: #059669 !important; }
+        .kpi-invoice-due .kpi-value { color: #d97706 !important; }
+        .kpi-sales-return .kpi-value { color: #db2777 !important; }
+        .kpi-purchase .kpi-value { color: #0891b2 !important; }
+        .kpi-purchase-due .kpi-value { color: #d97706 !important; }
+        .kpi-purchase-return .kpi-value { color: #db2777 !important; }
+        .kpi-expense .kpi-value { color: #dc2626 !important; }
+
+        /* Subtle background glow mapping */
+        .kpi-sales { background: linear-gradient(135deg, #ffffff 75%, rgba(37, 99, 235, 0.04) 100%) !important; }
+        .kpi-net { background: linear-gradient(135deg, #ffffff 75%, rgba(16, 185, 129, 0.04) 100%) !important; }
+        .kpi-invoice-due { background: linear-gradient(135deg, #ffffff 75%, rgba(245, 158, 11, 0.04) 100%) !important; }
+        .kpi-sales-return { background: linear-gradient(135deg, #ffffff 75%, rgba(236, 72, 153, 0.04) 100%) !important; }
+        .kpi-purchase { background: linear-gradient(135deg, #ffffff 75%, rgba(6, 182, 212, 0.04) 100%) !important; }
+        .kpi-purchase-due { background: linear-gradient(135deg, #ffffff 75%, rgba(217, 119, 6, 0.04) 100%) !important; }
+        .kpi-purchase-return { background: linear-gradient(135deg, #ffffff 75%, rgba(219, 39, 119, 0.04) 100%) !important; }
+        .kpi-expense { background: linear-gradient(135deg, #ffffff 75%, rgba(239, 68, 68, 0.04) 100%) !important; }
+
         /* Decorative left borders on hover */
         .kpi-sales:hover::before { background: #3b82f6; }
         .kpi-net:hover::before { background: #10b981; }
