@@ -141,17 +141,27 @@
 		margin-bottom: 16px !important;
 		display: inline-flex !important;
 		align-items: center !important;
-		gap: 6px !important;
 		height: 38px !important;
+	}
+
+	.dataTables_length label {
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 8px !important;
+		font-weight: 500 !important;
+		color: #475569 !important;
+		white-space: nowrap !important;
+		margin: 0 !important;
 	}
 
 	.dataTables_length select {
 		height: 34px !important;
-		padding: 4px 10px !important;
+		padding: 4px 12px !important;
 		border: 1px solid #cbd5e1 !important;
 		border-radius: 8px !important;
 		outline: none !important;
 		transition: all 0.2s ease !important;
+		background-color: #ffffff !important;
 	}
 
 	/* Modernized DataTables Toolbar Buttons */
