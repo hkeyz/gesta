@@ -1,7 +1,7 @@
 @inject('request', 'Illuminate\Http\Request')
 <!-- Main Header -->
 
-<div
+<div id="main-admin-header"
     class="  tw-transition-all tw-duration-5000 tw-border-b tw-bg-gradient-to-r tw-from-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'primary'}}@endif-800 tw-to-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'primary'}}@endif-900 tw-shrink-0 lg:tw-h-15 tw-border-primary-500/30 no-print">
     <div class="tw-px-5 tw-py-3">
         <div class="tw-flex tw-items-start tw-justify-between tw-gap-6 lg:tw-items-center">

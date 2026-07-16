@@ -38,7 +38,7 @@ return [
     'store_slug' => 'Slug de la boutique',
     'public_url' => 'URL publique',
     'stock_location' => 'Emplacement du stock',
-    'select_location' => 'Selectionner un emplacement',
+    'select_location' => 'Emplacement',
     'enable_storefront' => 'Activer la boutique',
     'brand_name' => 'Nom de la marque',
     'tagline' => 'Slogan',

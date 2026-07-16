@@ -312,6 +312,185 @@
 		text-align: center !important;
 		border-bottom: none !important;
 	}
+
+	/* ==========================================
+	   OPTION A: MINIMALIST WHITE HEADER OVERRIDES
+	   ========================================== */
+
+	/* Main header background styling */
+	#main-admin-header {
+		background: #ffffff !important;
+		background-image: none !important;
+		border-bottom: 1px solid #e2e8f0 !important;
+		box-shadow: 0 1px 3px rgba(148, 163, 184, 0.04) !important;
+		height: 60px !important;
+		z-index: 100 !important;
+	}
+
+	/* Logo/brand header area on the left of the sidebar */
+	#sidebar-logo-area {
+		background: #ffffff !important;
+		background-image: none !important;
+		border-bottom: 1px solid #e2e8f0 !important;
+		border-right: 1px solid #e2e8f0 !important;
+		height: 60px !important;
+	}
+
+	#sidebar-logo-area .side-bar-heading {
+		color: #1e293b !important;
+		font-family: 'Outfit', sans-serif !important;
+		font-weight: 700 !important;
+		font-size: 1.05rem !important;
+		letter-spacing: -0.01em !important;
+	}
+
+	/* Collapse/Toggle sidebar buttons */
+	#main-admin-header button.small-view-button,
+	#main-admin-header button.side-bar-collapse {
+		background: #f1f5f9 !important;
+		border: 1px solid #e2e8f0 !important;
+		color: #475569 !important;
+		border-radius: 8px !important;
+		box-shadow: none !important;
+		transition: all 0.2s ease !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+
+	#main-admin-header button.small-view-button:hover,
+	#main-admin-header button.side-bar-collapse:hover {
+		background: #e2e8f0 !important;
+		color: #1e293b !important;
+	}
+
+	/* General Dropdowns & Icons inside Header */
+	#main-admin-header details summary,
+	#main-admin-header button#btnCalculator,
+	#main-admin-header button#view_todays_profit {
+		background: #f1f5f9 !important;
+		border: 1px solid #e2e8f0 !important;
+		color: #475569 !important;
+		border-radius: 8px !important;
+		box-shadow: none !important;
+		transition: all 0.2s ease !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+
+	#main-admin-header details summary:hover,
+	#main-admin-header button#btnCalculator:hover,
+	#main-admin-header button#view_todays_profit:hover {
+		background: #e2e8f0 !important;
+		color: #1e293b !important;
+	}
+
+	/* Header deposit (+ Depot) button */
+	#main-admin-header a[href*="deposit"] {
+		background-color: #ecfdf5 !important;
+		border: 1px solid #a7f3d0 !important;
+		color: #047857 !important;
+		font-family: 'Outfit', sans-serif !important;
+		font-weight: 600 !important;
+		border-radius: 8px !important;
+		transition: all 0.2s ease !important;
+		box-shadow: none !important;
+	}
+	#main-admin-header a[href*="deposit"]:hover {
+		background-color: #047857 !important;
+		border-color: #047857 !important;
+		color: #ffffff !important;
+	}
+	#main-admin-header a[href*="deposit"] svg {
+		color: #059669 !important;
+	}
+	#main-admin-header a[href*="deposit"]:hover svg {
+		color: #ffffff !important;
+	}
+
+	/* Header withdrawal (Retrait) button */
+	#main-admin-header a[href*="withdrawal"] {
+		background-color: #fffbeb !important;
+		border: 1px solid #fde68a !important;
+		color: #b45309 !important;
+		font-family: 'Outfit', sans-serif !important;
+		font-weight: 600 !important;
+		border-radius: 8px !important;
+		transition: all 0.2s ease !important;
+		box-shadow: none !important;
+	}
+	#main-admin-header a[href*="withdrawal"]:hover {
+		background-color: #b45309 !important;
+		border-color: #b45309 !important;
+		color: #ffffff !important;
+	}
+	#main-admin-header a[href*="withdrawal"] svg {
+		color: #d97706 !important;
+	}
+	#main-admin-header a[href*="withdrawal"]:hover svg {
+		color: #ffffff !important;
+	}
+
+	/* Header POS sale (POS PDV) button */
+	#main-admin-header a[href*="pos/create"] {
+		background-color: #eff6ff !important;
+		border: 1px solid #bfdbfe !important;
+		color: #1d4ed8 !important;
+		font-family: 'Outfit', sans-serif !important;
+		font-weight: 600 !important;
+		border-radius: 8px !important;
+		transition: all 0.2s ease !important;
+		box-shadow: none !important;
+	}
+	#main-admin-header a[href*="pos/create"]:hover {
+		background-color: #1d4ed8 !important;
+		border-color: #1d4ed8 !important;
+		color: #ffffff !important;
+	}
+	#main-admin-header a[href*="pos/create"] svg {
+		color: #2563eb !important;
+	}
+	#main-admin-header a[href*="pos/create"]:hover svg {
+		color: #ffffff !important;
+	}
+
+	/* User profile menu dropdown in header */
+	#main-admin-header details summary span {
+		color: #334155 !important;
+		font-weight: 600 !important;
+	}
+	#main-admin-header details summary svg {
+		color: #64748b !important;
+	}
+
+	/* Dropdown notifications bell button */
+	#main-admin-header a.load_notifications {
+		background: #f1f5f9 !important;
+		border: 1px solid #e2e8f0 !important;
+		color: #475569 !important;
+		border-radius: 8px !important;
+		box-shadow: none !important;
+		padding: 6px !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		transition: all 0.2s ease !important;
+	}
+	#main-admin-header a.load_notifications:hover {
+		background: #e2e8f0 !important;
+		color: #1e293b !important;
+	}
+	#main-admin-header a.load_notifications svg {
+		color: #475569 !important;
+	}
+
+	/* Notification badges */
+	#main-admin-header span.notifications_count {
+		background-color: #ef4444 !important;
+		border: 2px solid #ffffff !important;
+		color: #ffffff !important;
+	}
 </style>
 @if(!empty($__system_settings['additional_css']))
     {!! $__system_settings['additional_css'] !!}

@@ -121,7 +121,7 @@ return [
     'search_product_placeholder' => 'Entrez le nom du produit / SKU / Code à barres de numérisation',
     'fixed' => 'Fixé',
     'percentage' => 'Pourcentage',
-    'select_location' => "Sélectionnez l'emplacement",
+    'select_location' => 'Emplacement',
     'add_description' => 'Ajouter une description',
     'cash' => 'En espèces',
     'card' => 'Carte',
