@@ -629,26 +629,40 @@
                 const header = document.querySelector('.pos-header');
                 if (header) {
                     log += 'Header: FOUND<br>';
-                    log += 'Header clientHeight: ' + header.clientHeight + 'px<br>';
+                    log += `Header size: w=${header.clientWidth}px, h=${header.clientHeight}px<br>`;
+                    log += 'Header computed height: ' + window.getComputedStyle(header).height + '<br>';
                     
                     const childDiv = header.querySelector('div');
                     if (childDiv) {
                         log += 'Card Div: FOUND<br>';
-                        log += 'Card Div clientHeight: ' + childDiv.clientHeight + 'px<br>';
+                        log += `Card Div size: w=${childDiv.clientWidth}px, h=${childDiv.clientHeight}px<br>`;
                         log += 'Card Div bg: ' + window.getComputedStyle(childDiv).backgroundColor + '<br>';
-                    }
-                    
-                    // Test topmost elements at header area (y = 20px)
-                    const widths = [100, window.innerWidth / 2, window.innerWidth - 100];
-                    log += 'Topmost elements at y=20px:<br>';
-                    widths.forEach(x => {
-                        const el = document.elementFromPoint(x, 20);
-                        if (el) {
-                            log += `&nbsp;&nbsp;x=${Math.round(x)}px: &lt;${el.tagName} class="${el.className.substring(0, 30)}..." id="${el.id}" bg="${window.getComputedStyle(el).backgroundColor}" zIndex="${window.getComputedStyle(el).zIndex}"&gt;<br>`;
-                        } else {
-                            log += `&nbsp;&nbsp;x=${Math.round(x)}px: NONE<br>`;
+                        
+                        const children = childDiv.children;
+                        log += 'Card Div children count: ' + children.length + '<br>';
+                        for (let i = 0; i < children.length; i++) {
+                            const c = children[i];
+                            log += `Child ${i} [${c.tagName}]: w=${c.clientWidth}px, h=${c.clientHeight}px, display=${window.getComputedStyle(c).display}<br>`;
+                            
+                            // Log select if present
+                            const select = c.querySelector('select');
+                            if (select) {
+                                log += `&nbsp;&nbsp;Select: w=${select.clientWidth}px, h=${select.clientHeight}px, vis=${window.getComputedStyle(select).visibility}, op=${window.getComputedStyle(select).opacity}<br>`;
+                            }
+                            
+                            // Log first button if present
+                            const btn = c.querySelector('button, a');
+                            if (btn) {
+                                log += `&nbsp;&nbsp;Btn [${btn.tagName}]: w=${btn.clientWidth}px, h=${btn.clientHeight}px, bg=${window.getComputedStyle(btn).backgroundColor}<br>`;
+                                const icon = btn.querySelector('i');
+                                if (icon) {
+                                    log += `&nbsp;&nbsp;&nbsp;&nbsp;Icon: w=${icon.clientWidth}px, vis=${window.getComputedStyle(icon).visibility}, color=${window.getComputedStyle(icon).color}<br>`;
+                                }
+                            }
                         }
-                    });
+                    } else {
+                        log += 'Card Div: NOT FOUND<br>';
+                    }
                 } else {
                     log += 'Header: NOT FOUND<br>';
                 }
