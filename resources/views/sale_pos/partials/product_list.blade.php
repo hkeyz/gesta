@@ -18,7 +18,7 @@
 		</div>
 
 		<div class="text_div">
-			<small class="text text-muted">{{$product->name}} 
+			<small class="text text-muted product_name">{{$product->name}} 
 			@if($product->type == 'variable')
 				- {{$product->variation}}
 			@endif
@@ -27,7 +27,7 @@
 			<small class="text-muted">
 				({{$product->sub_sku}})
 			</small><br>
-			<small class="text-muted" style="font-size: 60%;">
+			<small class="text-muted product_stock" data-stock="{{ $product->qty_available ?? 0 }}">
 				@if($product->enable_stock)
 				{{ @num_format($product->qty_available) }} {{$product->unit}} @lang('lang_v1.in_stock')
 				@else
