@@ -704,3 +704,22 @@ function escapeHtml(str) {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
 }
+
+// Global fix for DataTables NaN issue when showing "All" page length (-1)
+$(document).on('draw.dt', function (e, settings) {
+    try {
+        var api = new $.fn.dataTable.Api(settings);
+        var info = api.page.info();
+        if (info && isNaN(info.end) && typeof info.recordsDisplay === 'number') {
+            var infoEl = $(api.table().container()).find('.dataTables_info');
+            if (infoEl.length > 0) {
+                var text = infoEl.text();
+                if (text.indexOf('NaN') !== -1) {
+                    infoEl.text(text.replace('NaN', info.recordsDisplay));
+                }
+            }
+        }
+    } catch (err) {
+        console.error('Error fixing DataTable NaN info:', err);
+    }
+});

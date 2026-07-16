@@ -134,12 +134,35 @@
 		transform: translateX(3px) scale(1.05) !important;
 	}
 
+	/* Align length menu and buttons properly to prevent overlapping */
+	.dataTables_length {
+		float: left !important;
+		margin-right: 24px !important;
+		margin-bottom: 16px !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 6px !important;
+		height: 38px !important;
+	}
+
+	.dataTables_length select {
+		height: 34px !important;
+		padding: 4px 10px !important;
+		border: 1px solid #cbd5e1 !important;
+		border-radius: 8px !important;
+		outline: none !important;
+		transition: all 0.2s ease !important;
+	}
+
 	/* Modernized DataTables Toolbar Buttons */
 	.dt-buttons {
+		float: left !important;
 		display: inline-flex !important;
 		gap: 8px !important;
 		margin-bottom: 16px !important;
 		flex-wrap: wrap !important;
+		position: relative !important;
+		z-index: 10 !important;
 	}
 
 	.dt-button, 
