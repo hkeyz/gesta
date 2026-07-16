@@ -8,9 +8,12 @@
             <div class="modern-welcome-banner tw-p-6 md:tw-p-8 tw-mb-6">
                 <div class="sm:tw-flex sm:tw-items-center sm:tw-justify-between sm:tw-gap-12">
                     <div class="tw-mt-2 sm:tw-w-1/2 md:tw-w-1/2">
-                        <h1 class="tw-text-2xl md:tw-text-3xl tw-tracking-tight tw-font-semibold tw-text-white tw-mb-0">
-                            {{ __('home.welcome_message', ['name' => Session::get('user.first_name')]) }}
+                        <h1 class="tw-text-2xl md:tw-text-3xl tw-tracking-tight tw-font-bold tw-text-slate-800 tw-mb-1">
+                            {{ __('home.welcome_message', ['name' => Session::get('user.first_name')]) }} 👋
                         </h1>
+                        <p class="tw-text-sm tw-text-slate-500 tw-mb-0 tw-font-medium">
+                            Voici le résumé de l'activité de votre entreprise aujourd'hui.
+                        </p>
                     </div>
 
                     @if (auth()->user()->can('dashboard.data'))
@@ -984,14 +987,13 @@
 
         /* Modern Banner Styling */
         .modern-welcome-banner {
-            background: radial-gradient(circle at 5% 5%, rgba(59, 130, 246, 0.25) 0%, rgba(15, 23, 42, 0.95) 100%), 
-                        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") !important;
+            background: rgba(255, 255, 255, 0.75) !important;
+            backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(226, 232, 240, 0.8) !important;
             border-radius: 20px !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 12px 40px rgba(15, 23, 42, 0.25) !important;
+            box-shadow: 0 4px 20px rgba(148, 163, 184, 0.04) !important;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
         }
 
         .modern-welcome-banner::after {
@@ -999,9 +1001,9 @@
             position: absolute;
             top: -50%;
             right: -20%;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(147, 51, 234, 0.12) 0%, transparent 70%);
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -1168,17 +1170,21 @@
 
         /* Inputs and filter button styling */
         #dashboard_date_filter {
+            background-color: #ffffff !important;
             border: 1px solid #cbd5e1 !important;
+            color: #475569 !important;
             border-radius: 10px !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
-            font-weight: 500 !important;
-            transition: all 0.3s ease !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+            font-weight: 600 !important;
+            transition: all 0.2s ease !important;
             height: 38px !important;
         }
         #dashboard_date_filter:hover {
             background-color: #f8fafc !important;
-            border-color: #94a3b8 !important;
+            border-color: #cbd5e1 !important;
+            color: #1e293b !important;
             transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(148, 163, 184, 0.08) !important;
         }
 
         /* Style DataTable pagination and buttons */
