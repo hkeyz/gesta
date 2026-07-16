@@ -133,6 +133,115 @@
 		color: #475569 !important;
 		transform: translateX(3px) scale(1.05) !important;
 	}
+
+	/* Modernized DataTables Toolbar Buttons */
+	.dt-buttons {
+		display: inline-flex !important;
+		gap: 8px !important;
+		margin-bottom: 16px !important;
+		flex-wrap: wrap !important;
+	}
+
+	.dt-button, 
+	.buttons-csv, 
+	.buttons-excel, 
+	.buttons-pdf, 
+	.buttons-print, 
+	.buttons-colvis {
+		background: #ffffff !important;
+		border: 1px solid #e2e8f0 !important;
+		border-radius: 10px !important;
+		padding: 8px 16px !important;
+		font-family: 'Outfit', sans-serif !important;
+		font-size: 0.85rem !important;
+		font-weight: 500 !important;
+		color: #475569 !important;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 6px !important;
+	}
+
+	.dt-button:hover,
+	.buttons-csv:hover,
+	.buttons-excel:hover,
+	.buttons-pdf:hover,
+	.buttons-print:hover,
+	.buttons-colvis:hover {
+		background: #f8fafc !important;
+		border-color: #cbd5e1 !important;
+		color: #1e293b !important;
+		transform: translateY(-1px) !important;
+		box-shadow: 0 4px 12px rgba(148, 163, 184, 0.08) !important;
+	}
+
+	.dt-button:active,
+	.dt-button:focus {
+		outline: none !important;
+		border-color: #3b82f6 !important;
+		box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+	}
+
+	/* Style icon colors inside Datatables buttons for modern flair */
+	.dt-button i {
+		font-size: 0.95rem !important;
+	}
+	.dt-button.buttons-csv i { color: #0284c7 !important; }
+	.dt-button.buttons-excel i { color: #16a34a !important; }
+	.dt-button.buttons-pdf i { color: #dc2626 !important; }
+	.dt-button.buttons-print i { color: #475569 !important; }
+	.dt-button.buttons-colvis i { color: #8b5cf6 !important; }
+
+	/* Modern Table Action Buttons */
+	.table tbody td a.btn,
+	.table tbody td button.btn {
+		font-family: 'Outfit', sans-serif !important;
+		font-weight: 500 !important;
+		border-radius: 8px !important;
+		padding: 4px 10px !important;
+		font-size: 0.8rem !important;
+		transition: all 0.2s ease !important;
+		box-shadow: none !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 4px !important;
+	}
+	
+	/* Subtly soften button outlines/colors in tables */
+	.btn-primary {
+		background-color: #f0f6ff !important;
+		border-color: #bfdbfe !important;
+		color: #2563eb !important;
+	}
+	.btn-primary:hover {
+		background-color: #2563eb !important;
+		border-color: #2563eb !important;
+		color: #ffffff !important;
+	}
+
+	.btn-info {
+		background-color: #f0fdfa !important;
+		border-color: #99f6e4 !important;
+		color: #0d9488 !important;
+	}
+	.btn-info:hover {
+		background-color: #0d9488 !important;
+		border-color: #0d9488 !important;
+		color: #ffffff !important;
+	}
+
+	.btn-danger {
+		background-color: #fef2f2 !important;
+		border-color: #fecaca !important;
+		color: #dc2626 !important;
+		border-width: 1px !important;
+	}
+	.btn-danger:hover {
+		background-color: #dc2626 !important;
+		border-color: #dc2626 !important;
+		color: #ffffff !important;
+	}
 </style>
 @if(!empty($__system_settings['additional_css']))
     {!! $__system_settings['additional_css'] !!}
