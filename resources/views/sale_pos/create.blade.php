@@ -3,7 +3,7 @@
 @section('title', __('sale.pos_sale'))
 
 @section('content')
-    <section class="content no-print">
+    <section class="content no-print pos-premium-page">
         <input type="hidden" id="amount_rounding_method" value="{{ $pos_settings['amount_rounding_method'] ?? '' }}">
         @if (!empty($pos_settings['allow_overselling']))
             <input type="hidden" id="is_overselling_allowed">
@@ -20,16 +20,52 @@
             'method' => 'post',
             'id' => 'add_pos_sell_form',
         ]) !!}
-        <div class="row mb-12">
-            <div class="col-md-12 tw-pt-0 tw-mb-14">
-                <div class="row tw-flex lg:tw-flex-row md:tw-flex-col sm:tw-flex-col tw-flex-col tw-items-start md:tw-gap-4">
-                    {{-- <div class="@if (empty($pos_settings['hide_product_suggestion'])) col-md-7 @else col-md-10 col-md-offset-1 @endif no-padding pr-12"> --}}
-                    <div class="tw-px-3 tw-w-full  lg:tw-px-0 lg:tw-pr-0 @if(empty($pos_settings['hide_product_suggestion'])) lg:tw-w-[60%]  @else lg:tw-w-[100%] @endif">
+        <div class="pos-premium-hero">
+            <div class="pos-premium-hero__identity">
+                <span class="pos-premium-hero__mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16v16H4z" />
+                        <path d="M8 8h8M8 12h8M8 16h4" />
+                    </svg>
+                </span>
+                <div>
+                    <span class="pos-premium-hero__eyebrow">{{ session('business.name') }}</span>
+                    <h1>@lang('sale.pos_sale')</h1>
+                </div>
+            </div>
+            <div class="pos-premium-hero__meta">
+                <div class="pos-premium-meta-pill">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    <span>{{ $default_location->name ?? __('business.business_location') }}</span>
+                </div>
+                <div class="pos-premium-meta-pill pos-premium-meta-pill--active">
+                    <span class="pos-premium-live-dot" aria-hidden="true"></span>
+                    <span>@lang('business.is_active')</span>
+                </div>
+            </div>
+        </div>
 
-                        <div class="tw-shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] tw-rounded-2xl tw-bg-white tw-mb-2 md:tw-mb-8 tw-p-2">
+        <div class="row mb-12 pos-premium-main-row">
+            <div class="col-md-12 tw-pt-0 tw-mb-14">
+                <div class="row pos-premium-layout tw-flex lg:tw-flex-row md:tw-flex-col sm:tw-flex-col tw-flex-col tw-items-start md:tw-gap-4">
+                    {{-- <div class="@if (empty($pos_settings['hide_product_suggestion'])) col-md-7 @else col-md-10 col-md-offset-1 @endif no-padding pr-12"> --}}
+                    <div class="pos-premium-checkout tw-px-3 tw-w-full lg:tw-px-0 lg:tw-pr-0 @if(empty($pos_settings['hide_product_suggestion'])) lg:tw-w-[60%] @else lg:tw-w-[100%] @endif">
+
+                        <div class="pos-premium-card pos-premium-card--checkout tw-bg-white tw-mb-2 md:tw-mb-8">
+                            <div class="pos-premium-card__heading">
+                                <div>
+                                    <span class="pos-premium-card__eyebrow">@lang('sale.pos_sale')</span>
+                                    <h2>@lang('sale.product')</h2>
+                                </div>
+                                <span class="pos-premium-card__shortcut">
+                                    <i class="fas fa-barcode" aria-hidden="true"></i>
+                                    @lang('lang_v1.search_product')
+                                </span>
+                            </div>
 
                             {{-- <div class="box box-solid mb-12 @if (!isMobile()) mb-40 @endif"> --}}
-                                <div class="box-body pb-0">
+                                <div class="box-body pb-0 pos-premium-card__body">
                                     {!! Form::hidden('location_id', $default_location->id ?? null, [
                                         'id' => 'location_id',
                                         'data-receipt_printer_type' => !empty($default_location->receipt_printer_type)
@@ -59,8 +95,21 @@
                         </div>
                     </div>
                     @if (empty($pos_settings['hide_product_suggestion']) && !isMobile())
-                        <div class="md:tw-no-padding tw-w-full lg:tw-w-[40%] tw-px-5">
-                            @include('sale_pos.partials.pos_sidebar')
+                        <div class="pos-premium-catalog md:tw-no-padding tw-w-full lg:tw-w-[40%] tw-px-5">
+                            <div class="pos-premium-card pos-premium-card--catalog">
+                                <div class="pos-premium-card__heading">
+                                    <div>
+                                        <span class="pos-premium-card__eyebrow">@lang('sale.products')</span>
+                                        <h2>@lang('lang_v1.search_product')</h2>
+                                    </div>
+                                    <span class="pos-premium-card__catalog-icon" aria-hidden="true">
+                                        <i class="fas fa-th-large"></i>
+                                    </span>
+                                </div>
+                                <div class="pos-premium-catalog__body">
+                                    @include('sale_pos.partials.pos_sidebar')
+                                </div>
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -98,6 +147,7 @@
 
 @stop
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/pos-premium.css?v=' . $asset_v) }}">
     <!-- include module css -->
     @if (!empty($pos_module_data))
         @foreach ($pos_module_data as $key => $value)
