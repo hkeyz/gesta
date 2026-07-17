@@ -138,4 +138,453 @@
             @endif
         @endforeach
     @endif
+
+    <style type="text/css">
+        /* Modern POS Design System */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        body, .lockscreen, h1, h2, h3, h4, h5, h6, select, input, button, span, p, a, div {
+            font-family: 'Outfit', sans-serif !important;
+        }
+
+        /* 1. Page Layout & Viewport Constraints (Flexbox) */
+        html,
+        body.lockscreen,
+        body.hold-transition {
+            height: 100vh !important;
+            overflow: hidden !important;
+            background: #f1f5f9 !important;
+            background-image: none !important;
+        }
+        
+        .thetop {
+            display: flex !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+            background: #f1f5f9 !important;
+            background-image: none !important;
+        }
+        
+        .thetop > main {
+            display: flex !important;
+            flex-direction: column !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+            background: #f1f5f9 !important;
+            background-image: none !important;
+        }
+
+        #scrollable-container {
+            height: auto !important;
+            flex: 1 1 auto !important;
+            overflow-y: auto !important;
+            background: #f1f5f9 !important;
+            background-image: none !important;
+        }
+
+        .pos-header {
+            position: relative !important;
+            z-index: 50 !important;
+            background: transparent !important;
+            height: auto !important;
+            flex-shrink: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* Kill any ::before / ::after pseudo-element decoration on top containers */
+        .thetop::before,
+        .thetop::after,
+        .thetop > main::before,
+        .thetop > main::after,
+        #scrollable-container::before,
+        #scrollable-container::after {
+            display: none !important;
+        }
+
+        /* Content section padding & background */
+        .content-wrapper,
+        .content,
+        section.content {
+            background: #f1f5f9 !important;
+            background-image: none !important;
+            padding-top: 6px !important;
+        }
+
+        /* 2. Header Bar Styling */
+        .pos-header > div {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 16px !important;
+            box-shadow: 0 2px 12px rgba(148, 163, 184, 0.06) !important;
+            padding: 8px 16px !important;
+            margin: 6px 12px 0 12px !important;
+        }
+        
+        .pos-header .curr_datetime {
+            color: #475569 !important;
+            font-weight: 600 !important;
+        }
+        
+        /* Date/time pill */
+        .pos-header .tw-bg-\[\#646EE4\] {
+            background-color: #f1f5f9 !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 10px !important;
+            padding: 5px 10px !important;
+        }
+        
+        .pos-header .tw-bg-\[\#646EE4\] i,
+        .pos-header .tw-bg-\[\#646EE4\] span {
+            color: #475569 !important;
+        }
+
+        /* Icon buttons in POS header */
+        .pos-header button,
+        .pos-header a[class*="tw-bg-white"] {
+            width: 36px !important;
+            height: 36px !important;
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 10px !important;
+            background: #ffffff !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+            transition: all 0.2s ease !important;
+            margin: 0 2px !important;
+            padding: 0 !important;
+        }
+
+        .pos-header button:hover,
+        .pos-header a[class*="tw-bg-white"]:hover {
+            background: #f8fafc !important;
+            border-color: #94a3b8 !important;
+            transform: translateY(-1px);
+        }
+
+        .pos-header strong {
+            margin: 0 !important;
+            padding: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        /* Vivid FA Icons */
+        .pos-header i.fa, .pos-header i.fas, .pos-header i.far {
+            font-size: 0.9rem !important;
+            margin: 0 !important;
+        }
+        .pos-header i.fa-backward { color: #3b82f6 !important; }
+        .pos-header i.fa-clock { color: #8b5cf6 !important; }
+        .pos-header i.fa-calculator { color: #6366f1 !important; }
+        .pos-header i.fa-briefcase { color: #10b981 !important; }
+        .pos-header i.fa-window-close { color: #ef4444 !important; }
+        .pos-header i.fa-window-maximize { color: #6366f1 !important; }
+        .pos-header i.fa-pause-circle { color: #94a3b8 !important; }
+        .pos-header i.fa-cubes { color: #10b981 !important; }
+        .pos-header i.fa-users { color: #6366f1 !important; }
+        .pos-header i.fa-user-plus { color: #6366f1 !important; }
+        .pos-header i.fas.fa-undo { color: #ef4444 !important; }
+        .pos-header i.fa-keyboard { color: #475569 !important; }
+        .pos-header i.fa-tv { color: #6366f1 !important; }
+        .pos-header i.fa-th-large { color: #10b981 !important; }
+        .pos-header i.fa-minus-circle { color: #ef4444 !important; }
+
+        /* 3. Left Cart Panel Fields & Tables */
+        .content select, 
+        .content input, 
+        .content .select2-container--default .select2-selection--single {
+            border-radius: 10px !important;
+            border: 1px solid #cbd5e1 !important;
+            height: 38px !important;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02) !important;
+            transition: all 0.2s ease !important;
+            background-color: #ffffff !important;
+        }
+
+        .content select:focus, 
+        .content input:focus,
+        .content .select2-container--default .select2-selection--single:focus {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+        }
+
+        .content .input-group-addon {
+            background-color: #f8fafc !important;
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 10px !important;
+            color: #64748b !important;
+        }
+
+        /* Cart table overrides */
+        table.table {
+            border: none !important;
+            background: transparent !important;
+            border-collapse: separate !important;
+            border-spacing: 0 8px !important;
+        }
+        
+        table.table thead th {
+            background-color: #f8fafc !important;
+            color: #475569 !important;
+            font-weight: 600 !important;
+            font-size: 0.8rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            padding: 12px !important;
+            border: none !important;
+            border-bottom: 2px solid #e2e8f0 !important;
+        }
+
+        table.table tbody tr {
+            background: #ffffff !important;
+            box-shadow: 0 2px 8px rgba(148, 163, 184, 0.03) !important;
+            border: 1px solid #e2e8f0 !important;
+            transition: all 0.2s ease !important;
+        }
+        
+        table.table tbody tr td {
+            padding: 14px 12px !important;
+            border: none !important;
+            border-top: 1px solid #e2e8f0 !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            vertical-align: middle !important;
+        }
+        
+        table.table tbody tr td:first-child {
+            border-left: 1px solid #e2e8f0 !important;
+            border-top-left-radius: 12px !important;
+            border-bottom-left-radius: 12px !important;
+        }
+        
+        table.table tbody tr td:last-child {
+            border-right: 1px solid #e2e8f0 !important;
+            border-top-right-radius: 12px !important;
+            border-bottom-right-radius: 12px !important;
+        }
+
+        table.table tbody tr:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(148, 163, 184, 0.06) !important;
+        }
+
+        /* 4. Right Product Suggestions Panel */
+        #product_category_div label[for="my-drawer-4"],
+        #product_brand_div label[for="my-drawer-brand"] {
+            background: #ffffff !important;
+            border: 1px solid #cbd5e1 !important;
+            color: #475569 !important;
+            border-radius: 12px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            height: 44px !important;
+            font-size: 0.9rem !important;
+        }
+
+        #product_category_div label[for="my-drawer-4"]:hover,
+        #product_brand_div label[for="my-drawer-brand"]:hover {
+            background: #f8fafc !important;
+            border-color: #94a3b8 !important;
+            color: #1e293b !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(148, 163, 184, 0.06) !important;
+        }
+
+        /* Product suggestion cards grid */
+        .product_box {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 16px !important;
+            padding: 14px !important;
+            box-shadow: 0 2px 8px rgba(148, 163, 184, 0.04) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            cursor: pointer !important;
+            text-align: center !important;
+            position: relative;
+            overflow: visible !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            min-height: 90px !important;
+            gap: 4px !important;
+        }
+        
+        .product_box:hover {
+            transform: translateY(-4px) !important;
+            border-color: #bfdbfe !important;
+            box-shadow: 0 12px 24px rgba(59, 130, 246, 0.06) !important;
+        }
+
+        /* Hide fallback default images placeholder completely */
+        .product_box .image-container {
+            display: none !important;
+        }
+
+        /* Full product name display without clamp truncation or layout overlap */
+        .product_box .product_name {
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
+            color: #1e293b !important;
+            margin-bottom: 2px !important;
+            white-space: normal !important;
+            overflow: visible !important;
+            text-overflow: unset !important;
+            word-break: break-word !important;
+            line-height: 1.3 !important;
+            display: block !important;
+            max-height: none !important;
+            -webkit-line-clamp: unset !important;
+        }
+
+        /* Stock badge styling */
+        .product_box .product_stock {
+            font-size: 0.78rem !important;
+            font-weight: 600 !important;
+            color: #10b981 !important; /* Elegant green for available stock */
+            background-color: #ecfdf5 !important;
+            padding: 3px 8px !important;
+            border-radius: 6px !important;
+            display: inline-block !important;
+            width: fit-content !important;
+            margin: 4px auto 0 auto !important;
+        }
+        
+        .product_box .product_stock.out-of-stock {
+            color: #ef4444 !important;
+            background-color: #fef2f2 !important;
+        }
+
+        /* 5. Bottom Actions / Checkout */
+        .pos-form-actions {
+            background: #ffffff !important;
+            border-top: 1px solid #e2e8f0 !important;
+            padding: 14px 24px !important;
+            box-shadow: 0 -4px 20px rgba(148, 163, 184, 0.03) !important;
+        }
+
+        #pos-draft,
+        #pos-quotation,
+        .pos-form-actions button[data-pay_method="suspend"],
+        .pos-form-actions button[data-pay_method="credit_sale"],
+        .pos-form-actions button[data-pay_method="card"] {
+            background-color: #ffffff !important;
+            border: 1px solid #cbd5e1 !important;
+            color: #475569 !important;
+            border-radius: 10px !important;
+            padding: 8px 14px !important;
+            font-weight: 600 !important;
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 6px !important;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02) !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            height: 38px !important;
+            margin: 0 4px !important;
+        }
+
+        #pos-draft:hover,
+        #pos-quotation:hover,
+        .pos-form-actions button[data-pay_method="suspend"]:hover,
+        .pos-form-actions button[data-pay_method="credit_sale"]:hover,
+        .pos-form-actions button[data-pay_method="card"]:hover {
+            background-color: #f8fafc !important;
+            border-color: #94a3b8 !important;
+            color: #1e293b !important;
+            transform: translateY(-1px);
+        }
+
+        #pos-draft i,
+        #pos-quotation i,
+        .pos-form-actions button[data-pay_method="suspend"] i,
+        .pos-form-actions button[data-pay_method="credit_sale"] i,
+        .pos-form-actions button[data-pay_method="card"] i {
+            margin-right: 0 !important;
+            font-size: 0.95rem !important;
+        }
+
+        #pos-finalize {
+            background: #2563eb !important;
+            border: 1px solid #2563eb !important;
+            color: #ffffff !important;
+            border-radius: 10px !important;
+            padding: 8px 18px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2) !important;
+            transition: all 0.2s ease !important;
+            height: 38px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+        }
+        #pos-finalize:hover {
+            background: #1d4ed8 !important;
+            border-color: #1d4ed8 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3) !important;
+        }
+
+        .pos-form-actions button.pos-express-finalize[data-pay_method="cash"] {
+            background: #10b981 !important;
+            border: 1px solid #10b981 !important;
+            color: #ffffff !important;
+            border-radius: 10px !important;
+            padding: 8px 18px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2) !important;
+            transition: all 0.2s ease !important;
+            height: 38px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+        }
+        .pos-form-actions button.pos-express-finalize[data-pay_method="cash"]:hover {
+            background: #059669 !important;
+            border-color: #059669 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3) !important;
+        }
+
+        #pos-cancel, #pos-delete {
+            background: #ef4444 !important;
+            border: 1px solid #ef4444 !important;
+            color: #ffffff !important;
+            border-radius: 10px !important;
+            padding: 8px 18px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2) !important;
+            transition: all 0.2s ease !important;
+            height: 38px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+        }
+        #pos-cancel:hover, #pos-delete:hover {
+            background: #dc2626 !important;
+            border-color: #dc2626 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3) !important;
+        }
+
+        .pos-total {
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 1.35rem !important;
+            font-weight: 700 !important;
+            color: #475569 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+        .pos-total span#total_payable {
+            color: #2563eb !important;
+            font-size: 1.875rem !important;
+            font-weight: 800 !important;
+        }
+    </style>
 @endsection

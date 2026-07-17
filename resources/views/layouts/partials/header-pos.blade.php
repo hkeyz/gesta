@@ -29,8 +29,8 @@
         class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between tw-shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] tw-bg-white tw-rounded-xl tw-mx-0 tw-mt-1 tw-mb-0 md:tw-mb-0 tw-p-3">
         <div class="tw-w-full md:tw-w-1/3">
             <div class="tw-flex tw-items-center tw-gap-2">
-                <p><strong>@lang('sale.location'): &nbsp;</strong></p>
-                <div style="width: 28%">
+                <p class="tw-mb-0 tw-font-semibold tw-text-gray-700">Emplacement: &nbsp;</p>
+                <div class="tw-flex-1 tw-min-w-[140px]">
                     @if (empty($transaction->location_id))
                         @if (count($business_locations) > 1)
                             {!! Form::select(
@@ -76,7 +76,7 @@
             id="pos_header_more_options">
             <a href="{{ $go_back_url }}" title="{{ __('lang_v1.go_back') }}"
                 class="tw-shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] tw-bg-white hover:tw-bg-white/60 tw-cursor-pointer tw-border-2 tw-flex tw-items-center tw-justify-center tw-rounded-md md:tw-w-8 tw-w-auto tw-h-8 tw-text-gray-600 pull-right">
-                <strong class="!tw-m-3">
+                <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                     <i class="fa fa-backward fa-lg fa fa-backward tw-fa-lg tw-text-[#009EE4] !tw-text-sm"></i>
                     <span class="tw-inline md:tw-hidden">{{ __('lang_v1.go_back') }}</span>
                 </strong>
@@ -84,7 +84,7 @@
 
             {{-- <a href="{{ $go_back_url }}" title="{{ __('lang_v1.go_back') }}"
               class="md:tw-hidden tw-shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] tw-bg-white hover:tw-bg-white/60 tw-cursor-pointer tw-border-2 tw-flex tw-items-center tw-justify-center tw-rounded-md md:tw-w-8 tw-w-auto tw-h-8 tw-text-gray-600 pull-right">
-            <strong class="!tw-m-3">
+            <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                 <i class="fa fa-backward fa-lg fa fa-backward tw-fa-lg tw-text-[#009EE4] !tw-text-sm"></i>
                 <span class="tw-inline md:tw-hidden">{{ __('lang_v1.go_back') }}</span>
             </strong>
@@ -94,7 +94,7 @@
                 <button type="button"
                     class="md:tw-hidden tw-shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] tw-bg-white hover:tw-bg-white/60 tw-cursor-pointer tw-border-2 tw-flex tw-items-center tw-justify-center tw-rounded-md md:tw-w-8 tw-w-auto tw-h-8 tw-text-gray-600 pull-right"
                     data-toggle="modal" data-target="#recent_transactions_modal" id="recent-transactions">
-                        <strong class="!tw-m-3">
+                        <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                             <i class="fa fa-clock fa-lg tw-text-[#646EE4] !tw-text-sm"></i>
                             <span class="tw-inline md:tw-hidden">{{ __('lang_v1.recent_transactions') }}</span>
                         </strong>
@@ -107,7 +107,7 @@
                     class="tw-shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] tw-bg-white hover:tw-bg-white/60 tw-cursor-pointer tw-border-2 tw-flex tw-items-center tw-justify-center tw-rounded-md md:tw-w-8 tw-w-auto tw-h-8 tw-text-gray-600 pull-right"
                     data-container=".view_modal"
                     data-href="{{ action([\App\Http\Controllers\SellPosController::class, 'showServiceStaffAvailibility']) }}">
-                    <strong class="!tw-m-3">
+                    <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                         <i class="fa fa-users fa-lg tw-text-[#646EE4] !tw-text-sm"></i>
                         <span class="tw-inline md:tw-hidden">{{ __('lang_v1.service_staff_availability') }}</span>
                     </strong>
@@ -119,7 +119,7 @@
                     class="tw-shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] tw-bg-white hover:tw-bg-white/60 tw-cursor-pointer tw-border-2 tw-flex tw-items-center tw-justify-center tw-rounded-md md:tw-w-8 tw-w-auto tw-h-8 tw-text-gray-600 btn-modal pull-right"
                     data-container=".close_register_modal"
                     data-href="{{ action([\App\Http\Controllers\CashRegisterController::class, 'getCloseRegister']) }}">
-                    <strong class="!tw-m-3">
+                    <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                         <i class="fa fa-window-close fa-lg tw-text-[#EF4B53] !tw-text-sm"></i>
                         <span class="tw-inline md:tw-hidden">{{ __('cash_register.close_register') }}</span>
                     </strong>
@@ -136,7 +136,7 @@
                     data-content='<div class="m-8"><input type="text" class="form-control" placeholder="@lang('sale.invoice_no')" id="send_for_sell_service_staff_invoice_no"></div><div class="w-100 text-center"><button type="button" class="tw-dw-btn tw-dw-btn-xs tw-dw-btn-outline tw-dw-btn-error" id="send_for_sercice_staff_replacement">@lang('lang_v1.send')</button></div>'
                     data-html="true" data-placement="bottom">
 
-                    <strong class="!tw-m-3">
+                    <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                         <i class="fa fa-user-plus fa-lg tw-text-[#646EE4] !tw-text-sm"></i>
                         <span class="tw-inline md:tw-hidden">{{ __('restaurant.service_staff_replacement') }}</span>
                     </strong>
@@ -149,7 +149,7 @@
                     data-container=".register_details_modal"
                     data-href="{{ action([\App\Http\Controllers\CashRegisterController::class, 'getRegisterDetails']) }}">
 
-                    <strong class="!tw-m-3">
+                    <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                         <i class="fa fa-briefcase tw-fa-lg tw-text-[#00935F] !tw-text-sm" aria-hidden="true"></i>
                         <span class="tw-inline md:tw-hidden">{{ __('cash_register.register_details') }}</span>
                     </strong>
@@ -162,7 +162,7 @@
                 data-placement="bottom">
 
 
-                <strong class="!tw-m-3">
+                <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                     <i class="fa fa-calculator fa-lg tw-text-[#00935F] !tw-text-sm" aria-hidden="true"></i>
                     <span class="tw-inline md:tw-hidden">{{ __('lang_v1.calculator') }}</span>
                 </strong>
@@ -173,7 +173,7 @@
                 id="return_sale" title="@lang('lang_v1.sell_return')" data-toggle="popover" data-trigger="click"
                 data-content='<div class="m-8"><input type="text" class="form-control" placeholder="@lang('sale.invoice_no')" id="send_for_sell_return_invoice_no"></div><div class="w-100 text-center"><button type="button" class="tw-dw-btn tw-dw-btn-error tw-text-white tw-dw-btn-sm" id="send_for_sell_return">@lang('lang_v1.send')</button></div>'
                 data-html="true" data-placement="bottom">
-                <strong class="!tw-m-3">
+                <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                     <i class="fas fa-undo fa-lg tw-text-[#EF4B53] !tw-text-sm"></i>
                     <span class="tw-inline md:tw-hidden">{{ __('lang_v1.sell_return') }}</span>
                 </strong>
@@ -183,7 +183,7 @@
             <button type="button" title="{{ __('lang_v1.full_screen') }}"
                 class="tw-shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] tw-bg-white hover:tw-bg-white/60 tw-cursor-pointer tw-border-2 tw-flex tw-items-center tw-justify-center tw-rounded-md md:tw-w-8 tw-w-auto tw-h-8 tw-text-gray-600 pull-right"
                 id="full_screen">
-                <strong class="!tw-m-3">
+                <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                     <i class="fa fa-window-maximize fa-lg tw-text-[#646EE4] !tw-text-sm"></i>
                     <span class="tw-inline md:tw-hidden">Full Screen</span>
                 </strong>
@@ -192,7 +192,7 @@
             <button type="button" id="view_suspended_sales" title="{{ __('lang_v1.view_suspended_sales') }}"
                 class="tw-shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] tw-bg-white hover:tw-bg-white/60 tw-cursor-pointer tw-border-2 tw-flex tw-items-center tw-justify-center tw-rounded-md md:tw-w-8 tw-w-auto tw-h-8 tw-text-gray-600 btn-modal pull-right"
                 data-container=".view_modal" data-href="{{ $view_suspended_sell_url }}">
-                <strong class="!tw-m-3">
+                <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                     <i class="fa fa-pause-circle fa-lg tw-text-[#A5ADBB] !tw-text-sm"></i>
                     <span class="tw-inline md:tw-hidden">{{ __('lang_v1.view_suspended_sales') }}</span>
                 </strong>
@@ -200,7 +200,7 @@
             @if (!empty($pos_settings['customer_display_screen']))
                 <a href="{{route('pos_display')}}" id="customer_display_screen"  onclick="window.open(this.href, 'customer_display', 'width='+screen.width+',height='+screen.height+',top=0,left=0'); return false;"   title="{{ __('lang_v1.customer_display_screen') }}"
                     class="tw-shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] tw-bg-white hover:tw-bg-white/60 tw-cursor-pointer tw-border-2 tw-flex tw-items-center tw-justify-center tw-rounded-md md:tw-w-8 tw-w-auto tw-h-8 tw-text-gray-600 pull-right">
-                    <strong class="!tw-m-3">
+                    <strong class="!tw-m-0 tw-flex tw-items-center tw-justify-center">
                         <i class="fa fa-tv fa-lg tw-text-[#646EE4] !tw-text-sm"></i>
                         <span class="tw-inline md:tw-hidden">{{ __('lang_v1.customer_display_screen') }}</span>
                     </strong>
