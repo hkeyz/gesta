@@ -56,6 +56,9 @@ class TransactionController extends Controller
                 'payment_lines',
                 'sell_lines.product:id,name',
                 'sell_lines.variations:id,name,sub_sku',
+                'return_parent_sell:id,invoice_no,ref_no,final_total',
+                'return_parent_sell.sell_lines.product:id,name',
+                'return_parent_sell.sell_lines.variations:id,name,sub_sku',
                 'purchase_lines.product:id,name',
                 'purchase_lines.variations:id,name,sub_sku',
             ])

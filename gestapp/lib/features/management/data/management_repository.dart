@@ -57,11 +57,13 @@ class ManagementRepository {
     final endpoint = switch (type) {
       'purchase' => '/purchases',
       'expense' => '/expenses',
+      'sell_return' => '/transactions',
       _ => '/sales',
     };
     final response = await _client.get(
       endpoint,
       query: _query({
+        'type': type == 'sell_return' ? type : null,
         'location_id': locationId,
         'search': search,
         'status': status,

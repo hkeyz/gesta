@@ -3,19 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'network/api_client.dart';
 import 'storage/credential_store.dart';
-import 'storage/api_cache.dart';
-
-final apiCacheProvider = Provider<ApiCache>((ref) => ApiCache());
 
 final credentialStoreProvider = Provider<CredentialStore>(
   (ref) => CredentialStore(),
 );
 
 final apiClientProvider = Provider<ApiClient>(
-  (ref) => ApiClient(
-    ref.watch(credentialStoreProvider),
-    ref.watch(apiCacheProvider),
-  ),
+  (ref) => ApiClient(ref.watch(credentialStoreProvider)),
 );
 
 final deviceConnectivityProvider = StreamProvider<bool>((ref) async* {

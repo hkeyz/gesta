@@ -76,8 +76,8 @@ class NetworkBanner extends ConsumerWidget {
               Expanded(
                 child: Text(
                   noNetwork
-                      ? 'Pas de connexion Internet — données enregistrées affichées.'
-                      : 'Serveur indisponible — mode hors connexion actif.',
+                      ? 'Pas de connexion Internet — données indisponibles.'
+                      : 'Serveur indisponible — données temporairement inaccessibles.',
                   style: TextStyle(
                     color: noNetwork
                         ? Colors.red.shade900
@@ -239,8 +239,8 @@ class TransactionTile extends StatelessWidget {
             ),
             Text(
               formatters.money(item.amount),
-              style: const TextStyle(
-                color: AppTheme.navy,
+              style: TextStyle(
+                color: item.amount < 0 ? Colors.red.shade700 : AppTheme.navy,
                 fontWeight: FontWeight.w800,
               ),
             ),
@@ -250,6 +250,8 @@ class TransactionTile extends StatelessWidget {
           padding: const EdgeInsets.only(top: 6),
           child: Text(
             [
+              _transactionTypeLabel(item.type),
+              if (item.status.isNotEmpty) _transactionStatusLabel(item.status),
               if (item.contact.isNotEmpty) item.contact,
               if (item.location.isNotEmpty) item.location,
               formatters.date(item.occurredAt),
@@ -261,6 +263,29 @@ class TransactionTile extends StatelessWidget {
       ),
     );
   }
+}
+
+String _transactionStatusLabel(String status) {
+  return switch (status) {
+    'draft' => 'Brouillon',
+    'final' => 'Finalisée',
+    'received' => 'Reçue',
+    'pending' => 'En attente',
+    'ordered' => 'Commandée',
+    'cancelled' => 'Annulée',
+    _ => status,
+  };
+}
+
+String _transactionTypeLabel(String type) {
+  return switch (type) {
+    'sell' => 'Vente',
+    'sell_return' => 'Retour client',
+    'purchase' => 'Achat',
+    'purchase_return' => 'Retour fournisseur',
+    'expense' => 'Dépense',
+    _ => 'Opération',
+  };
 }
 
 ({IconData icon, Color color}) _typePresentation(String type) {

@@ -55,4 +55,6 @@ class NotificationService {
       payload: payload,
     );
   }
+
+  Future<void> cancelAll() => _plugin.cancelAll();
 }

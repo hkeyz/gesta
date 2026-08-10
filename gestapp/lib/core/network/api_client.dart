@@ -1,15 +1,13 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
 import '../config/app_config.dart';
 import '../storage/credential_store.dart';
-import '../storage/api_cache.dart';
 import 'api_exception.dart';
 
 class ApiClient {
-  ApiClient(this._credentials, this._cache)
+  ApiClient(this._credentials)
     : _dio = Dio(
         BaseOptions(
           connectTimeout: const Duration(seconds: 15),
@@ -35,7 +33,6 @@ class ApiClient {
   }
 
   final CredentialStore _credentials;
-  final ApiCache _cache;
   final Dio _dio;
   final _unauthorizedController = StreamController<void>.broadcast();
   final _connectionController = StreamController<bool>.broadcast();
@@ -50,36 +47,12 @@ class ApiClient {
   Future<Map<String, dynamic>> get(
     String path, {
     Map<String, dynamic>? query,
-    bool useCache = true,
   }) async {
-    final key = _cacheKey(path, query);
-    try {
-      final response = await _request(
-        () => _dio.get(path, queryParameters: query),
-      );
-      _connectionController.add(true);
-      if (useCache && !path.startsWith('/auth/')) {
-        await _cache.write(key, response);
-      }
-      return response;
-    } on ApiException catch (error) {
-      if (!error.isNetworkError || !useCache || path.startsWith('/auth/')) {
-        rethrow;
-      }
-      final cached = await _cache.read(key);
-      if (cached == null) rethrow;
-      _connectionController.add(false);
-      final response = Map<String, dynamic>.from(cached.body);
-      final meta = response['meta'] is Map
-          ? Map<String, dynamic>.from(response['meta'])
-          : <String, dynamic>{};
-      response['meta'] = {
-        ...meta,
-        'offline': true,
-        'cached_at': cached.savedAt.toIso8601String(),
-      };
-      return response;
-    }
+    final response = await _request(
+      () => _dio.get(path, queryParameters: query),
+    );
+    _connectionController.add(true);
+    return response;
   }
 
   Future<Map<String, dynamic>> post(
@@ -90,8 +63,6 @@ class ApiClient {
     _connectionController.add(true);
     return response;
   }
-
-  Future<void> clearCache() => _cache.clear();
 
   Future<Map<String, dynamic>> _request(
     Future<Response<dynamic>> Function() operation,
@@ -144,14 +115,5 @@ class ApiClient {
         'Impossible de joindre le serveur. Vérifiez l’adresse et le réseau.',
       _ => 'Une erreur réseau est survenue.',
     };
-  }
-
-  String _cacheKey(String path, Map<String, dynamic>? query) {
-    final sorted = query == null
-        ? <String, dynamic>{}
-        : Map.fromEntries(
-            query.entries.toList()..sort((a, b) => a.key.compareTo(b.key)),
-          );
-    return '${_dio.options.baseUrl}|$path|${jsonEncode(sorted)}';
   }
 }

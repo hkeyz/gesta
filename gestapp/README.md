@@ -13,7 +13,7 @@ automatique.
 - `flutter_secure_storage` pour le jeton Passport
 - Mise en page adaptative : navigation basse sur téléphone, rail sur tablette
   et grand écran
-- Cache local et reconnexion automatique
+- Reconnexion automatique sans persistance des données métier
 - Notifications système configurables
 - Pagination infinie, recherche et filtres avancés
 
@@ -25,15 +25,14 @@ flutter run
 ```
 
 L'écran de connexion permet de modifier l'adresse du serveur. La valeur par
-défaut pour l'émulateur Android et Laragon est :
+défaut de production est :
 
 ```text
-http://10.0.2.2/gesta/public/api/mobile/v1
+https://gesta.diakasoft.com/public/api/mobile/v1
 ```
 
-Pour un téléphone physique sur le même réseau, remplacer `10.0.2.2` par
-l'adresse IP locale du PC. Le serveur doit être joignable depuis le téléphone et
-le pare-feu doit autoriser le port HTTP/HTTPS.
+Le serveur doit être joignable depuis le téléphone et utiliser un certificat
+HTTPS valide.
 
 Pour définir l'URL au moment de la compilation :
 
@@ -60,6 +59,12 @@ Le tableau de bord se rafraîchit toutes les 15 secondes et l'activité toutes l
 
 Le catalogue, les contacts, les opérations et l'historique d'activité chargent
 les pages suivantes automatiquement à l'approche du bas de la liste.
+
+Les réponses métier ne sont jamais conservées sur le téléphone. Sans réseau,
+elles sont indiquées comme indisponibles jusqu'à la reconnexion. Seuls le jeton
+Passport et l'adresse du serveur sont conservés dans le stockage sécurisé du
+système. Les réglages de notifications restent uniquement en mémoire pendant la
+session courante.
 
 ## Icône et splash
 

@@ -170,6 +170,7 @@ class _DetailSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final parent = mapValue(data['parent_transaction']);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -179,6 +180,8 @@ class _DetailSummary extends StatelessWidget {
           children: [
             _value('Statut', data['status']?.toString() ?? '—'),
             _value('Paiement', data['payment_status']?.toString() ?? '—'),
+            if (parent.isNotEmpty)
+              _value('Vente d’origine', parent['reference']?.toString() ?? '—'),
             _value('Taxes', formatters.money(data['tax_amount'])),
             _value('Remise', formatters.money(data['discount_amount'])),
           ],

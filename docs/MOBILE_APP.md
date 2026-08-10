@@ -118,8 +118,10 @@ Erreur :
   chaque requête.
 - Aucun mot de passe n'est stocké par Flutter ; seul le jeton est gardé dans le
   Keychain/Keystore via `flutter_secure_storage`.
-- Les réponses de consultation sont mises en cache localement. Le cache est
-  isolé par serveur et supprimé à la déconnexion ou à l'expiration du jeton.
+- Aucune réponse métier n'est conservée localement. Seuls le jeton Passport et
+  l'adresse du serveur sont stockés dans le Keychain/Keystore du téléphone.
+- Les préférences de notifications restent en mémoire et reviennent à leurs
+  valeurs par défaut au prochain démarrage.
 - En production, utiliser exclusivement HTTPS.
 
 ## Mise en service backend
@@ -171,14 +173,12 @@ Le backend n'étant pas installé dans cette copie de travail (`vendor`, `.env` 
 `storage` absents), les tests Laravel doivent être lancés dans l'installation
 opérationnelle ou après restauration de ses dépendances et de sa configuration.
 
-## Hors connexion et reconnexion
+## Réseau et reconnexion
 
-Après une première synchronisation réussie, Flutter peut restaurer la session et
-afficher les dernières réponses disponibles sans réseau. Un bandeau distingue
-l'absence d'Internet d'un serveur indisponible. La reconnexion invalide
-automatiquement les listes et relance leur chargement. Les mutations restent
-désactivées : le mode hors connexion est donc sans file d'écriture et sans risque
-de conflit.
+Les données métier ne sont pas disponibles hors connexion et ne sont jamais
+persistées sur le téléphone. Un bandeau distingue l'absence d'Internet d'un
+serveur indisponible. La reconnexion invalide automatiquement les listes et
+relance leur chargement depuis le tenant authentifié.
 
 ## Notifications
 

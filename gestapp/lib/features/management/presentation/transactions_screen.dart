@@ -58,6 +58,7 @@ class _TransactionsScreenState extends ConsumerState<TransactionsScreen> {
     final formatters = AppFormatters(business);
     final availableTypes = [
       if (business.features['sales'] ?? false) 'sell',
+      if (business.features['sales'] ?? false) 'sell_return',
       if (business.features['purchases'] ?? false) 'purchase',
       if (business.features['expenses'] ?? false) 'expense',
     ];
@@ -82,6 +83,12 @@ class _TransactionsScreenState extends ConsumerState<TransactionsScreen> {
                         value: 'sell',
                         icon: Icon(Icons.point_of_sale_outlined),
                         label: Text('Ventes'),
+                      ),
+                    if (availableTypes.contains('sell_return'))
+                      const ButtonSegment(
+                        value: 'sell_return',
+                        icon: Icon(Icons.undo_rounded),
+                        label: Text('Retours'),
                       ),
                     if (availableTypes.contains('purchase'))
                       const ButtonSegment(

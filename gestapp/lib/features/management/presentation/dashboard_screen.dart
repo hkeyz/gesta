@@ -97,6 +97,8 @@ class _SecondaryMetrics extends StatelessWidget {
   Widget build(BuildContext context) {
     final metrics = data.metrics;
     final items = [
+      ('Ventes brutes', formatters.money(metrics['sales'])),
+      ('Retours clients', formatters.money(metrics['returns'])),
       ('Tickets', formatters.number(metrics['sales_count'])),
       ('Ticket moyen', formatters.money(metrics['average_ticket'])),
       ('Reste à encaisser', formatters.money(metrics['sales_due'])),
@@ -163,6 +165,7 @@ class _Filters extends ConsumerWidget {
         SizedBox(
           width: 190,
           child: DropdownButtonFormField<String>(
+            isExpanded: true,
             initialValue: filter.range,
             decoration: const InputDecoration(
               labelText: 'Période',
@@ -173,7 +176,11 @@ class _Filters extends ConsumerWidget {
                 .map(
                   (item) => DropdownMenuItem(
                     value: item.key,
-                    child: Text(item.value),
+                    child: Text(
+                      item.value,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 )
                 .toList(),
@@ -187,6 +194,7 @@ class _Filters extends ConsumerWidget {
         SizedBox(
           width: 220,
           child: DropdownButtonFormField<int?>(
+            isExpanded: true,
             initialValue: filter.locationId,
             decoration: const InputDecoration(
               labelText: 'Établissement',
@@ -196,12 +204,20 @@ class _Filters extends ConsumerWidget {
             items: [
               const DropdownMenuItem<int?>(
                 value: null,
-                child: Text('Tous les sites'),
+                child: Text(
+                  'Tous les sites',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               ...business.locations.map(
                 (location) => DropdownMenuItem<int?>(
                   value: location.id,
-                  child: Text(location.name, overflow: TextOverflow.ellipsis),
+                  child: Text(
+                    location.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
             ],

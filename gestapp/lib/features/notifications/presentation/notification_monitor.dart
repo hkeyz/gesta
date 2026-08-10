@@ -68,6 +68,7 @@ class _NotificationMonitorState extends ConsumerState<NotificationMonitor> {
       for (final item in data.recentTransactions) {
         if (!_seenTransactions.contains(item.id) &&
             item.type == 'sell' &&
+            item.status == 'final' &&
             item.amount >= settings.saleThreshold) {
           NotificationService.instance.show(
             title: 'Vente importante',

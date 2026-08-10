@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/config/app_config.dart';
 import '../../../core/network/api_exception.dart';
+import '../../../core/notifications/notification_service.dart';
 import '../../../core/providers.dart';
+import '../../management/application/management_providers.dart';
 import '../data/auth_repository.dart';
 import '../domain/auth_state.dart';
 
@@ -40,11 +42,12 @@ class AuthController extends AsyncNotifier<AuthState> {
       return restored;
     } catch (error) {
       if (error is ApiException && error.isNetworkError) {
-        final cachedUser = await credentials.readUser();
-        if (cachedUser != null) {
-          _listenForExpiration(server);
-          return AuthState.signedIn(server, cachedUser);
-        }
+        _listenForExpiration(server);
+        return AuthState.signedOut(
+          server,
+          message:
+              'Serveur indisponible. Vérifiez votre connexion puis réessayez.',
+        );
       }
       await credentials.clearToken();
       _listenForExpiration(server);
@@ -61,7 +64,7 @@ class AuthController extends AsyncNotifier<AuthState> {
         .unauthorized
         .listen((_) async {
           await ref.read(credentialStoreProvider).clearToken();
-          await ref.read(apiClientProvider).clearCache();
+          await NotificationService.instance.cancelAll();
           if (ref.mounted) {
             state = AsyncData(
               AuthState.signedOut(
@@ -69,6 +72,7 @@ class AuthController extends AsyncNotifier<AuthState> {
                 message: 'Votre session a expiré. Reconnectez-vous.',
               ),
             );
+            _clearTenantState();
           }
         });
     ref.onDispose(() => _unauthorizedSubscription?.cancel());
@@ -79,6 +83,9 @@ class AuthController extends AsyncNotifier<AuthState> {
     required String password,
     required String serverUrl,
   }) async {
+    _clearTenantState();
+    await NotificationService.instance.cancelAll();
+    await ref.read(credentialStoreProvider).clearToken();
     state = const AsyncLoading();
     state = await AsyncValue.guard(
       () => ref
@@ -95,10 +102,35 @@ class AuthController extends AsyncNotifier<AuthState> {
     final current = state.value;
     final server = current?.serverUrl ?? AppConfig.defaultApiUrl;
     state = const AsyncLoading();
+    _clearTenantState();
     try {
       await ref.read(authRepositoryProvider).logout();
     } finally {
+      await NotificationService.instance.cancelAll();
       state = AsyncData(AuthState.signedOut(server));
     }
+  }
+
+  void _clearTenantState() {
+    ref.invalidate(managementRepositoryProvider);
+    ref.invalidate(bootstrapProvider);
+    ref.invalidate(dashboardFilterProvider);
+    ref.invalidate(dashboardProvider);
+    ref.invalidate(activityProvider);
+    ref.invalidate(transactionTypeProvider);
+    ref.invalidate(operationFiltersProvider);
+    ref.invalidate(transactionsProvider);
+    ref.invalidate(transactionDetailProvider);
+    ref.invalidate(inventorySummaryProvider);
+    ref.invalidate(lowStockProvider);
+    ref.invalidate(productFiltersProvider);
+    ref.invalidate(productsProvider);
+    ref.invalidate(productCategoriesProvider);
+    ref.invalidate(productDetailProvider);
+    ref.invalidate(contactFiltersProvider);
+    ref.invalidate(contactsProvider);
+    ref.invalidate(contactDetailProvider);
+    ref.invalidate(openCashRegistersProvider);
+    ref.invalidate(cashRegisterDetailProvider);
   }
 }

@@ -59,18 +59,38 @@ class TransactionPresenter
             'note' => $payment->note,
         ])->values();
 
-        $data['sell_lines'] = $transaction->sell_lines->map(fn ($line) => [
+        $sellLines = $transaction->sell_lines;
+        if ($transaction->type === 'sell_return' && $transaction->return_parent_sell) {
+            $parent = $transaction->return_parent_sell;
+            $data['parent_transaction'] = [
+                'id' => (int) $parent->id,
+                'reference' => $parent->invoice_no ?: $parent->ref_no,
+                'amount' => round((float) $parent->final_total, 4),
+            ];
+            $sellLines = $parent->sell_lines
+                ->filter(fn ($line) => (float) $line->quantity_returned > 0);
+        }
+
+        $data['sell_lines'] = $sellLines->map(fn ($line) => [
             'id' => (int) $line->id,
             'product_id' => (int) $line->product_id,
             'variation_id' => (int) $line->variation_id,
             'product_name' => optional($line->product)->name,
             'variation_name' => optional($line->variations)->name,
             'sku' => optional($line->variations)->sub_sku,
-            'quantity' => round((float) $line->quantity, 4),
+            'quantity' => round(
+                $transaction->type === 'sell_return'
+                    ? (float) $line->quantity_returned
+                    : (float) $line->quantity,
+                4
+            ),
             'quantity_returned' => round((float) $line->quantity_returned, 4),
             'unit_price' => round((float) $line->unit_price_inc_tax, 4),
             'line_total' => round(
-                ((float) $line->quantity - (float) $line->quantity_returned) * (float) $line->unit_price_inc_tax,
+                ($transaction->type === 'sell_return'
+                    ? (float) $line->quantity_returned
+                    : (float) $line->quantity - (float) $line->quantity_returned
+                ) * (float) $line->unit_price_inc_tax,
                 4
             ),
         ])->values();

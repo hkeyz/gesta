@@ -35,7 +35,7 @@ class AuthRepository {
       throw const FormatException('Le serveur n’a retourné aucun jeton.');
     }
     final user = _map(data['user']);
-    await _credentials.save(token: token, server: serverUrl, user: user);
+    await _credentials.save(token: token, server: serverUrl);
     return AuthState.signedIn(serverUrl, user);
   }
 
@@ -44,7 +44,6 @@ class AuthRepository {
       await _client.post('/auth/logout');
     } finally {
       await _credentials.clearToken();
-      await _client.clearCache();
     }
   }
 

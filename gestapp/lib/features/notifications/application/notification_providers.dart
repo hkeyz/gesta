@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationPreferences {
   const NotificationPreferences({
@@ -27,25 +26,13 @@ class NotificationPreferences {
 
 class NotificationPreferencesController
     extends AsyncNotifier<NotificationPreferences> {
-  static const _enabledKey = 'gesta_notifications_enabled';
-  static const _saleKey = 'gesta_notifications_sale_threshold';
-  static const _registerKey = 'gesta_notifications_register_minutes';
-
   @override
-  Future<NotificationPreferences> build() async {
-    final preferences = await SharedPreferences.getInstance();
-    return NotificationPreferences(
-      enabled: preferences.getBool(_enabledKey) ?? true,
-      saleThreshold: preferences.getDouble(_saleKey) ?? 100000,
-      maxRegisterMinutes: preferences.getInt(_registerKey) ?? 720,
-    );
-  }
+  Future<NotificationPreferences> build() async =>
+      const NotificationPreferences();
 
   Future<void> setEnabled(bool value) async {
     final current = state.value ?? const NotificationPreferences();
     state = AsyncData(current.copyWith(enabled: value));
-    final preferences = await SharedPreferences.getInstance();
-    await preferences.setBool(_enabledKey, value);
   }
 
   Future<void> configure({
@@ -59,11 +46,6 @@ class NotificationPreferencesController
         maxRegisterMinutes: maxRegisterMinutes,
       ),
     );
-    final preferences = await SharedPreferences.getInstance();
-    await Future.wait([
-      preferences.setDouble(_saleKey, saleThreshold),
-      preferences.setInt(_registerKey, maxRegisterMinutes),
-    ]);
   }
 }
 

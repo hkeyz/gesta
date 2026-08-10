@@ -136,7 +136,7 @@ class ActivityFeedController extends AsyncNotifier<ActivityFeedState> {
         ..sort((a, b) => _activityDate(b).compareTo(_activityDate(a)));
       state = AsyncData(current.copyWith(items: merged));
     } catch (_) {
-      // The connection banner and cached content keep the screen usable.
+      // The connection banner reports the failure while current data stays in memory.
     }
   }
 
@@ -267,6 +267,7 @@ class TransactionsController
     final context = await ref.read(bootstrapProvider.future);
     final allowedTypes = [
       if (context.features['sales'] ?? false) 'sell',
+      if (context.features['sales'] ?? false) 'sell_return',
       if (context.features['purchases'] ?? false) 'purchase',
       if (context.features['expenses'] ?? false) 'expense',
     ];
