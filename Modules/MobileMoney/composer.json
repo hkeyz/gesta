@@ -1,0 +1,23 @@
+{
+    "name": "twf/mobile-money",
+    "description": "Manual mobile money journal module",
+    "authors": [
+        {
+            "name": "Codex",
+            "email": "noreply@example.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\MobileMoney\\Providers\\MobileMoneyServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\MobileMoney\\": ""
+        }
+    }
+}

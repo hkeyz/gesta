@@ -1391,7 +1391,7 @@ class Util
         }
 
         if (empty($lang)) {
-            $lang = ! empty(auth()->user()) ? auth()->user()->language : 'en';
+            $lang = ! empty(auth()->user()) ? auth()->user()->language : 'fr';
         }
 
         $f = new \NumberFormatter($lang, \NumberFormatter::SPELLOUT);
@@ -1556,7 +1556,7 @@ class Util
                             'lat' => $lat,
                             'lon' => $long,
                             'format' => 'json',
-                            'accept-language' => 'en',
+                            'accept-language' => 'fr',
                         ],
                     ]);
 
@@ -1855,7 +1855,7 @@ class Util
     }
 
 
-    function numberToCurrencyWords($amount, $currencyMain = 'dollar', $currencySub = 'cent', $locale = 'en') {
+    function numberToCurrencyWords($amount, $currencyMain = 'dollar', $currencySub = 'cent', $locale = 'fr') {
         $formatter = new \NumberFormatter($locale, \NumberFormatter::SPELLOUT);
     
         $mainUnit = floor($amount);

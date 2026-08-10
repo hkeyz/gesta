@@ -270,7 +270,7 @@ $(document).ready(function () {
         //Uncomment below line to enable save state of datatable.
         //stateSave: true,
         fixedHeader: true,
-        dom: '<"row margin-bottom-20 text-center"<"col-sm-1"l><"col-sm-8"B><"col-sm-3"f> r>tip',
+        dom: '<"row margin-bottom-20 text-center"<"col-sm-2"l><"col-sm-7"B><"col-sm-3"f> r>tip',
         buttons: buttons,
         aLengthMenu: [
             [25, 50, 100, 200, 500, 1000, -1],
@@ -704,3 +704,22 @@ function escapeHtml(str) {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
 }
+
+// Global fix for DataTables NaN issue when showing "All" page length (-1)
+$(document).on('draw.dt', function (e, settings) {
+    try {
+        var api = new $.fn.dataTable.Api(settings);
+        var info = api.page.info();
+        if (info && isNaN(info.end) && typeof info.recordsDisplay === 'number') {
+            var infoEl = $(api.table().container()).find('.dataTables_info');
+            if (infoEl.length > 0) {
+                var text = infoEl.text();
+                if (text.indexOf('NaN') !== -1) {
+                    infoEl.text(text.replace('NaN', info.recordsDisplay));
+                }
+            }
+        }
+    } catch (err) {
+        console.error('Error fixing DataTable NaN info:', err);
+    }
+});

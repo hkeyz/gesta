@@ -3,79 +3,76 @@
 
 @section('content')
 
-    <div class="tw-pb-6 tw-bg-gradient-to-r tw-from-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'primary'}}@endif-800 tw-to-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'primary'}}@endif-900 xl:tw-pb-0 ">
-        <div class="tw-px-5 tw-pt-3">
-            {{-- <div class="sm:tw-flex sm:tw-items-center sm:tw-justify-between sm:tw-gap-12">
-                <h1 class="tw-text-2xl tw-font-medium tw-tracking-tight tw-text-white">
-                    {{ __('home.welcome_message', ['name' => Session::get('user.first_name')]) }}
-                </h1>
-            </div> --}}
-                    <div class="sm:tw-flex sm:tw-items-center sm:tw-justify-between sm:tw-gap-12">
-                        <div class="tw-mt-2 sm:tw-w-1/2 md:tw-w-1/2">
-                            <h1
-                                class="tw-text-2xl md:tw-text-4xl tw-tracking-tight tw-text-primary-800 tw-font-semibold text-white tw-mb-10 md:tw-mb-0">
-                                {{ __('home.welcome_message', ['name' => Session::get('user.first_name')]) }}
-                            </h1>
-                        </div>
-    
-                        @if (auth()->user()->can('dashboard.data'))
-                            @if ($is_admin)
-                                <div class="tw-mt-2 sm:tw-w-1/3 md:tw-w-1/4 ">
-                                    @if (count($all_locations) > 1)
-                                        {!! Form::select('dashboard_location', $all_locations, null, [
-                                            'class' => 'form-control select2',
-                                            'placeholder' => __('lang_v1.select_location'),
-                                            'id' => 'dashboard_location',
-                                        ]) !!}
-                                    @endif
-                                </div>
-            
-                                <div class="tw-mt-2 sm:tw-w-1/3 md:tw-w-1/4 tw-text-right">
-                                    @if ($is_admin)
-                                        <button type="button" id="dashboard_date_filter"
-                                            class="tw-inline-flex tw-items-center tw-justify-center tw-w-full tw-gap-1 tw-px-3 tw-py-2 tw-text-sm tw-font-medium tw-text-gray-900 tw-transition-all tw-duration-200 tw-bg-white tw-rounded-lg sm:tw-w-auto hover:tw-bg-primary-50">
-                                            <svg aria-hidden="true" class="tw-size-5" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path
-                                                    d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
-                                                <path d="M16 3v4" />
-                                                <path d="M8 3v4" />
-                                                <path d="M4 11h16" />
-                                                <path d="M7 14h.013" />
-                                                <path d="M10.01 14h.005" />
-                                                <path d="M13.01 14h.005" />
-                                                <path d="M16.015 14h.005" />
-                                                <path d="M13.015 17h.005" />
-                                                <path d="M7.01 17h.005" />
-                                                <path d="M10.01 17h.005" />
-                                            </svg>
-                                            <span>
-                                                {{ __('messages.filter_by_date') }}
-                                            </span>
-                                            <svg aria-hidden="true" class="tw-size-4" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M6 9l6 6l6 -6" />
-                                            </svg>
-                                        </button>
-                                    @endif
-                                </div>
-                            @endif
-                        @endif
+    <div class="tw-pb-6 xl:tw-pb-0">
+        <div class="tw-px-5 tw-pt-5">
+            <div class="modern-welcome-banner tw-p-6 md:tw-p-8 tw-mb-6">
+                <div class="sm:tw-flex sm:tw-items-center sm:tw-justify-between sm:tw-gap-12">
+                    <div class="tw-mt-2 sm:tw-w-1/2 md:tw-w-1/2">
+                        <h1 class="tw-text-2xl md:tw-text-3xl tw-tracking-tight tw-font-bold tw-text-slate-800 tw-mb-1">
+                            {{ __('home.welcome_message', ['name' => Session::get('user.first_name')]) }} 👋
+                        </h1>
+                        <p class="tw-text-sm tw-text-slate-500 tw-mb-0 tw-font-medium">
+                            Voici le résumé de l'activité de votre entreprise aujourd'hui.
+                        </p>
                     </div>
+
+                    @if (auth()->user()->can('dashboard.data'))
+                        @if ($is_admin)
+                            <div class="tw-mt-2 sm:tw-w-1/3 md:tw-w-1/4">
+                                @if (count($all_locations) > 1)
+                                    {!! Form::select('dashboard_location', $all_locations, null, [
+                                        'class' => 'form-control select2',
+                                        'placeholder' => __('lang_v1.select_location'),
+                                        'id' => 'dashboard_location',
+                                    ]) !!}
+                                @endif
+                            </div>
+
+                            <div class="tw-mt-2 sm:tw-w-1/3 md:tw-w-1/4 tw-text-right">
+                                @if ($is_admin)
+                                    <button type="button" id="dashboard_date_filter"
+                                        class="tw-inline-flex tw-items-center tw-justify-center tw-w-full tw-gap-1 tw-px-3 tw-py-2 tw-text-sm tw-font-medium tw-text-gray-900 tw-transition-all tw-duration-200 tw-bg-white tw-rounded-lg sm:tw-w-auto hover:tw-bg-primary-50">
+                                        <svg aria-hidden="true" class="tw-size-5" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
+                                            <path d="M16 3v4" />
+                                            <path d="M8 3v4" />
+                                            <path d="M4 11h16" />
+                                            <path d="M7 14h.013" />
+                                            <path d="M10.01 14h.005" />
+                                            <path d="M13.01 14h.005" />
+                                            <path d="M16.015 14h.005" />
+                                            <path d="M13.015 17h.005" />
+                                            <path d="M7.01 17h.005" />
+                                            <path d="M10.01 17h.005" />
+                                        </svg>
+                                        <span>
+                                            {{ __('messages.filter_by_date') }}
+                                        </span>
+                                        <svg aria-hidden="true" class="tw-size-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M6 9l6 6l6 -6" />
+                                        </svg>
+                                    </button>
+                                @endif
+                            </div>
+                        @endif
+                    @endif
+                </div>
+            </div>
                     @if (auth()->user()->can('dashboard.data'))
                         @if ($is_admin)
                             <div class="tw-grid tw-grid-cols-1 tw-gap-4 tw-mt-6 sm:tw-grid-cols-2 xl:tw-grid-cols-4 sm:tw-gap-5">
                             
-                                <div
-                                    class="tw-transition-all tw-duration-200 tw-bg-white tw-shadow-sm hover:tw-shadow-md tw-rounded-xl  tw-ring-1 tw-ring-gray-200">
-                                    <div class="tw-p-4 sm:tw-p-5">
+                                <div class="modern-kpi-card kpi-sales">
+                                    <div class="tw-p-5">
                                         <div class="tw-flex tw-items-center tw-gap-4">
-                                            <div
-                                                class="tw-inline-flex tw-items-center tw-justify-center tw-w-10 tw-h-10 tw-rounded-full sm:tw-w-12 sm:tw-h-12 tw-shrink-0 tw-bg-sky-100 tw-text-sky-500">
+                                            <div class="kpi-icon-wrapper tw-inline-flex tw-items-center tw-justify-center tw-w-12 tw-h-12 tw-rounded-xl tw-shrink-0 tw-bg-sky-100 tw-text-sky-500">
                                                 <svg aria-hidden="true" class="tw-w-6 tw-h-6" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                                     stroke-linecap="round" stroke-linejoin="round">
@@ -88,24 +85,20 @@
                                             </div>
 
                                             <div class="tw-flex-1 tw-min-w-0">
-                                                <p
-                                                    class="tw-text-sm tw-font-medium tw-text-gray-500 tw-truncate tw-whitespace-nowrap">
+                                                <p class="kpi-label tw-truncate tw-whitespace-nowrap tw-mb-0">
                                                     {{ __('home.total_sell') }}
                                                 </p>
-                                                <p
-                                                    class="total_sell tw-mt-0.5 tw-text-gray-900 tw-text-xl tw-truncate tw-font-semibold tw-tracking-tight tw-font-mono">
+                                                <p class="total_sell kpi-value tw-truncate tw-mb-0">
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div
-                                    class="tw-transition-all tw-duration-200 tw-bg-white tw-shadow-sm hover:tw-shadow-md tw-rounded-xl hover:tw--translate-y-0.5 tw-ring-1 tw-ring-gray-200">
-                                    <div class="tw-p-4 sm:tw-p-5">
+                                <div class="modern-kpi-card kpi-net">
+                                    <div class="tw-p-5">
                                         <div class="tw-flex tw-items-center tw-gap-4">
-                                            <div
-                                                class="tw-inline-flex tw-items-center tw-justify-center tw-w-10 tw-h-10 tw-text-green-500 tw-bg-green-100 tw-rounded-full sm:tw-w-12 sm:tw-h-12 tw-shrink-0">
+                                            <div class="kpi-icon-wrapper tw-inline-flex tw-items-center tw-justify-center tw-w-12 tw-h-12 tw-rounded-xl tw-shrink-0 tw-text-green-500 tw-bg-green-100">
                                                 <svg aria-hidden="true" class="tw-w-6 tw-h-6" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                                     stroke-linecap="round" stroke-linejoin="round">
@@ -122,24 +115,20 @@
                                             </div>
 
                                             <div class="tw-flex-1 tw-min-w-0">
-                                                <p
-                                                    class="tw-text-sm tw-font-medium tw-text-gray-500 tw-truncate tw-whitespace-nowrap">
+                                                <p class="kpi-label tw-truncate tw-whitespace-nowrap tw-mb-0">
                                                     {{ __('lang_v1.net') }} @show_tooltip(__('lang_v1.net_home_tooltip'))
                                                 </p>
-                                                <p
-                                                    class="net tw-mt-0.5 tw-text-gray-900 tw-text-xl tw-truncate tw-font-semibold tw-tracking-tight tw-font-mono">
+                                                <p class="net kpi-value tw-truncate tw-mb-0">
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div
-                                    class="tw-transition-all tw-duration-200 tw-bg-white tw-shadow-sm hover:tw-shadow-md tw-rounded-xl hover:tw--translate-y-0.5 tw-ring-1 tw-ring-gray-200">
-                                    <div class="tw-p-4 sm:tw-p-5">
+                                <div class="modern-kpi-card kpi-invoice-due">
+                                    <div class="tw-p-5">
                                         <div class="tw-flex tw-items-center tw-gap-4">
-                                            <div
-                                                class="tw-inline-flex tw-items-center tw-justify-center tw-w-10 tw-h-10 tw-text-yellow-500 tw-bg-yellow-100 tw-rounded-full sm:tw-w-12 sm:tw-h-12 shrink-0">
+                                            <div class="kpi-icon-wrapper tw-inline-flex tw-items-center tw-justify-center tw-w-12 tw-h-12 tw-rounded-xl tw-shrink-0 tw-text-yellow-500 tw-bg-yellow-100">
                                                 <svg aria-hidden="true" class="tw-w-6 tw-h-6" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                                     stroke-linecap="round" stroke-linejoin="round">
@@ -155,24 +144,20 @@
                                             </div>
 
                                             <div class="tw-flex-1 tw-min-w-0">
-                                                <p
-                                                    class="tw-text-sm tw-font-medium tw-text-gray-500 tw-truncate tw-whitespace-nowrap">
+                                                <p class="kpi-label tw-truncate tw-whitespace-nowrap tw-mb-0">
                                                     {{ __('home.invoice_due') }}
                                                 </p>
-                                                <p
-                                                    class="invoice_due tw-mt-0.5 tw-text-gray-900 tw-text-xl tw-truncate tw-font-semibold tw-tracking-tight tw-font-mono">
+                                                <p class="invoice_due kpi-value tw-truncate tw-mb-0">
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div
-                                    class="tw-transition-all tw-duration-200 tw-bg-white tw-shadow-sm hover:tw-shadow-md tw-rounded-xl hover:tw--translate-y-0.5 tw-ring-1 tw-ring-gray-200">
-                                    <div class="tw-p-4 sm:tw-p-5">
+                                <div class="modern-kpi-card kpi-sales-return">
+                                    <div class="tw-p-5">
                                         <div class="tw-flex tw-items-center tw-gap-4">
-                                            <div
-                                                class="tw-inline-flex tw-items-center tw-justify-center tw-w-10 tw-h-10 tw-text-red-500 tw-bg-red-100 tw-rounded-full sm:tw-w-12 sm:tw-h-12 shrink-0">
+                                            <div class="kpi-icon-wrapper tw-inline-flex tw-items-center tw-justify-center tw-w-12 tw-h-12 tw-rounded-xl tw-shrink-0 tw-text-pink-500 tw-bg-pink-100">
                                                 <svg aria-hidden="true" class="tw-w-6 tw-h-6" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                                     stroke-linecap="round" stroke-linejoin="round">
@@ -186,20 +171,15 @@
                                             </div>
 
                                             <div class="tw-flex-1 tw-min-w-0">
-                                                <p
-                                                    class="tw-text-sm tw-font-medium tw-text-gray-500 tw-truncate tw-whitespace-nowrap">
+                                                <p class="kpi-label tw-truncate tw-whitespace-nowrap tw-mb-0">
                                                     {{ __('lang_v1.total_sell_return') }}
                                                     <i class="fa fa-info-circle text-info hover-q no-print" aria-hidden="true" data-container="body"
                                                     data-toggle="popover" data-placement="auto bottom" id="total_srp"
                                                     data-value="{{ __('lang_v1.total_sell_return') }}-{{ __('lang_v1.total_sell_return_paid') }}"
                                                     data-content="" data-html="true" data-trigger="hover"></i>
                                                 </p>
-                                                <p
-                                                    class="total_sell_return tw-mt-0.5 tw-text-gray-900 tw-text-xl tw-truncate tw-font-semibold tw-tracking-tight tw-font-mono">
+                                                <p class="total_sell_return kpi-value tw-truncate tw-mb-0">
                                                 </p>
-                                                {{-- <p class="mb-0 text-muted fs-10 mt-5">{{ __('lang_v1.total_sell_return') }}: <span
-                                                        class="total_sr"></span><br>
-                                                    {{ __('lang_v1.total_sell_return_paid') }}<span class="total_srp"></span></p> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -208,150 +188,120 @@
                         @endif
                     @endif
               
-        </div>
         @if (auth()->user()->can('dashboard.data'))
             @if ($is_admin)
-                <div class="tw-relative">
-                    <div class="tw-absolute tw-inset-0 tw-grid" aria-hidden="true">
-                        <div class="tw-bg-gradient-to-r tw-from-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'primary'}}@endif-800 tw-to-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'primary'}}@endif-900"></div>
-                        <div class="tw-bg-gradient-to-r tw-from-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'primary'}}@endif-800 tw-to-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'primary'}}@endif-900 xl:tw-bg-none xl:tw-bg-gray-100">
+                <div class="tw-px-5">
+                    <div class="tw-grid tw-grid-cols-1 tw-gap-4 tw-mt-4 sm:tw-mt-6 sm:tw-grid-cols-2 xl:tw-grid-cols-4 sm:tw-gap-5">
+                        <div class="modern-kpi-card kpi-purchase">
+                            <div class="tw-p-5">
+                                <div class="tw-flex tw-items-center tw-gap-4">
+                                    <div class="kpi-icon-wrapper tw-inline-flex tw-items-center tw-justify-center tw-w-12 tw-h-12 tw-rounded-xl tw-shrink-0 bg-sky-100 tw-text-sky-500">
+                                        <svg aria-hidden="true" class="tw-w-6 tw-h-6"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 3v12"></path>
+                                            <path d="M16 11l-4 4l-4 -4"></path>
+                                            <path d="M3 12a9 9 0 0 0 18 0"></path>
+                                        </svg>
+                                    </div>
+
+                                    <div class="tw-flex-1 tw-min-w-0">
+                                        <p class="kpi-label tw-truncate tw-whitespace-nowrap tw-mb-0">
+                                            {{ __('home.total_purchase') }}
+                                        </p>
+                                        <p class="total_purchase kpi-value tw-truncate tw-mb-0">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="tw-px-5 tw-isolate">
-                        <div
-                            class="tw-grid tw-grid-cols-1 tw-gap-4 tw-mt-4 sm:tw-mt-6 sm:tw-grid-cols-2 xl:tw-grid-cols-4 sm:tw-gap-5">
-                            <div
-                                class="tw-transition-all tw-duration-200 tw-bg-white tw-shadow-sm tw-rounded-xl hover:tw-shadow-md hover:tw--translate-y-0.5 tw-ring-1 tw-ring-gray-200">
-                                <div class="tw-p-4 sm:tw-p-5">
-                                    <div class="tw-flex tw-items-center tw-gap-4">
-                                        <div
-                                            class="tw-inline-flex tw-items-center tw-justify-center tw-w-10 tw-h-10 tw-rounded-full sm:tw-w-12 sm:tw-h-12 shrink-0 bg-sky-100 tw-text-sky-500">
-                                            <svg aria-hidden="true" class="tw-w-6 tw-h-6"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M12 3v12"></path>
-                                                <path d="M16 11l-4 4l-4 -4"></path>
-                                                <path d="M3 12a9 9 0 0 0 18 0"></path>
-                                            </svg>
-                                        </div>
 
-                                        <div class="tw-flex-1 tw-min-w-0">
-                                            <p
-                                                class="tw-text-sm tw-font-medium tw-text-gray-500 tw-truncate tw-whitespace-nowrap">
-                                                {{ __('home.total_purchase') }}
-                                            </p>
-                                            <p
-                                                class="total_purchase tw-mt-0.5 tw-text-gray-900 tw-text-xl tw-truncate tw-font-semibold tw-tracking-tight tw-font-mono">
-                                            </p>
-                                        </div>
+                        <div class="modern-kpi-card kpi-purchase-due">
+                            <div class="tw-p-5">
+                                <div class="tw-flex tw-items-center tw-gap-4">
+                                    <div class="kpi-icon-wrapper tw-inline-flex tw-items-center tw-justify-center tw-w-12 tw-h-12 tw-rounded-xl tw-shrink-0 tw-text-yellow-500 tw-bg-yellow-100">
+                                        <svg aria-hidden="true" class="tw-w-6 tw-h-6"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M12 9v4" />
+                                            <path
+                                                d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
+                                            <path d="M12 16h.01" />
+                                        </svg>
+                                    </div>
+
+                                    <div class="tw-flex-1 tw-min-w-0">
+                                        <p class="kpi-label tw-truncate tw-whitespace-nowrap tw-mb-0">
+                                            {{ __('home.purchase_due') }}
+                                        </p>
+                                        <p class="purchase_due kpi-value tw-truncate tw-mb-0">
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="tw-transition-all tw-duration-200 tw-bg-white tw-shadow-sm tw-rounded-xl hover:tw-shadow-md hover:tw--translate-y-0.5 tw-ring-1 tw-ring-gray-200">
-                                <div class="tw-p-4 sm:tw-p-5">
-                                    <div class="tw-flex tw-items-center tw-gap-4">
-                                        <div
-                                            class="tw-inline-flex tw-items-center tw-justify-center tw-w-10 tw-h-10 tw-text-yellow-500 tw-bg-yellow-100 tw-rounded-full sm:tw-w-12 sm:tw-h-12 shrink-0">
-                                            <svg aria-hidden="true" class="tw-w-6 tw-h-6"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M12 9v4" />
-                                                <path
-                                                    d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
-                                                <path d="M12 16h.01" />
-                                            </svg>
-                                        </div>
+                        </div>
 
-                                        <div>
-                                            <p class="tw-text-sm tw-font-medium tw-text-gray-500">
-                                                {{ __('home.purchase_due') }}
-                                            </p>
-                                            <p
-                                                class="purchase_due tw-mt-0.5 tw-text-gray-900 tw-text-xl tw-truncate tw-font-semibold tw-tracking-tight tw-font-mono">
+                        <div class="modern-kpi-card kpi-purchase-return">
+                            <div class="tw-p-5">
+                                <div class="tw-flex tw-items-center tw-gap-4">
+                                    <div class="kpi-icon-wrapper tw-inline-flex tw-items-center tw-justify-center tw-w-12 tw-h-12 tw-rounded-xl tw-shrink-0 tw-text-pink-500 tw-bg-pink-100">
+                                        <svg aria-hidden="true" class="tw-w-6 tw-h-6"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2" />
+                                            <path d="M15 14v-2a2 2 0 0 0 -2 -2h-4l2 -2m0 4l-2 -2" />
+                                        </svg>
+                                    </div>
 
-                                            </p>
-                                        </div>
+                                    <div class="tw-flex-1 tw-min-w-0">
+                                        <p class="kpi-label tw-truncate tw-whitespace-nowrap tw-mb-0">
+                                            {{ __('lang_v1.total_purchase_return') }}
+                                            <i class="fa fa-info-circle text-info hover-q no-print" aria-hidden="true" data-container="body"
+                                            data-toggle="popover" data-placement="auto bottom" id="total_prp"
+                                            data-value="{{ __('lang_v1.total_purchase_return') }}-{{ __('lang_v1.total_purchase_return_paid') }}"
+                                            data-content="" data-html="true" data-trigger="hover"></i>
+                                        </p>
+                                        <p class="total_purchase_return kpi-value tw-truncate tw-mb-0">
+                                        </p>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div
-                                class="tw-transition-all tw-duration-200 tw-bg-white tw-shadow-sm tw-rounded-xl hover:tw-shadow-md hover:tw--translate-y-0.5 tw-ring-1 tw-ring-gray-200">
-                                <div class="tw-p-4 sm:tw-p-5">
-                                    <div class="tw-flex tw-items-center tw-gap-4">
-                                        <div
-                                            class="tw-inline-flex tw-items-center tw-justify-center tw-w-10 tw-h-10 tw-text-red-500 tw-bg-red-100 tw-rounded-full sm:tw-w-12 sm:tw-h-12 shrink-0">
-                                            <svg aria-hidden="true" class="tw-w-6 tw-h-6"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path
-                                                    d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2" />
-                                                <path d="M15 14v-2a2 2 0 0 0 -2 -2h-4l2 -2m0 4l-2 -2" />
-                                            </svg>
-                                        </div>
-
-                                        <div class="tw-flex-1 tw-min-w-0">
-                                            <p
-                                                class="tw-text-sm tw-font-medium tw-text-gray-500 tw-truncate tw-whitespace-nowrap">
-                                                {{ __('lang_v1.total_purchase_return') }}
-                                                <i class="fa fa-info-circle text-info hover-q no-print" aria-hidden="true" data-container="body"
-                                                data-toggle="popover" data-placement="auto bottom" id="total_prp"
-                                                data-value="{{ __('lang_v1.total_purchase_return') }}-{{ __('lang_v1.total_purchase_return_paid') }}"
-                                                data-content="" data-html="true" data-trigger="hover"></i>
-                                            </p>
-                                            <p
-                                                class="total_purchase_return tw-mt-0.5 tw-text-gray-900 tw-text-xl tw-truncate tw-font-semibold tw-tracking-tight tw-font-mono">
-                                            </p>
-                                            {{-- <p class="mb-0 text-muted fs-10 mt-5">
-                                                {{ __('lang_v1.total_purchase_return') }}: <span
-                                                    class="total_pr"></span><br>
-                                                {{ __('lang_v1.total_purchase_return_paid') }}<span
-                                                    class="total_prp"></span></p> --}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div
-                                class="tw-transition-all tw-duration-200 tw-bg-white tw-shadow-sm tw-rounded-xl hover:tw-shadow-md hover:tw--translate-y-0.5 tw-ring-1 tw-ring-gray-200">
-                                <div class="tw-p-4 sm:tw-p-5">
-                                    <div class="tw-flex tw-items-center tw-gap-4">
-                                        <div
-                                            class="tw-inline-flex tw-items-center tw-justify-center tw-w-10 tw-h-10 tw-text-red-500 tw-bg-red-100 tw-rounded-full sm:tw-w-12 sm:tw-h-12 shrink-0">
-                                            <svg aria-hidden="true" class="tw-w-6 tw-h-6"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path
-                                                    d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2">
+                        <div class="modern-kpi-card kpi-expense">
+                            <div class="tw-p-5">
+                                <div class="tw-flex tw-items-center tw-gap-4">
+                                    <div class="kpi-icon-wrapper tw-inline-flex tw-items-center tw-justify-center tw-w-12 tw-h-12 tw-rounded-xl tw-shrink-0 tw-text-red-500 tw-bg-red-100">
+                                        <svg aria-hidden="true" class="tw-w-6 tw-h-6"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2">
                                                 </path>
                                                 <path
                                                     d="M14.8 8a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1">
                                                 </path>
                                                 <path d="M12 6v10"></path>
-                                            </svg>
-                                        </div>
+                                        </svg>
+                                    </div>
 
-                                        <div class="tw-flex-1 tw-min-w-0">
-                                            <p
-                                                class="tw-text-sm tw-font-medium tw-text-gray-500 tw-truncate tw-whitespace-nowrap">
-                                                {{ __('lang_v1.expense') }}
-                                            </p>
-                                            <p
-                                                class="total_expense tw-mt-0.5 tw-text-gray-900 tw-text-xl tw-truncate tw-font-semibold tw-tracking-tight tw-font-mono">
-
-                                            </p>
-                                        </div>
+                                    <div class="tw-flex-1 tw-min-w-0">
+                                        <p class="kpi-label tw-truncate tw-whitespace-nowrap tw-mb-0">
+                                            {{ __('lang_v1.expense') }}
+                                        </p>
+                                        <p class="total_expense kpi-value tw-truncate tw-mb-0">
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -365,7 +315,6 @@
                 @endif --}}
             @endif
         @endif
-    </div>
     @if (auth()->user()->can('dashboard.data'))
         <div class="tw-px-5 tw-py-6">
             <div class="tw-grid tw-grid-cols-1 tw-gap-4 sm:tw-gap-5 lg:tw-grid-cols-2">
@@ -1023,8 +972,263 @@
 
 @section('css')
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        /* Apply font family to dashboard headings and stats */
+        .modern-font, 
+        .modern-welcome-banner h1, 
+        .modern-kpi-card, 
+        .tw-font-bold,
+        .table thead th,
+        .btn,
+        select {
+            font-family: 'Outfit', sans-serif !important;
+        }
+
+        /* Modern Banner Styling */
+        .modern-welcome-banner {
+            background: rgba(255, 255, 255, 0.75) !important;
+            backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(226, 232, 240, 0.8) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 4px 20px rgba(148, 163, 184, 0.04) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modern-welcome-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Modern KPI Card styling */
+        .modern-kpi-card {
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(226, 232, 240, 0.8) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 4px 20px rgba(148, 163, 184, 0.06) !important;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .modern-kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .modern-kpi-card:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 20px 40px rgba(148, 163, 184, 0.12) !important;
+            border-color: rgba(203, 213, 225, 1) !important;
+        }
+
+        /* Sum formatting and typography inside KPI cards */
+        .modern-kpi-card .kpi-value {
+            font-family: 'Outfit', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 2.125rem !important; /* Large, bold sums */
+            letter-spacing: -0.02em !important;
+            margin-top: 6px !important;
+            transition: color 0.3s ease !important;
+        }
+
+        .modern-kpi-card .kpi-label {
+            font-family: 'Outfit', sans-serif !important;
+            font-weight: 500 !important;
+            font-size: 0.9rem !important;
+            color: #64748b !important;
+            letter-spacing: -0.01em !important;
+        }
+
+        /* Color profiles for sums */
+        .kpi-sales .kpi-value { color: #2563eb !important; }
+        .kpi-net .kpi-value { color: #059669 !important; }
+        .kpi-invoice-due .kpi-value { color: #d97706 !important; }
+        .kpi-sales-return .kpi-value { color: #db2777 !important; }
+        .kpi-purchase .kpi-value { color: #0891b2 !important; }
+        .kpi-purchase-due .kpi-value { color: #d97706 !important; }
+        .kpi-purchase-return .kpi-value { color: #db2777 !important; }
+        .kpi-expense .kpi-value { color: #dc2626 !important; }
+
+        /* Subtle background glow mapping */
+        .kpi-sales { background: linear-gradient(135deg, #ffffff 75%, rgba(37, 99, 235, 0.04) 100%) !important; }
+        .kpi-net { background: linear-gradient(135deg, #ffffff 75%, rgba(16, 185, 129, 0.04) 100%) !important; }
+        .kpi-invoice-due { background: linear-gradient(135deg, #ffffff 75%, rgba(245, 158, 11, 0.04) 100%) !important; }
+        .kpi-sales-return { background: linear-gradient(135deg, #ffffff 75%, rgba(236, 72, 153, 0.04) 100%) !important; }
+        .kpi-purchase { background: linear-gradient(135deg, #ffffff 75%, rgba(6, 182, 212, 0.04) 100%) !important; }
+        .kpi-purchase-due { background: linear-gradient(135deg, #ffffff 75%, rgba(217, 119, 6, 0.04) 100%) !important; }
+        .kpi-purchase-return { background: linear-gradient(135deg, #ffffff 75%, rgba(219, 39, 119, 0.04) 100%) !important; }
+        .kpi-expense { background: linear-gradient(135deg, #ffffff 75%, rgba(239, 68, 68, 0.04) 100%) !important; }
+
+        /* Decorative left borders on hover */
+        .kpi-sales:hover::before { background: #3b82f6; }
+        .kpi-net:hover::before { background: #10b981; }
+        .kpi-invoice-due:hover::before { background: #f59e0b; }
+        .kpi-sales-return:hover::before { background: #ec4899; }
+        .kpi-purchase:hover::before { background: #06b6d4; }
+        .kpi-purchase-due:hover::before { background: #f59e0b; }
+        .kpi-purchase-return:hover::before { background: #ec4899; }
+        .kpi-expense:hover::before { background: #ef4444; }
+
+        /* Icon wraps styling */
+        .kpi-icon-wrapper {
+            transition: transform 0.3s ease !important;
+        }
+        .modern-kpi-card:hover .kpi-icon-wrapper {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        /* Section layout styling overrides */
+        .table-container-card,
+        .tw-bg-white.tw-shadow-sm.tw-rounded-xl.tw-ring-1.tw-ring-gray-200 {
+            border: 1px solid rgba(226, 232, 240, 0.8) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 4px 20px rgba(148, 163, 184, 0.05) !important;
+            background: #ffffff !important;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .table-container-card:hover,
+        .tw-bg-white.tw-shadow-sm.tw-rounded-xl.tw-ring-1.tw-ring-gray-200:hover {
+            box-shadow: 0 12px 30px rgba(148, 163, 184, 0.08) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        /* Overrides for dynamic tables */
+        .table.table-bordered {
+            border: none !important;
+        }
+        
+        .table.table-bordered thead th {
+            background-color: #f8fafc !important;
+            color: #475569 !important;
+            font-size: 0.75rem !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            padding: 14px 16px !important;
+            border: none !important;
+            border-bottom: 2px solid #f1f5f9 !important;
+        }
+
+        .table.table-bordered tbody td {
+            padding: 16px 16px !important;
+            border: none !important;
+            border-bottom: 1px solid #f1f5f9 !important;
+            color: #334155 !important;
+            vertical-align: middle !important;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #fbfcfd !important;
+        }
+
+        .table-striped tbody tr:hover {
+            background-color: #f1f5f9 !important;
+        }
+
+        /* Select2 theme matching */
+        .select2-container--default .select2-selection--single {
+            border-radius: 8px !important;
+            border: 1px solid #cbd5e1 !important;
+            height: 38px !important;
+            padding: 4px 12px !important;
+            background-color: #ffffff !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .select2-container--default .select2-selection--single:focus,
+        .select2-container--default .select2-selection--single:active {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+        }
+
         .select2-container {
             width: 100% !important;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 6px !important;
+            right: 8px !important;
+        }
+
+        /* Inputs and filter button styling */
+        #dashboard_date_filter {
+            background-color: #ffffff !important;
+            border: 1px solid #cbd5e1 !important;
+            color: #475569 !important;
+            border-radius: 10px !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+            font-weight: 600 !important;
+            transition: all 0.2s ease !important;
+            height: 38px !important;
+        }
+        #dashboard_date_filter:hover {
+            background-color: #f8fafc !important;
+            border-color: #cbd5e1 !important;
+            color: #1e293b !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(148, 163, 184, 0.08) !important;
+        }
+
+        /* Style DataTable pagination and buttons */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            border-radius: 8px !important;
+            border: 1px solid #cbd5e1 !important;
+            background: #ffffff !important;
+            color: #475569 !important;
+            padding: 6px 12px !important;
+            margin: 0 2px !important;
+            font-size: 0.825rem !important;
+            font-weight: 500 !important;
+            transition: all 0.2s !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #f8fafc !important;
+            border-color: #94a3b8 !important;
+            color: #0f172a !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background: #2563eb !important;
+            border-color: #2563eb !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2) !important;
+        }
+
+        /* Scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 @endsection

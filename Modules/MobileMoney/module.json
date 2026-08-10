@@ -1,0 +1,14 @@
+{
+    "name": "MobileMoney",
+    "alias": "mobilemoney",
+    "description": "Manual mobile money operations journal with commissions and reports",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\MobileMoney\\Providers\\MobileMoneyServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

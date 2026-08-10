@@ -545,7 +545,7 @@ class ModuleUtil extends Util
 
     public function availableModules()
     {
-        return [
+        $modules = [
             'purchases' => ['name' => __('purchase.purchases')],
             'add_sale' => ['name' => __('sale.add_sale')],
             'pos_sale' => ['name' => __('sale.pos_sale')],
@@ -572,6 +572,15 @@ class ModuleUtil extends Util
                 'tooltip' => __('lang_v1.types_of_service_help_long'),
             ],
         ];
+
+        if ($this->isModuleInstalled('MobileMoney')) {
+            $modules['mobile_money'] = [
+                'name' => __('mobilemoney::lang.module_name'),
+                'tooltip' => __('mobilemoney::lang.settings_help_text'),
+            ];
+        }
+
+        return $modules;
     }
 
     /**
